@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'vip',
+        'bloqueado',
+        'rol'
+
     ];
 
     /**
@@ -43,13 +47,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function proveedor()
-    {
-        return $this->hasOne(Proveedor::class);
-    }
 
-    public function infoUsuario()
+    public function ciudad()
     {
-        return $this->hasOne(Userinfo::class);
+        return $this->belongsTo(Ciudad::class);
     }
 }

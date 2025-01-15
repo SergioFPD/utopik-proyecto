@@ -9,13 +9,17 @@ class Ciudad extends Model
 {
     use HasFactory;
 
-    public function pais()
+    protected $table = 'ciudades';
+
+    protected $guarded = [];
+
+    public function user()
     {
-        return $this->belongsTo(Pais::class, 'pais_id');
+        return $this->hasOne(User::class);
     }
 
-    public function infoUsuarios()
+    public function pais()
     {
-        return $this->hasMany(Userinfo::class, 'ciudad_id');
+        return $this->belongsTo(Pais::class);
     }
 }
