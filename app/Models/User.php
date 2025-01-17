@@ -18,8 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
         'email',
+        'user',
         'password',
         'vip',
         'bloqueado',
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function ciudad()
     {
         return $this->belongsTo(Ciudad::class);
+    }
+
+    public function dime()
+    {
+        return $this->user;
     }
 }

@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         User::create([
             'id'=>1,
             'user'=> 'paco11',
+            'email' => 'paco@gmail.com',
             'password'=> '1234',
             'rol'=> 'cliente',
             'nombre'=>'Paco',
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'id'=>2,
             'user'=> 'maria11',
             'password'=> '1234',
+            'email' => 'maria@gmail.com',
             'rol'=> 'proveedor',
             'nombre'=>'Maria',
             'ciudad_id'=>3

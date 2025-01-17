@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,12 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('landing');
+})->name('landing');
 
 
 Route::get('/index', [UserController::class, 'index'])->name('index');
+
+Route::get('/admin/users', [AdminController::class, 'viewUsers'])->name('admin.users');
+Route::post('/admin/create/user', [AdminController::class, 'createUser'])->name('admin.create.user');
+Route::put('/admin/update/user/{user}', [AdminController::class, 'updateUser'])->name('admin.update.user');

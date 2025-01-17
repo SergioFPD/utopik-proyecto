@@ -9,11 +9,12 @@
 <body>
     <h1>Resultados</h1>
     <p> El nombre es {{ $usuario->nombre}}</p>
-    <p> Ciudad es {{ $usuario->Ciudad->ciudad}}</p>
-    <p> rol es {{ $usuario->rol}}</p>
+    <p> Ciudad es {{ $usuario->ciudad->ciudad}}</p>
+    <p> rol es {{ $usuario->ciudad->pais}}</p>
+    <p> dime {{ $usuario->dime()}}</p>
  <br>
     <p> El nombre es {{ $usuario2->nombre}}</p>
-    <p> Ciudad es {{ $usuario2->Ciudad->ciudad}}</p>
+    <p> Ciudad es {{ $usuario2->ciudad}}</p>
     <p> rol es {{ $usuario2->rol}}</p>
 </body>
 </html>
