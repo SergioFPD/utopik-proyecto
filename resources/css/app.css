@@ -1,0 +1,73 @@
+/* Estilos del modal */
+.modal {
+    display: none;
+    /* Oculto por defecto */
+
+}
+
+.modal.center {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semi-transparente */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    /* Comienza completamente invisible */
+    transition: opacity 0.5s ease;
+    /* Transición para el fade-in */
+
+}
+
+.modal.show {
+    display: flex !important;
+    /* Mostrar el modal */
+    opacity: 1;
+    /* Visible completamente */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+    /* Bordes redondeados solo arriba */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+
+    animation: slideUp 0.5s ease-in-out;
+}
+
+.modal.hide .modal-content {
+    animation: slideDown 0.5s ease-in-out forwards;
+    /* Animación inversa */
+}
+
+.close {
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-login-row:hover .modal.login {
+
+    display: block !important;
+}
+
+.error-message{
+
+    color: rgb(199, 66, 66);
+}

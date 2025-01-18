@@ -1,18 +1,26 @@
 <div id="modal-userdata" class="modal center">
     <div class="modal-content">
-        <h1>Modificar usuario</h1>
+        <p id="nombre">nombre</p>
         <span class="close">&times;</span>
         <form id="editForm" method="post">
             @method('PUT')
             @csrf
-            <input type="hidden" id="userId" name="id">
-            <label for="">Nombre</label>
-            <input type="text" id="nombre" name="nombre" disabled >
-            <label for="">Bloqueado</label>
-            <input type="text" id="bloqueado" name="bloqueado">
+            <label for="">Estado</label>
+            <select id="bloqueado" name="bloqueado">
+                <option value="1">Bloqueado</option>
+                <option value="0">Activado</option>
+            </select>
             <label for="">Rol</label>
-            <input type="text" id="rol" name="rol">
+            <select id="rol" name="rol">
+                <option value="cliente">Cliente</option>
+                <option value="admin">Administrador</option>
+            </select>
             <input type="submit" value="Modificar">
+        </form>
+        <form id="delete" method="post">
+            @method('DELETE')
+            @csrf
+            <input type="submit" value="Eliminar">
         </form>
     </div>
 </div>

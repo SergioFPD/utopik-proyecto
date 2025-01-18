@@ -19,9 +19,12 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+Route::post('/register/user', [UserController::class, 'registerUser'])->name('register.user');
+
 
 Route::get('/index', [UserController::class, 'index'])->name('index');
 
 Route::get('/admin/users', [AdminController::class, 'viewUsers'])->name('admin.users');
 Route::post('/admin/create/user', [AdminController::class, 'createUser'])->name('admin.create.user');
 Route::put('/admin/update/user/{user}', [AdminController::class, 'updateUser'])->name('admin.update.user');
+Route::delete('/admin/delete/user/{user}', [AdminController::class, 'deleteUser'])->name('admin.delete.user');

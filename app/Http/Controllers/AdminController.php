@@ -22,11 +22,19 @@ class AdminController extends Controller
 
     }
 
-    public function updateUser(UserRequest $request, User $user)
+    public function updateUser(Request $request, User $user)
     {
+
         $user->rol = $request->rol;
         $user->bloqueado = $request->bloqueado;
         $user->save();
+        return redirect()->route('admin.users');
+
+    }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
         return redirect()->route('admin.users');
 
     }
