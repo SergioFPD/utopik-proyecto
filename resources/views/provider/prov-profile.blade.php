@@ -14,7 +14,7 @@
                 <div class="experience-list menu">
                     <ul>
                         @foreach ($experiencias as $experiencia)
-                            <li> {{ $experiencia->nombre }} 
+                            <li> {{ $experiencia->nombre }}
                             </li>
                         @endforeach
 
@@ -24,12 +24,17 @@
             @if ($menu == 'reserves')
                 <div class="reserve-list menu">
                     <ul>
-                        @foreach ($reservas as $reserva)
-                            <li> {{ $reserva->experiencia->nombre }}</li>
-                            <li>Adultos: {{ $reserva->adultos }}</li>
-                            <li>Usuario: {{ $reserva->user->nombre }}</li>
-                            <li>Precio por adulto: {{ $reserva->experiencia->precio_adulto }}€</li>
-                            <li>Precio total: {{ $reserva->dimePrecioTotal() }}€</li>
+                        @foreach ($experiencias as $experiencia)
+                            @if ($experiencia->reserva != null)
+                                @foreach ($experiencia->reserva as $reserva)
+                                <li> Nombre de experiencia: {{ $experiencia->nombre }}
+                                </li>
+                                    <li>Adultos: {{ $reserva->adultos }}</li>
+                                    <li>Usuario: {{ $reserva->user->nombre }}</li>
+                                    <li>Precio por adulto: {{ $reserva->precio_adulto }}€</li>
+                                    <li>Precio total: {{ $reserva->dimePrecioTotal() }}€</li>
+                                @endforeach
+                            @endif
                         @endforeach
 
                     </ul>

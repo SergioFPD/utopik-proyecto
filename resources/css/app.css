@@ -91,6 +91,11 @@
     display: block !important;
 }
 
+.modal-login-row:focus-within .modal.login {
+
+    display: block !important;
+}
+
 .error-message {
 
     color: rgb(199, 66, 66);

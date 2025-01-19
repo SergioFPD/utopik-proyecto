@@ -12,7 +12,7 @@
             </div>
             @if ($menu == 'user_data')
                 <div class="userdata-list menu">
-                 <p>{{ $user->nombre }} </p>
+                 <p>{{ Auth::user()->nombre }} </p>
                 </div>
             @endif
             @if ($menu == 'reserves')

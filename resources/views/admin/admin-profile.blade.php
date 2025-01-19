@@ -16,7 +16,7 @@
                 <div class="user-list menu">
                     <ul>
                         @foreach ($usuarios as $user)
-                            @if ($user->rol != 'proveedor')
+                            @if ($user->rol != 'proveedor' && $user->user != Auth::user()->user)
                                 <li> {{ $user->nombre }} <button
                                         onclick="openModalModifyUser('{{ $user->nombre }}','{{ $user->bloqueado }}', '{{ $user->rol }}', '{{ route('admin.update.user', $user->id) }}', '{{ route('admin.delete.user', $user->id) }}','modal-userdata')">Editar</button>
                                 </li>

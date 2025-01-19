@@ -8,6 +8,7 @@ use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -21,27 +22,21 @@ class UserController extends Controller
     public function viewProviderProfile($menu)
     {
 
-        $experiencias = Experiencia::all();
-        $reservas = Reserva::all();
-        return view('provider.prov-profile', compact('experiencias', 'reservas', 'menu'));
+        $user = Auth::user();
+
+        $experiencias = $user->experiencia;
+
+        return view('provider.prov-profile', compact('experiencias', 'menu'));
     }
 
     public function viewClientProfile($menu)
     {
 
-        $reservas = Reserva::all();
-        $user = User::find(1);
-        return view('client.client-profile', compact('user', 'reservas', 'menu'));
+        $user = Auth::user();
+
+        $reservas = $user->reserva;
+        return view('client.client-profile', compact('reservas', 'menu'));
     }
 
-    public function registerUser(RegistrationRequest $request)
-    {
 
-        $v = Validator::make([], []);
-        $v->getMessageBag()->add('form', 'some_translated_error_key');
-
-        User::create($request->all());
-        return redirect()->route('landing')->with('success', 'Registro realizado');
-
-    }
 }
