@@ -12,15 +12,24 @@ class Ciudad extends Model
     // Tabla a la que se refiere (porque en este caso se añade -es a ciudad)
     protected $table = 'ciudades';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'ciudad',
+        'latitud',
+        'longitud'
+    ];
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasMany(User::class);
     }
 
     public function pais()
     {
         return $this->belongsTo(Pais::class);
+    }
+
+    public function experiencia()
+    {
+        return $this->hasMany(Experiencia::class);
     }
 }

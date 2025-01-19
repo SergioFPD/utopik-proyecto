@@ -33,7 +33,7 @@ window.openModal = function (modal) {
 window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaDelete, modal) {
     const modalUser = document.getElementById(modal);
 
-    modalUser.querySelector('#nombre').innerText = "Modificar usuario "+nombre;
+    modalUser.querySelector('#nombre').innerText = "Modificar usuario " + nombre;
     modalUser.querySelector('#bloqueado').value = bloqueado;
     modalUser.querySelector('#rol').value = rol;
     // Establecer la acción del formulario
@@ -65,28 +65,30 @@ window.clearValidationErrors = function () {
 
 
 
-/*
-const activaModales = {
-init: function () {
-    this.launch();
-},
-launch: function () {
 
-    console.log('hola');
+const adminMenu = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
 
-}
+        console.log('botones de menu admin cargados');
+
+
+
+    }
 };
 
-*/
+
 
 // Se ejecuta al cargar la página
 $(function () {
-const body = $('body');
+    const content = $('.content');
+
+    // Si la página contiene la clase "inicio" ejecuta el carrusel
+    if (content.hasClass('admin-menu')) {
+        adminMenu.init();
 
 
-// Si la página contiene la clase "inicio" ejecuta el carrusel
-if (body.hasClass('inicio-------')) {
-    activaModales.init();
-
-}
+    }
 });

@@ -17,6 +17,15 @@ class UserSeeder extends Seeder
         User::truncate();
         User::create([
             'id'=>1,
+            'user'=> 'administra',
+            'email' => 'admin@gmail.com',
+            'password'=> '1234',
+            'rol'=> 'admin',
+            'nombre'=>'Luis',
+            'ciudad_id'=>2
+        ]);
+        User::create([
+            'id'=>2,
             'user'=> 'paco11',
             'email' => 'paco@gmail.com',
             'password'=> '1234',
@@ -26,7 +35,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'id'=>2,
+            'id'=>3,
             'user'=> 'maria11',
             'password'=> '1234',
             'email' => 'maria@gmail.com',

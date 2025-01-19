@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Agregar la clave foránea a la tabla 'paises' 
-           // $table->foreign('pais_id')->references('id')->on('paises')->onDelete('set null');
+            $table->foreign('pais_id')->references('id')->on('paises')->onDelete('cascade');
         });
     }
 

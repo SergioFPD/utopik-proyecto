@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrationRequest;
+use App\Models\Experiencia;
+use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Validator;
@@ -11,10 +13,25 @@ class UserController extends Controller
 {
     public function index(){
 
-        $usuario = User::find(1);
-        $usuario2 = User::find(2);
-        return View('index', compact('usuario', 'usuario2'));
+        $experiencias = Experiencia::all();
+        return View('landing', compact('experiencias'));
 
+    }
+
+    public function viewProviderProfile($menu)
+    {
+
+        $experiencias = Experiencia::all();
+        $reservas = Reserva::all();
+        return view('provider.prov-profile', compact('experiencias', 'reservas', 'menu'));
+    }
+
+    public function viewClientProfile($menu)
+    {
+
+        $reservas = Reserva::all();
+        $user = User::find(1);
+        return view('client.client-profile', compact('user', 'reservas', 'menu'));
     }
 
     public function registerUser(RegistrationRequest $request)
@@ -24,7 +41,7 @@ class UserController extends Controller
         $v->getMessageBag()->add('form', 'some_translated_error_key');
 
         User::create($request->all());
-        return redirect()->route('landing');
+        return redirect()->route('landing')->with('success', 'Registro realizado');
 
     }
 }

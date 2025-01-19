@@ -22,10 +22,7 @@ class User extends Authenticatable
         'email',
         'user',
         'password',
-        'vip',
-        'bloqueado',
         'rol'
-
     ];
 
     /**
@@ -48,6 +45,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function reserva()
+    {
+        return $this->hasMany(Reserva::class);
+    }
+
+    public function experiencia()
+    {
+        return $this->hasMany(Experiencia::class);
+    }
 
     public function ciudad()
     {
