@@ -1,19 +1,19 @@
 <div id="modal-reserve-data" class="modal center">
     <div class="modal-content">
-        <p id="nombre">nombre</p>
+        <p id="nombre"></p>
         <span class="close">&times;</span>
         <form id="editForm" method="post">
             @method('PUT')
             @csrf
-            <label for="">Estado</label>
+            <label for="">{{__('labels.estate')}}</label>
             <select id="bloqueado" name="bloqueado">
-                <option value="1">Bloqueado</option>
-                <option value="0">Activado</option>
+                <option value="1">{{__('labels.blocked')}}</option>
+                <option value="0">{{__('labels.active')}}</option>
             </select>
             <label for="">Rol</label>
             <select id="rol" name="rol">
-                <option value="cliente">Cliente</option>
-                <option value="admin">Administrador</option>
+                <option value="cliente">{{__('labels.client')}}</option>
+                <option value="admin">{{__('labels.admin')}}</option>
             </select>
             <input type="submit" value="Modificar">
         </form>

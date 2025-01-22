@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('adultos');
             $table->integer('menores')->default(0);
-            $table->boolean('confirmado')->default(false);
+            $table->boolean('confirmado')->default(1);
             $table->integer('puntuacion')->default(0);
 
             $table->unsignedBigInteger('exp_fecha_id');

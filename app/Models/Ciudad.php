@@ -15,7 +15,8 @@ class Ciudad extends Model
     protected $fillable = [
         'ciudad',
         'latitud',
-        'longitud'
+        'longitud',
+        'pais_id'
     ];
 
     public function user()

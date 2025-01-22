@@ -12,12 +12,12 @@ class LoginController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'user' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
         // Intentar autenticar al usuario
-        if (Auth::attempt($request->only('user', 'password'))) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             // Redirigir al inicio si la autenticación es exitosa
             return redirect('/');
         }

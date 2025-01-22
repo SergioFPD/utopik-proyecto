@@ -1,26 +1,21 @@
-<div id="modal-register" class="modal center @if($errors->all() && $errors->has('register')) show @endif">
+<div id="modal-register" class="modal center @if($errors->all() && $errors->has('modal-register')) show @endif">
 
     <div class="modal-content">
-        <h1>Formulario de registro</h1>
+        <h1>{{ __('labels.form_register') }}</h1>
         <span class="close">&times;</span>
         <form action="{{ route('register.user') }}" method="post">
             @csrf
-            <label for="">Nombre</label>
+            <label for="">{{ __('labels.name') }}</label>
             <input type="text" name="nombre">
             @error('nombre')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-            <label for="">email</label>
+            <label for="">{{ __('labels.email') }}</label>
             <input type="email" name="email">
             @error('email')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-            <label for="">Usuario</label>
-            <input type="text" name="user">
-            @error('user')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-            <label for="">Contraseña</label>
+            <label for="">{{ __('labels.password') }}</label>
             <input type="password" name="password">
             @error('password')
                 <p class="error-message">{{ $message }}</p>

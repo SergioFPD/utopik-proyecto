@@ -1,34 +1,29 @@
 <div id="modal-newuser" class="modal center @if($errors->all() && $errors->has('create')) show @endif">
 
     <div class="modal-content">
-        <h1>Nuevo usuario</h1>
+        <h1>{{__('labels.new_user')}}</h1>
         <span class="close">&times;</span>
         <form action="{{ route('admin.create.user') }}" method="post">
             @csrf
-            <label for="">Nombre</label>
-            <input type="text" name="nombre">
+            <label for="">{{__('labels.name')}}</label>
+            <input type="text" name="nombre" required>
             @error('nombre')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-            <label for="">email</label>
-            <input type="email" name="email">
+            <label for="">{{__('labels.email')}}</label>
+            <input type="email" name="email" required>
             @error('email')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-            <label for="">Usuario</label>
-            <input type="text" name="user">
-            @error('user')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-            <label for="">Contraseña</label>
-            <input type="password" name="password">
+            <label for="">{{__('labels.user')}}</label>
+            <input type="password" name="password" required>
             @error('password')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-            <label for="">Rol</label>
+            <label for="">{{__('labels.role')}}</label>
             <select name="rol">
-                <option value="cliente">Cliente</option>
-                <option value="admin">Administrador</option>
+                <option value="cliente">{{__('labels.client')}}</option>
+                <option value="admin">{{__('labels.admin')}}</option>
             </select>
             <input type="submit" value="Registrar">
         </form>

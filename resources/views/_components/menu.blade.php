@@ -1,10 +1,11 @@
 <div style="background-color: aqua">
-    <h1>ESTE ES EL MENU</h1>
+    <h1>{{__('app.parrafo1')}}</h1>
+    @include('_partials.lang')
     <a href="{{ route('landing') }}">INICIO</a>
     @auth
         <p>Hola {{ Auth::user()->nombre }}@if (Auth::user()->vip), eres VIP @endif</p>
         <a href="{{ route('logout') }}">
-            <button>Logout</button>
+            <button>{{ __('buttons.logout') }}</button>
         </a>
 
         <!-- Comprobar el rol del usuario -->
@@ -23,12 +24,10 @@
             <a href="{{ route('provider.profile', 'experiences') }}">
                 <button>Zona proveedores</button>
             </a>
-        @else
-            <p>Tu rol es: {{ Auth::user()->rol }}</p>
         @endif
     @else
         @include('_modals.login')
-        <button onclick="openModal('modal-register')">Registrarse</button>
+        <button onclick="openModal('modal-register')">{{ __('buttons.register') }}</button>
         @include('_modals.register')
     @endauth
 

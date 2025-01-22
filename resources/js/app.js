@@ -43,6 +43,40 @@ window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaD
     openModal(modal);
 }
 
+window.openModalMakeReserve = function (experiencia_id, fechas) {
+    const modalUser = document.getElementById('modal-new-reserve');
+
+    const select = document.getElementById('data_options');
+
+    modalUser.querySelector('#experiencia_id').value = experiencia_id;
+
+    console.log(fechas);
+
+    select.options.length = 0;
+    const option = new Option('Selecciona', '0');
+    
+    option.selected = true;
+    option.disabled = true;
+    option.value = "";
+    select.add(option);
+    fechas.forEach(fecha => {
+
+        const option = new Option(fecha.fecha, fecha.id);
+        select.add(option);
+
+    });
+
+    openModal('modal-new-reserve');
+}
+
+window.addActivity = function (modal, experiencia_id) {
+    const modalUser = document.getElementById(modal);
+
+    modalUser.querySelector('#experiencia_id').value = experiencia_id;
+
+    openModal(modal);
+}
+
 // Activa la opción de cerrar un formulario abierto tras un error de contenido
 if (document.querySelector('.modal.show')) {
     const modalOpened = document.getElementsByClassName("modal show")[0];
@@ -56,6 +90,8 @@ if (document.querySelector('.modal.show')) {
 
 }
 
+
+
 // Esta función elimina todos los mensajes de error del formulario
 window.clearValidationErrors = function () {
     // Eliminar errores del DOM
@@ -63,18 +99,37 @@ window.clearValidationErrors = function () {
     errorMessages.forEach(error => error.remove());
 }
 
+window.updateSliderValue = function (value, output) {
+    document.getElementById(output).textContent = value;
+}
 
-
-
-const adminMenu = {
+const imageViewer = {
     init: function () {
         this.launch();
     },
     launch: function () {
 
-        console.log('botones de menu admin cargados');
+        console.log('imagen preview activado');
 
-
+        document.getElementById('image-experience').addEventListener('change', function (event) {
+            const file = event.target.files[0]; // Obtener el archivo seleccionado
+            const preview = document.getElementById('preview'); // Elemento de previsualización
+        
+            if (file) {
+                const reader = new FileReader();
+        
+                // Cuando se carga la imagen, actualizar el src del <img>
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block'; // Mostrar el recuadro con la imagen
+                };
+        
+                reader.readAsDataURL(file); // Leer el archivo como una URL de datos
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none'; // Ocultar la previsualización si no hay imagen seleccionada
+            }
+        });
 
     }
 };
@@ -85,9 +140,11 @@ const adminMenu = {
 $(function () {
     const content = $('.content');
 
+
+
     // Si la página contiene la clase "inicio" ejecuta el carrusel
-    if (content.hasClass('admin-menu')) {
-        adminMenu.init();
+    if (content.hasClass('provider-menu')) {
+        imageViewer.init();
 
 
     }

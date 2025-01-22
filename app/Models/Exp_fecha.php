@@ -13,6 +13,8 @@ class Exp_fecha extends Model
         'fecha',
     ];
 
+    protected $visible = ['fecha', 'id'];
+
     public function experiencia()
     {
         return $this->belongsTo(Experiencia::class);

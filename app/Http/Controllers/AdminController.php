@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 
 class AdminController extends Controller
 {
@@ -24,24 +25,27 @@ class AdminController extends Controller
         if ($tipo == 'proveedor')
             $menu = 'providers';
 
-        return redirect()->route('admin.profile', $menu)->with('success', $tipo . ' ' . $request->nombre . ' creado');
+        return redirect()->route('admin.profile', $menu)->with('success', __('alerts.user_type_created', ['name'=> $request->nombre, 'type' => $tipo]));
     }
 
-    public function updateUser(Request $request, User $user)
+    public function updateUser(Request $request, $user_id)
     {
+
+        $user = User::find(Crypt::decryptString($user_id));
 
         $user->rol = $request->rol;
         $user->bloqueado = $request->bloqueado;
         $user->save();
-        return redirect()->route('admin.profile', 'users')->with('success', 'Usuario ' . $user->nombre . ' actualizado');
+        return redirect()->route('admin.profile', 'users')->with('success', __('alerts.user_updated', ['name'=> $user->nombre]));
     }
 
-    public function deleteUser(User $user)
+    public function deleteUser($user_id)
     {
-        $menu = 'users';
-        if ($user->rol == 'proveedor')
-            $menu = 'proveedor';
+
+        $user = User::find(Crypt::decryptString($user_id));
+
         $user->delete();
-        return redirect()->route('admin.profile', $menu)->with('success', 'Usuario ' . $user->nombre . ' eliminado');
+        return redirect()->back()->with('success', __('alerts.user_deleted', ['name'=> $user->nombre]));
+    
     }
 }

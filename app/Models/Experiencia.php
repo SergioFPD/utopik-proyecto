@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Experiencia extends Model
 {
@@ -17,6 +18,8 @@ class Experiencia extends Model
         'duracion',
         'precio_adulto',
         'precio_nino',
+        'ciudad_id',
+        'user_id'
     ];
 
     public function user()
@@ -54,4 +57,13 @@ class Experiencia extends Model
         return $this->hasMany(Imagen::class);
     }
 
+    public function getEncryptedId()
+    {
+        return Crypt::encryptString($this->id);
+    }
+
+    public function firstImage()
+{
+    return $this->imagen->first();
+}
 }

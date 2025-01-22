@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
 
             $table->id();  // Crea la columna 'id' como clave primaria
-            $table->string('user')->unique();  // Campo 'user', único para cada usuario
+           
             $table->string('password');  // Campo 'password' para la contraseña
             $table->string('nombre');  // Nombre
-            $table->string('email');  // email
+            $table->string('email')->unique();  // email
             $table->string('imagen')->nullable();  // Imagen de usuario (opcional, puede ser nulo)
             $table->boolean('vip')->default(false);  // Campo 'vip', por defecto es false
             $table->boolean('bloqueado')->default(false);  // Campo 'bloqueado', por defecto es false

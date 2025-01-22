@@ -12,21 +12,20 @@
             </div>
             @if ($menu == 'user_data')
                 <div class="userdata-list menu">
-                 <p>{{ Auth::user()->nombre }} </p>
+                    <p>{{ Auth::user()->nombre }} </p>
                 </div>
             @endif
             @if ($menu == 'reserves')
                 <div class="reserve-list menu">
-                    <ul>
-                        @foreach ($reservas as $reserva)
-                            <li> {{ $reserva->experiencia->nombre }}</li>
-                            <li>Adultos: {{ $reserva->adultos }}</li>
-                            <li>Usuario: {{ $reserva->user->nombre }}</li>
-                            <li>Precio por adulto: {{ $reserva->experiencia->precio_adulto }}€</li>
-                            <li>Precio total: {{ $reserva->dimePrecioTotal() }}€</li>
-                        @endforeach
-
-                    </ul>
+                    @foreach ($reservas as $reserva)
+                        <p> {{ $reserva->experiencia->nombre }}</p>
+                        <p>Fecha de reserva: {{ $reserva->exp_fecha->fecha }}</p>
+                        <p>Adultos: {{ $reserva->menores }}</p>
+                        <p>Precio por adulto: {{ $reserva->experiencia->precio_nino }}€</p>
+                        <p>Adultos: {{ $reserva->adultos }}</p>
+                        <p>Precio por adulto: {{ $reserva->experiencia->precio_adulto }}€</p>
+                        <p>Precio total: {{ $reserva->dimePrecioTotal() }}€</p>
+                    @endforeach
                 </div>
             @endif
 

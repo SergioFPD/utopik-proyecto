@@ -12,9 +12,11 @@ class Reserva extends Model
     protected $fillable = [
         'adultos',
         'menores',
-        'nombre',
         'confirmado',
         'puntuacion',
+        'experiencia_id',
+        'exp_fecha_id',
+        'user_id'
     ];
 
     public function dimePrecioTotal(){

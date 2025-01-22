@@ -2,41 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegistrationRequest;
 use App\Models\Experiencia;
-use App\Models\Reserva;
-use App\Models\User;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Ciudad;
+use App\Models\Reserva;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-    public function index(){
-
-        $experiencias = Experiencia::all();
-        return View('landing', compact('experiencias'));
-
-    }
-
-    public function viewProviderProfile($menu)
-    {
-
-        $user = Auth::user();
-
-        $experiencias = $user->experiencia;
-
-        return view('provider.prov-profile', compact('experiencias', 'menu'));
-    }
 
     public function viewClientProfile($menu)
     {
 
         $user = Auth::user();
 
-        $reservas = $user->reserva;
+        $reservas = Reserva::join('exp_fechas', 'exp_fechas.id', '=', 'reservas.exp_fecha_id') // unir tabla exp_fechas y reservas por id
+            ->where('reservas.user_id', $user->id)  // Filtrar por el cliente
+            ->orderBy('exp_fechas.fecha', 'asc')  // Ordenar por la fecha de la tabla 'exp_fechas'
+            ->get();
+
         return view('client.client-profile', compact('reservas', 'menu'));
     }
 
+    public function createReserve(Request $request)
+    {
+        $user = Auth::user();
 
+        Reserva::create([
+
+            'adultos' => $request->adultos,
+            'menores' => $request->menores,
+            'experiencia_id' => Crypt::decryptString($request->experiencia_id),
+            'exp_fecha_id' => $request->exp_fecha_id,
+            'user_id' => $user->id,
+        ]);
+
+        return redirect()->route('client.profile', 'reserves');
+    }
 }

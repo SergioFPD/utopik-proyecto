@@ -1,21 +1,25 @@
 <div>
 
-    <h1>Listado de experiencias</h1>
+    @php
+        $isVip = false;
+    @endphp
+    <h1>{{ __('app.experience_list') }}</h1>
     @if ($experiencias == null)
-        <p>sin experiencias</p>
+        <p>{{ __('app.no_experience_list') }}</p>
     @else
-        <ul>
-            @foreach ($experiencias as $experiencia)
-                <li>{{ $experiencia->descripcion }}</li>
-                @if ($experiencia->vip)
-                    <p>Esta es una experiencia VIP</p>
+        @foreach ($experiencias as $experiencia)
+            @auth
+
+                @if ($experiencia->vip && Auth::user()->vip)
+                    @include('_components.experience-card-list')
                 @endif
-                <ul>
-                    @foreach ($experiencia->actividad as $actividad)
-                        <li>{{ $actividad->nombre }}: {{ $actividad->descripcion }}</li>
-                    @endforeach
-                </ul>
-            @endforeach
-        </ul>
+            @endauth
+            @if (!$experiencia->vip)
+                @include('_components.experience-card-list')
+            @endif
+
+
+        @endforeach
+
     @endif
 </div>
