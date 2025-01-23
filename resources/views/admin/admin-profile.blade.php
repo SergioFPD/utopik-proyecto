@@ -4,8 +4,9 @@
     @include('_modals.user-create')
     @include('_modals.provider-create')
     @include('_modals.message')
-    <h1>PERFIL ADMINISTRADOR</h1>
+    
     <div class="content admin-menu">
+        <h3>PERFIL ADMINISTRADOR</h3>
         <div>
             <div class="menu-items">
                 <a class="menu-item" href="{{ route('admin.profile', 'users') }}">Listado de usuarios</a>

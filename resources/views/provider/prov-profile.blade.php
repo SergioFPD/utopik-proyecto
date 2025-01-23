@@ -4,8 +4,9 @@
     @include('_modals.experience-create')
     @include('_modals.activity-create')
     @include('_modals.message')
-    <h1>PERFIL PROVEEDOR</h1>
+    
     <div class="content provider-menu">
+        <h3>PERFIL PROVEEDOR</h3>
         <div>
             <div class="menu-items">
                 <a class="menu-item" href="{{ route('provider.profile', 'experiences') }}">{{__('buttons.my_experiences')}}</a>

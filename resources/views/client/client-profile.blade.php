@@ -2,8 +2,9 @@
 @section('content')
     @include('_modals.reserve-modify')
     @include('_modals.message')
-    <h1>PERFIL CLIENTE</h1>
+    
     <div class="content provider-menu">
+        <h3>PERFIL CLIENTE</h3>
         <div>
             <div class="menu-items">
                 <a class="menu-item" href="{{ route('client.profile', 'reserves') }}">Ver mis reservas</a>

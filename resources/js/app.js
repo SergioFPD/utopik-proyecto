@@ -43,12 +43,15 @@ window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaD
     openModal(modal);
 }
 
-window.openModalMakeReserve = function (experiencia_id, fechas) {
+window.openModalMakeReserve = function (experiencia_id, fechas, titulo, image) {
+
     const modalUser = document.getElementById('modal-new-reserve');
 
     const select = document.getElementById('data_options');
 
     modalUser.querySelector('#experiencia_id').value = experiencia_id;
+    modalUser.querySelector('#nombre').innerText = titulo;
+    modalUser.querySelector('#res-image').src = image;
 
     console.log(fechas);
 
@@ -103,6 +106,67 @@ window.updateSliderValue = function (value, output) {
     document.getElementById(output).textContent = value;
 }
 
+
+//----------
+const multipleDates = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+
+    const agregarFechaBtn = document.getElementById('agregarFechaBtn');
+    const fechaInput = document.getElementById('fechaInput');
+    const listaFechas = document.getElementById('listaFechas');
+    const fechasHidden = document.getElementById('fechasHidden');
+    let fechas = [];
+
+    // Agregar fecha a la lista
+    agregarFechaBtn.addEventListener('click', () => {
+        const nuevaFecha = fechaInput.value;
+
+        if (nuevaFecha) {
+            // Agregar la fecha al array y renderizar la lista
+            fechas.push(nuevaFecha);
+            renderListaFechas();
+
+            // Limpiar el input
+            fechaInput.value = '';
+        } else {
+            alert('Por favor, selecciona una fecha válida.');
+        }
+    });
+
+    // Renderizar la lista de fechas
+    function renderListaFechas() {
+        // Vaciar la lista actual
+        listaFechas.innerHTML = '';
+
+        // Crear nuevos elementos de la lista
+        fechas.forEach((fecha, index) => {
+            const li = document.createElement('li');
+            li.textContent = fecha;
+
+            // Botón para eliminar la fecha
+            const eliminarBtn = document.createElement('button');
+            eliminarBtn.textContent = 'Eliminar';
+            eliminarBtn.type = 'button';
+            eliminarBtn.addEventListener('click', () => {
+                // Eliminar la fecha del array y renderizar de nuevo
+                fechas.splice(index, 1);
+                renderListaFechas();
+            });
+
+            li.appendChild(eliminarBtn);
+            listaFechas.appendChild(li);
+        });
+
+        // Actualizar el campo oculto
+        fechasHidden.value = JSON.stringify(fechas);
+    }
+}
+};
+//-------------
+
 const imageViewer = {
     init: function () {
         this.launch();
@@ -145,7 +209,6 @@ $(function () {
     // Si la página contiene la clase "inicio" ejecuta el carrusel
     if (content.hasClass('provider-menu')) {
         imageViewer.init();
-
-
+        multipleDates.init();
     }
 });

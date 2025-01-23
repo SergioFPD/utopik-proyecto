@@ -11,6 +11,7 @@ class Exp_fecha extends Model
 
     protected $fillable = [
         'fecha',
+        'experiencia_id'
     ];
 
     protected $visible = ['fecha', 'id'];

@@ -30,6 +30,7 @@ return [
     'num_child' => 'How many children',
     'pay_reserve' => 'Pay for reserve',
     'select_date' => 'Select experience date',
+    'hello' => 'Hello!',
 
 
 ];

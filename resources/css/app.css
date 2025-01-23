@@ -1,3 +1,137 @@
+/*
+
+
+
+
+*/
+
+:root {
+    --color-fondo-web: #1c1c1b;
+    --color-texto-claro: #ececec;
+    --color-texto-oscuro: #252525;
+    --color-fondo-menu: #EDF6FA;
+    --color-azul-uno: #1C798E;
+    --color-azul-dos: #40AEC7;
+    --color-azul-tres: #1C3940;
+    --color-vip-uno: #CFB000;
+    --color-vip-dos: #AE981C;
+    --color-fondo: #f4f4f4;
+    --color-texto: #333333;
+    --color-fondo-modal: #DFF2FB;
+
+    --color-boton: #0F5B6C;
+    --color-texto-boton: #ffffff;
+
+    --color-sobre-boton: #755b06;
+    --color-texto-sobre-boton: #ffffff;
+    --color-sombra-boton: 0px 4px 6px rgba(0, 0, 0, 0.3);
+
+    --ancho-web: 1300px;
+}
+
+/* ELEMENTOS */
+
+.barra-azul {
+    height: 63px;
+    background: var(--color-azul-uno);
+    border-radius: 50px 50px 0 0;
+}
+
+.barra-azul {
+    height: 63px;
+    background: #ffffff;
+    border-radius: 50px 50px 0 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Asegura que el body ocupe toda la altura de la ventana */
+    margin: 0;
+    background: var(--color-fondo-web);
+}
+
+.content {
+    max-width: var(--ancho-web);
+    width: 100%;
+    /* Hace que el contenedor ocupe todo el espacio disponible hasta 1300px */
+    margin: 0 auto;
+    /* Centra el contenedor horizontalmente */
+    margin-top: 260px;
+    background: #fff;
+}
+
+/* MENU */
+
+.navmenu {
+    height: 130px;
+    top: 0;
+    border-radius: 65px 0 0 65px;
+    right: 0;
+    z-index: 10;
+    background-color: var(--color-fondo-menu);
+    width: 100%;
+    max-width: calc(((100vw - var(--ancho-web)) / 2) + var(--ancho-web) - 80px);
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+}
+
+.navmenu .container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--ancho-web);
+    margin: 10px;
+}
+
+.navmenu .left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Espacio entre los elementos del lado izquierdo */
+}
+
+.navmenu .right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    /* Empuja la sección derecha hacia la derecha */
+    gap: 20px;
+}
+
+/* BOTONES */
+
+.btn-standard {
+    text-decoration: none;
+    text-align: center;
+    background: var(--color-boton);
+    color: var(--color-texto-boton);
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    border: 0;
+    box-shadow: var(--color-sombra-boton);
+}
+
+.btn-standard p {
+    margin: 0;
+}
+
+.btn-standard:hover {
+    background: var(--color-sobre-boton);
+    color: var(--color-texto-sobre-boton);
+}
+
+
+
+
 /* Estilos del modal */
 .modal {
     display: none;
@@ -12,7 +146,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0 0 0 / 66%);
     /* Fondo semi-transparente */
     justify-content: center;
     align-items: center;
@@ -20,7 +154,7 @@
     /* Comienza completamente invisible */
     transition: opacity 0.5s ease;
     /* Transición para el fade-in */
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
@@ -43,23 +177,23 @@
 
 .menu-item:hover {
     background-color: blueviolet;
-
-
 }
 
 .modal-content {
 
+    position: relative;
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px 8px 0 0;
+    border-radius: 10px;
     /* Bordes redondeados solo arriba */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 5px 6px 2px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     max-height: 80vh;
     text-align: center;
     overflow-y: auto;
-    overflow-x: hidden; /* Ocultar el desplazamiento horizontal */
+    overflow-x: hidden;
+    /* Ocultar el desplazamiento horizontal */
 
     animation: slideUp 0.5s ease-in-out;
 }
@@ -91,14 +225,55 @@
     color: #000;
 }
 
+.modal.login {
+
+    padding-top: 100px;
+    height: 270px;
+    top: 25px;
+    right: 0px;
+    position: absolute;
+    animation: slideInFromRight 0.2s ease-out;
+}
+
+.login-content {
+    padding: 10px;
+    height: 240px;
+    background: var(--color-fondo-modal);
+    border-radius: 10px;
+    border: solid 1px var(--color-azul-tres);
+}
+
+.modal-login-row {
+    display: block !important;
+}
+
 .modal-login-row:hover .modal.login {
 
     display: block !important;
+    
+}
+
+ /* Animación del modal entrando desde la derecha */
+ @keyframes slideInFromRight {
+    from {
+        transform: translateX(100%); /* Comienza fuera del área visible */
+    }
+    to {
+        transform: translateX(0); /* Llega a su posición final */
+    }
 }
 
 .modal-login-row:focus-within .modal.login {
 
     display: block !important;
+}
+
+input[type="email"],
+input[type="password"] {
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
 }
 
 .error-message {

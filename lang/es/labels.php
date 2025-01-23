@@ -24,4 +24,5 @@ return [
     'new_user' => 'Nuevo usuario',
     'user' => 'Usuario',
     'password' => 'Contraseña',
+    'hello' => 'Hola!',
 ];
