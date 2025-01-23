@@ -1,8 +1,7 @@
 <div class="content landing">
-    
-    @include('_modals.reserve-create')
+
     @php
-        $esVip = Auth::check() && Auth::user()->vip;
+        $esVip = Auth::check() && (Auth::user()->vip || Auth::user()->rol == 'admin');
         $esCliente = Auth::check() && Auth::user()->rol == 'cliente';
     @endphp
 
@@ -29,9 +28,9 @@
                         @endforeach
                     @endslot
                     @slot('esCliente', $esCliente)
-                    @slot('id', $experiencia->getEncryptedId())
-                    @slot('fecha', $experiencia->exp_fecha)
-                    @slot('titulo', $experiencia->nombre)
+                    {{-- Datos para abrir el formulario modal de reservas --}}
+                    @slot('ruta', route('form.reserve', $experiencia->getEncryptedId()))
+                    @slot('modal', 'modal-new-reserve')
 
                     @slot('rutaDetalle', route('experience.detail', $experiencia->nombre))
 
@@ -44,5 +43,11 @@
             @endif
         @endforeach
     @endif
-    @include('_components.barra-azul')
+    @include('_partials.barra-azul')
+
+
+    <div class="modal-body" id="modalPageContent">
+        <!-- Aquí se cargará dinámicamente el contenido -->
+    </div>
+
 </div>

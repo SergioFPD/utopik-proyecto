@@ -20,12 +20,10 @@ class AdminController extends Controller
     public function createUser(UserRequest $request)
     {
         User::create($request->all());
-        $menu = 'users';
-        $tipo = $request->rol;
-        if ($tipo == 'proveedor')
-            $menu = 'providers';
 
-        return redirect()->route('admin.profile', $menu)->with('success', __('alerts.user_type_created', ['name'=> $request->nombre, 'type' => $tipo]));
+        $tipo = $request->rol;
+
+        return redirect()->back()->with('success', __('alerts.user_type_created', ['name' => $request->nombre, 'type' => $tipo]));
     }
 
     public function updateUser(Request $request, $user_id)
@@ -36,7 +34,7 @@ class AdminController extends Controller
         $user->rol = $request->rol;
         $user->bloqueado = $request->bloqueado;
         $user->save();
-        return redirect()->route('admin.profile', 'users')->with('success', __('alerts.user_updated', ['name'=> $user->nombre]));
+        return redirect()->route('admin.profile', 'users')->with('success', __('alerts.user_updated', ['name' => $user->nombre]));
     }
 
     public function deleteUser($user_id)
@@ -45,7 +43,6 @@ class AdminController extends Controller
         $user = User::find(Crypt::decryptString($user_id));
 
         $user->delete();
-        return redirect()->back()->with('success', __('alerts.user_deleted', ['name'=> $user->nombre]));
-    
+        return redirect()->back()->with('success', __('alerts.user_deleted', ['name' => $user->nombre]));
     }
 }

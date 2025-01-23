@@ -1,4 +1,4 @@
-<div id="modal-new-activity" class="modal center @if($errors->all() && $errors->has('modal-new-activity')) show @endif">
+<div id="modal-new-activity" class="modal center @if ($errors->all() && $errors->has('modal-new-activity')) show @endif">
     <div class="modal-content">
         <p id="nombre">Nueva actividad en experiencia</p>
         <span class="close">&times;</span>
@@ -20,7 +20,7 @@
             <input type="range" id="slider" name="dia" min="1" max="20" step="1"
                 value="1" oninput="updateSliderValue(this.value, 'slider-value-days')">
 
-            <input type="submit" value="Añadir actividad">
+            <input class="btn-standard" type="submit" value="{{ __('buttons.add-activity') }}">
         </form>
 
     </div>

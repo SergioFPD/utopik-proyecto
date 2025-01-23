@@ -2,9 +2,11 @@
     <div id="modal-message" class="modal center show">
 
         <div class="modal-content">
-            <h1>{{ $message }}</h1>
-            <button class="close button">Aceptar</span>
-
+            <img src="{{ asset('storage/images/happy.svg') }}" alt="">
+            <p>{{ $message }}</p>
+            <a class="btn-standard" href="">
+                <p>{{ __('buttons.close') }}</p>
+            </a>
         </div>
     </div>
 @endif
@@ -13,9 +15,11 @@
     <div id="modal-message" class="modal center show">
 
         <div class="modal-content">
-            <h1 style="color: brown">{{ $message }}</h1>
-            <button class="close button">Cerrar</span>
-
+            <img src="{{ asset('storage/images/unhappy.svg') }}" alt="">
+            <p>{{ $message }}</p>
+            <a class="btn-standard" href="">
+                <p>{{ __('buttons.close') }}</p>
+            </a>
         </div>
     </div>
 @endif

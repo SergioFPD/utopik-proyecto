@@ -24,7 +24,6 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user' => 'required|max:255|min:4',
             'password'  => 'required|max:255|min:4',
             'nombre'  => 'required|max:255|min:4',
             'email'  => 'required|max:255|min:4'

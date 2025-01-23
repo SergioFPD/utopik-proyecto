@@ -15,7 +15,7 @@
             @error('email')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-            <label for="">{{__('labels.user')}}</label>
+            <label for="">{{__('labels.password')}}</label>
             <input type="password" name="password" required>
             @error('password')
                 <p class="error-message">{{ $message }}</p>
@@ -25,7 +25,7 @@
                 <option value="cliente">{{__('labels.client')}}</option>
                 <option value="admin">{{__('labels.admin')}}</option>
             </select>
-            <input type="submit" value="Registrar">
+            <input class="btn-standard" type="submit" value="{{ __('buttons.create-user') }}">
         </form>
     </div>
 </div>

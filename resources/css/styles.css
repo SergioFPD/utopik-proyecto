@@ -1,0 +1,14 @@
+
+.center-content {
+    display: flex;
+    /* align-content: center; */
+    /* align-items: center; */
+    /* text-align: center; */
+    justify-content: space-evenly;
+}
+
+.form-inputs {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}

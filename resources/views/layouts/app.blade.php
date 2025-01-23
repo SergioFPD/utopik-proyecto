@@ -13,7 +13,7 @@
 
 <body>
     {{-- Menu de navegación --}}
-    @include('_components.menu')
+    @include('layouts.menu')
     @yield('content')
 </body>
 

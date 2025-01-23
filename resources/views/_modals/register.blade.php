@@ -20,7 +20,7 @@
             @error('password')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-            <input type="submit" value="Registrar">
+            <input class="btn-standard" type="submit" value="{{ __('buttons.register') }}">
         </form>
     </div>
 </div>

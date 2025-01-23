@@ -10,9 +10,14 @@
         {{ $actividades }}
 
     </ul>
-
-    @if ($esCliente)
-        <a class="btn-standard" href="#" onclick="openModalMakeReserve('{{ $id }}', {{ $fecha }}, '{{$titulo}}', '{{ $rutaImagen }}')"><p>Reservar</p></a>
-        <a class="btn-standard" href="{{ $rutaDetalle }}"><p>Ver detalle</p></a>
-    @endif
+    <div>
+        @if ($esCliente)
+            <a class="btn-standard" onclick="insertModalPage('{{ $ruta }}', '{{ $modal }}')">
+                <p>{{ __('buttons.make-reserve') }}</p>
+            </a>
+        @endif
+        <a class="btn-standard" href="{{ $rutaDetalle }}">
+            <p>{{ __('buttons.reserve-detail') }}</p>
+        </a>
+    </div>
 </div>

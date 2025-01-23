@@ -15,12 +15,12 @@
                 <option value="cliente">{{__('labels.client')}}</option>
                 <option value="admin">{{__('labels.admin')}}</option>
             </select>
-            <input type="submit" value="Modificar">
+            <input class="btn-standard" type="submit" value="{{ __('buttons.modify') }}">
         </form>
         <form id="delete" method="post">
             @method('DELETE')
             @csrf
-            <input type="submit" value="Eliminar">
+            <input class="btn-standard" type="submit" value="{{ __('buttons.delete') }}">
         </form>
     </div>
 </div>

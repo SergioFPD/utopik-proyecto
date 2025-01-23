@@ -21,6 +21,7 @@ use App\Http\Controllers\NavController;
 */
 
 
+
 Route::get('/', [NavController::class, 'index'])->name('landing');
 Route::get('/experience/{nombre}', [NavController::class, 'viewDetail'])->name('experience.detail');
 
@@ -40,6 +41,7 @@ Route::middleware(['auth', 'role:proveedor'])->group(function () {
 Route::middleware(['auth', 'role:cliente'])->group(function () {
     Route::get('/client/client-profile/{menu}', [UserController::class, 'viewClientProfile'])->name('client.profile');
     Route::post('/client/create/reserve', [UserController::class, 'createReserve'])->name('reserve.create');
+    Route::get('/form/reserve/{experience}', [NavController::class, 'formReserve'])->name('form.reserve');
 });
 
 Route::middleware('auth')->group(function () {
@@ -47,9 +49,10 @@ Route::middleware('auth')->group(function () {
     
 });
 
-Route::middleware('guest')->group(function () {
+Route::middleware(['guest','blocked'])->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
     Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('register.user');
 });
+
 
 Route::get('/lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang');

@@ -1,0 +1,25 @@
+:root {
+    --color-fondo-web: #1c1c1b;
+    --color-texto-claro: #ececec;
+    --color-texto-oscuro: #252525;
+    --color-fondo-menu: #EDF6FA;
+    --color-azul-uno: #1C798E;
+    --color-azul-dos: #40AEC7;
+    --color-azul-tres: #1C3940;
+    --color-vip-uno: #CFB000;
+    --color-vip-dos: #AE981C;
+    --color-fondo: #f4f4f4;
+    --color-texto: #333333;
+    --color-fondo-modal: #DFF2FB;
+    --color-texto-resaltado-menu: #EE5A5A;
+    --color-resaltado-menu: #FED1D1;
+
+    --color-boton: #0F5B6C;
+    --color-texto-boton: #ffffff;
+
+    --color-sobre-boton: #755b06;
+    --color-texto-sobre-boton: #ffffff;
+    --color-sombra-boton: 0px 4px 6px rgba(0, 0, 0, 0.3);
+
+    --ancho-web: 1300px;
+}

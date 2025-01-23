@@ -84,7 +84,7 @@
             <div class="slider-value"><span id="slider-value-child">200</span>€</div>
             <input type="range" id="slider" name="precio_nino" min="200" max="10000" step="50"
                 value="200" oninput="updateSliderValue(this.value, 'slider-value-child')">
-            <input type="submit" value="Crear Experiencia">
+                <input class="btn-standard" type="submit" value="{{ __('buttons.create-experience') }}">
         </form>
 
     </div>

@@ -11,14 +11,17 @@
         @if ($experiencia->vip)
             <p>Es una experiencia VIP</p>
         @endif
-        <button onclick="openModalMakeReserve(
-            '{{ $experiencia->getEncryptedId() }}', 
-            {{ $experiencia->exp_fecha }}, 
-            '{{ $experiencia->nombre }}', 
-            '{{ $experiencia->imagen->first() 
-                ? asset('storage/' . $experiencia->imagen->first()->ruta) 
-                : asset('storage/images/no-image.jpg') }}'
-        )">Reservar</button>
+
+        @if (Auth::check() && Auth::user()->rol == 'cliente')
+            <a class="btn-standard"
+                onclick="insertModalPage('{{ route('form.reserve', $experiencia->getEncryptedId()) }}', 'modal-new-reserve')">
+                <p>{{ __('buttons.make-reserve') }}</p>
+            </a>
+        @endif
 
     @endif
+
+    <div class="modal-body" id="modalPageContent">
+        <!-- Aquí se cargará dinámicamente el contenido -->
+    </div>
 </div>

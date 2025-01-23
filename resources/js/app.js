@@ -29,6 +29,27 @@ window.openModal = function (modal) {
 
 };
 
+document.insertModalPage = function (ruta, modalName) {
+
+    const modalContent = document.getElementById('modalPageContent');
+
+    // Realiza una solicitud AJAX para cargar el contenido del modal
+    fetch(ruta)
+        .then(response => response.text())
+        .then(html => {
+            modalContent.innerHTML = html; // Inserta el contenido en el modal
+            openModal(modalName);
+        })
+        .catch(error => {
+            alert('Error al cargar el contenido');
+
+        });
+
+
+}
+
+
+
 // Establece los valores en un formulario y lo abre como modal
 window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaDelete, modal) {
     const modalUser = document.getElementById(modal);
@@ -43,34 +64,34 @@ window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaD
     openModal(modal);
 }
 
-window.openModalMakeReserve = function (experiencia_id, fechas, titulo, image) {
+// window.openModalMakeReserve = function (experiencia_id, fechas, titulo, image) {
 
-    const modalUser = document.getElementById('modal-new-reserve');
+//     const modalUser = document.getElementById('modal-new-reserve');
 
-    const select = document.getElementById('data_options');
+//     const select = document.getElementById('data_options');
 
-    modalUser.querySelector('#experiencia_id').value = experiencia_id;
-    modalUser.querySelector('#nombre').innerText = titulo;
-    modalUser.querySelector('#res-image').src = image;
+//     modalUser.querySelector('#experiencia_id').value = experiencia_id;
+//     modalUser.querySelector('#nombre').innerText = titulo;
+//     modalUser.querySelector('#res-image').src = image;
 
-    console.log(fechas);
+//     console.log(fechas);
 
-    select.options.length = 0;
-    const option = new Option('Selecciona', '0');
-    
-    option.selected = true;
-    option.disabled = true;
-    option.value = "";
-    select.add(option);
-    fechas.forEach(fecha => {
+//     select.options.length = 0;
+//     const option = new Option('Selecciona', '0');
 
-        const option = new Option(fecha.fecha, fecha.id);
-        select.add(option);
+//     option.selected = true;
+//     option.disabled = true;
+//     option.value = "";
+//     select.add(option);
+//     fechas.forEach(fecha => {
 
-    });
+//         const option = new Option(fecha.fecha, fecha.id);
+//         select.add(option);
 
-    openModal('modal-new-reserve');
-}
+//     });
+
+//     openModal('modal-new-reserve');
+// }
 
 window.addActivity = function (modal, experiencia_id) {
     const modalUser = document.getElementById(modal);
@@ -102,8 +123,11 @@ window.clearValidationErrors = function () {
     errorMessages.forEach(error => error.remove());
 }
 
-window.updateSliderValue = function (value, output) {
+window.updateSliderValue = function (value, output, priceAdult, priceChild) {
     document.getElementById(output).textContent = value;
+    const adult = parseInt(document.getElementById('value-adults').value);
+    const child = parseInt(document.getElementById('value-child').value);
+    document.getElementById('total-price').textContent = "TOTAL: "+((priceAdult*adult)+(priceChild*child))+"€";
 }
 
 
@@ -114,56 +138,56 @@ const multipleDates = {
     },
     launch: function () {
 
-    const agregarFechaBtn = document.getElementById('agregarFechaBtn');
-    const fechaInput = document.getElementById('fechaInput');
-    const listaFechas = document.getElementById('listaFechas');
-    const fechasHidden = document.getElementById('fechasHidden');
-    let fechas = [];
+        const agregarFechaBtn = document.getElementById('agregarFechaBtn');
+        const fechaInput = document.getElementById('fechaInput');
+        const listaFechas = document.getElementById('listaFechas');
+        const fechasHidden = document.getElementById('fechasHidden');
+        let fechas = [];
 
-    // Agregar fecha a la lista
-    agregarFechaBtn.addEventListener('click', () => {
-        const nuevaFecha = fechaInput.value;
+        // Agregar fecha a la lista
+        agregarFechaBtn.addEventListener('click', () => {
+            const nuevaFecha = fechaInput.value;
 
-        if (nuevaFecha) {
-            // Agregar la fecha al array y renderizar la lista
-            fechas.push(nuevaFecha);
-            renderListaFechas();
-
-            // Limpiar el input
-            fechaInput.value = '';
-        } else {
-            alert('Por favor, selecciona una fecha válida.');
-        }
-    });
-
-    // Renderizar la lista de fechas
-    function renderListaFechas() {
-        // Vaciar la lista actual
-        listaFechas.innerHTML = '';
-
-        // Crear nuevos elementos de la lista
-        fechas.forEach((fecha, index) => {
-            const li = document.createElement('li');
-            li.textContent = fecha;
-
-            // Botón para eliminar la fecha
-            const eliminarBtn = document.createElement('button');
-            eliminarBtn.textContent = 'Eliminar';
-            eliminarBtn.type = 'button';
-            eliminarBtn.addEventListener('click', () => {
-                // Eliminar la fecha del array y renderizar de nuevo
-                fechas.splice(index, 1);
+            if (nuevaFecha) {
+                // Agregar la fecha al array y renderizar la lista
+                fechas.push(nuevaFecha);
                 renderListaFechas();
-            });
 
-            li.appendChild(eliminarBtn);
-            listaFechas.appendChild(li);
+                // Limpiar el input
+                fechaInput.value = '';
+            } else {
+                alert('Por favor, selecciona una fecha válida.');
+            }
         });
 
-        // Actualizar el campo oculto
-        fechasHidden.value = JSON.stringify(fechas);
+        // Renderizar la lista de fechas
+        function renderListaFechas() {
+            // Vaciar la lista actual
+            listaFechas.innerHTML = '';
+
+            // Crear nuevos elementos de la lista
+            fechas.forEach((fecha, index) => {
+                const li = document.createElement('li');
+                li.textContent = fecha;
+
+                // Botón para eliminar la fecha
+                const eliminarBtn = document.createElement('button');
+                eliminarBtn.textContent = 'Eliminar';
+                eliminarBtn.type = 'button';
+                eliminarBtn.addEventListener('click', () => {
+                    // Eliminar la fecha del array y renderizar de nuevo
+                    fechas.splice(index, 1);
+                    renderListaFechas();
+                });
+
+                li.appendChild(eliminarBtn);
+                listaFechas.appendChild(li);
+            });
+
+            // Actualizar el campo oculto
+            fechasHidden.value = JSON.stringify(fechas);
+        }
     }
-}
 };
 //-------------
 
@@ -178,16 +202,16 @@ const imageViewer = {
         document.getElementById('image-experience').addEventListener('change', function (event) {
             const file = event.target.files[0]; // Obtener el archivo seleccionado
             const preview = document.getElementById('preview'); // Elemento de previsualización
-        
+
             if (file) {
                 const reader = new FileReader();
-        
+
                 // Cuando se carga la imagen, actualizar el src del <img>
                 reader.onload = function (e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block'; // Mostrar el recuadro con la imagen
                 };
-        
+
                 reader.readAsDataURL(file); // Leer el archivo como una URL de datos
             } else {
                 preview.src = '#';

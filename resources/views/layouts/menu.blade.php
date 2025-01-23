@@ -1,21 +1,18 @@
 <div class="navmenu">
     <div class="container">
         <div class="left">
-            <h1>{{ __('app.parrafo1') }}</h1>
-            @include('_partials.lang')
-            <a href="{{ route('landing') }}">INICIO</a>
+            <div class="img-logo">
+                <a href="{{ route('landing') }}"><img src="{{ asset('storage/images/utopik_logo_alpha.png') }}"
+                        alt=""></a>
+            </div>
         </div>
 
         <!-- Lado derecho del menú -->
         <div class="right">
-
-
-
             @auth
-                <p>Hola {{ Auth::user()->nombre }}@if (Auth::user()->vip)
-                        , eres VIP
-                    @endif
-                </p>
+                @if (Auth::user()->rol === 'cliente')
+                    @include('_modals.user-menu')
+                @endif
                 <a href="{{ route('logout') }}">
                     <button>{{ __('buttons.logout') }}</button>
                 </a>
@@ -38,15 +35,12 @@
                     </a>
                 @endif
             @else
-                
                 <button onclick="openModal('modal-register')">{{ __('buttons.register') }}</button>
                 @include('_modals.register')
                 @include('_modals.login')
             @endauth
+            @include('_partials.lang')
 
         </div>
     </div>
-
-    
-
 </div>
