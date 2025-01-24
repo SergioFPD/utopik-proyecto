@@ -2,7 +2,7 @@
     <div class="modal-content">
         <p id="nombre">Nueva actividad en experiencia</p>
         <span class="close">&times;</span>
-        <form action="{{ route('activity.create') }}" method="post">
+        <form action="{{ route('activity.store') }}" method="post">
             @csrf
             <input type="hidden" id="experiencia_id" name="experiencia_id">
             <label for="">Nombre</label>

@@ -114,8 +114,6 @@ if (document.querySelector('.modal.show')) {
 
 }
 
-
-
 // Esta función elimina todos los mensajes de error del formulario
 window.clearValidationErrors = function () {
     // Eliminar errores del DOM
@@ -127,7 +125,7 @@ window.updateSliderValue = function (value, output, priceAdult, priceChild) {
     document.getElementById(output).textContent = value;
     const adult = parseInt(document.getElementById('value-adults').value);
     const child = parseInt(document.getElementById('value-child').value);
-    document.getElementById('total-price').textContent = "TOTAL: "+((priceAdult*adult)+(priceChild*child))+"€";
+    document.getElementById('total-price').textContent = "TOTAL: " + ((priceAdult * adult) + (priceChild * child)) + "€";
 }
 
 
@@ -138,27 +136,31 @@ const multipleDates = {
     },
     launch: function () {
 
-        const agregarFechaBtn = document.getElementById('agregarFechaBtn');
+        const idiomaPagina = document.documentElement.lang;
+        var textoBoton = "Add new date";
+        if (idiomaPagina == 'es') {
+            textoBoton = "Añade nueva fecha";
+        }
         const fechaInput = document.getElementById('fechaInput');
+        fechaInput.value = textoBoton;
         const listaFechas = document.getElementById('listaFechas');
         const fechasHidden = document.getElementById('fechasHidden');
-        let fechas = [];
+        let fechas = JSON.parse(fechasHidden.value);
 
-        // Agregar fecha a la lista
-        agregarFechaBtn.addEventListener('click', () => {
-            const nuevaFecha = fechaInput.value;
+        $("#fechaInput").datepicker({
+            showButtonPanel: true,  // Opcional, muestra el panel con "Hoy" y "Cerrar"
+            dateFormat: "yy-mm-dd",  // Establece el formato de la fecha
+            onSelect: function (dateText, inst) {
+                if (dateText) {
+                    // Agregar la fecha al array y renderizar la lista
+                    fechas.push(dateText);
+                    renderListaFechas();
+                    fechaInput.value = textoBoton;
 
-            if (nuevaFecha) {
-                // Agregar la fecha al array y renderizar la lista
-                fechas.push(nuevaFecha);
-                renderListaFechas();
-
-                // Limpiar el input
-                fechaInput.value = '';
-            } else {
-                alert('Por favor, selecciona una fecha válida.');
+                }
             }
         });
+
 
         // Renderizar la lista de fechas
         function renderListaFechas() {
@@ -187,6 +189,9 @@ const multipleDates = {
             // Actualizar el campo oculto
             fechasHidden.value = JSON.stringify(fechas);
         }
+
+        // Pone las fechas que ya tiene la experiencia
+        renderListaFechas();
     }
 };
 //-------------
@@ -199,9 +204,9 @@ const imageViewer = {
 
         console.log('imagen preview activado');
 
-        document.getElementById('image-experience').addEventListener('change', function (event) {
+        document.getElementById('image').addEventListener('change', function (event) {
             const file = event.target.files[0]; // Obtener el archivo seleccionado
-            const preview = document.getElementById('preview'); // Elemento de previsualización
+            const preview = document.getElementById('image-preview'); // Elemento de previsualización
 
             if (file) {
                 const reader = new FileReader();
@@ -209,13 +214,12 @@ const imageViewer = {
                 // Cuando se carga la imagen, actualizar el src del <img>
                 reader.onload = function (e) {
                     preview.src = e.target.result;
-                    preview.style.display = 'block'; // Mostrar el recuadro con la imagen
+
                 };
 
                 reader.readAsDataURL(file); // Leer el archivo como una URL de datos
             } else {
                 preview.src = '#';
-                preview.style.display = 'none'; // Ocultar la previsualización si no hay imagen seleccionada
             }
         });
 

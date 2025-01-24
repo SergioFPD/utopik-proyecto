@@ -17,20 +17,33 @@ use Illuminate\Validation\ValidationException;
 
 class ProviderController extends Controller
 {
+
+    public function experienceCreateForm()
+    {
+        $paises = Pais::all();
+        $mode = 'create';
+        return view('experience-form', compact('mode','paises'));
+    }
+
+    public function experienceModifyForm($experiencia_id)
+    {
+        $paises = Pais::all();
+        $experiencia = Experiencia::find(Crypt::decryptString($experiencia_id));
+        $mode = 'modify';
+        return view('experience-form', compact('experiencia', 'mode','paises'));
+    }
+
     public function viewProviderProfile($menu)
     {
-
         $user = Auth::user();
 
         $experiencias = $user->experiencia;
         $paises = Pais::all();
-
         return view('provider.prov-profile', compact('experiencias', 'menu', 'paises'));
     }
 
-    public function createExperience(Request $request)
+    public function storeExperience(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'imagen' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validar el tipo y tamaño de la imagen
             'fechas' => 'required|array|different:null',
@@ -94,7 +107,12 @@ class ProviderController extends Controller
         return redirect()->route('provider.profile', 'experiences');
     }
 
-    public function createActivity(Request $request)
+    public function updateExperience(Request $request, $experience_id) {
+
+        return redirect()->back()->with('success', 'POR HACER');
+    }
+
+    public function storeActivity(Request $request)
     {
 
         // Validaciones de campos, si alguno falla se muestra en formulario
@@ -122,5 +140,9 @@ class ProviderController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function updateActivity(Request $request, $activity_id) {
+        return redirect()->back()->with('success', 'POR HACER');
     }
 }

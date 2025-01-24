@@ -14,6 +14,8 @@ return [
     'price_adult' => 'Precio por adulto',
     'price_child' => 'Precio por niño',
     'new_experience' => 'Nueva experiencia',
+    'modify_experience' => 'Modificar experiencia',
+    'new_reserve' => 'Nueva reserva',
     'form_register' => 'Formulario de registro',
     'client' => 'Cliente',
     'admin' => 'Administrador',
@@ -24,5 +26,9 @@ return [
     'new_user' => 'Nuevo usuario',
     'user' => 'Usuario',
     'password' => 'Contraseña',
+    'num_adult' => 'Número de adultos',
+    'num_child' => 'Número de menores',
+    'pay_reserve' => 'Pagar reserva',
+    'select_date' => 'Selecciona fecha de reserva',
     'hello' => 'Hola!',
 ];

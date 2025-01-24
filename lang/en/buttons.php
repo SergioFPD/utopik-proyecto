@@ -12,6 +12,7 @@ return [
     'my_experiences' => 'My experiences',
     'my_reservations' => 'My reservations',
     'add_experience' => 'Create experience',
+    'modify_experience' => 'Modify experience',
     'add_activity' => 'Add activity',
     'register' => 'Register',
     'access' => 'Access',

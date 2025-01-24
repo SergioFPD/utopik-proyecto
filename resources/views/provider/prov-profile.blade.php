@@ -4,17 +4,19 @@
     @include('_modals.experience-create')
     @include('_modals.activity-create')
     @include('_modals.message')
-    
+
     <div class="content provider-menu">
         <h3>PERFIL PROVEEDOR</h3>
         <div>
             <div class="menu-items">
-                <a class="menu-item" href="{{ route('provider.profile', 'experiences') }}">{{__('buttons.my_experiences')}}</a>
-                <a class="menu-item" href="{{ route('provider.profile', 'reserves') }}">{{__('buttons.my_reservations')}}</a>
+                <a class="menu-item"
+                    href="{{ route('provider.profile', 'experiences') }}">{{ __('buttons.my_experiences') }}</a>
+                <a class="menu-item"
+                    href="{{ route('provider.profile', 'reserves') }}">{{ __('buttons.my_reservations') }}</a>
 
             </div>
             @if ($menu == 'experiences')
-            <h3>{{__('app.your_experiences')}}</h3>
+                <h3>{{ __('app.your_experiences') }}</h3>
                 <div class="experience-list menu">
 
                     @foreach ($experiencias as $experiencia)
@@ -22,7 +24,7 @@
                             <p>Nombre: {{ $experiencia->nombre }}</p>
                             <p>Descripción: {{ $experiencia->descripcion }}</p>
                             @if ($experiencia->reserva->count() > 0)
-                            <p>TIENE {{$experiencia->reserva->count()}} RESERVAS</p>
+                                <p>TIENE {{ $experiencia->reserva->count() }} RESERVAS</p>
                             @endif
                             @if ($experiencia->actividad->count() > 0)
                                 <p>Actividades:</p>
@@ -34,12 +36,18 @@
                             @else
                                 <p>SIN ACTIVIDADES</p>
                             @endif
-                            <button onclick="addActivity('modal-new-activity', '{{ $experiencia->getEncryptedId() }}')">{{__('buttons.add_activity')}}</button>
+                            <a class="btn-standard" href="{{ route('experience.modify', $experiencia->getEncryptedId()) }}">
+                                <p>{{ __('buttons.modify_experience') }}</p>
+                            </a>
+                            <button
+                                onclick="addActivity('modal-new-activity', '{{ $experiencia->getEncryptedId() }}')">{{ __('buttons.add_activity') }}</button>
                         </div>
                     @endforeach
 
                     <br><br>
-                    <button onclick="openModal('modal-new-experience')">{{__('buttons.add_experience')}}</button>
+                    <a class="btn-standard" href="{{ route('experience.form') }}">
+                        <p>{{ __('buttons.add_experience') }}</p>
+                    </a>
 
                 </div>
             @endif

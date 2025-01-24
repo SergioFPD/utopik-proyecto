@@ -14,6 +14,7 @@ return [
     'price_adult' => 'Adult price',
     'price_child' => 'Child price',
     'new_experience' => 'New experience',
+    'modify_experience' => 'Modify experience',
     'new_reserve' => 'New reservation',
 
     'form_register' => 'Registration form',
@@ -28,7 +29,7 @@ return [
     'password' => 'Password',
     'num_adult' => 'How many adults',
     'num_child' => 'How many children',
-    'pay_reserve' => 'Pay for reserve',
+    'pay_reserve' => 'Pay reservation',
     'select_date' => 'Select experience date',
     'hello' => 'Hello!',
 

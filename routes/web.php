@@ -23,7 +23,7 @@ use App\Http\Controllers\NavController;
 
 
 Route::get('/', [NavController::class, 'index'])->name('landing');
-Route::get('/experience/{nombre}', [NavController::class, 'viewDetail'])->name('experience.detail');
+Route::get('/experience/detail/{nombre}', [NavController::class, 'viewDetail'])->name('experience.detail');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/admin-profile/{menu}', [AdminController::class, 'viewProfile'])->name('admin.profile');
@@ -33,10 +33,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:proveedor'])->group(function () {
-    Route::post('/experience/create', [ProviderController::class, 'createExperience'])->name('experience.create');
-    Route::post('/activity/create', [ProviderController::class, 'createActivity'])->name('activity.create');
+    
+    Route::post('/activity/store', [ProviderController::class, 'storeActivity'])->name('activity.store');
     Route::get('/provider/prov-profile/{menu}', [ProviderController::class, 'viewProviderProfile'])->name('provider.profile');
+
+    Route::get('/experience/form', [ProviderController::class, 'experienceCreateForm'])->name('experience.form');
+    Route::post('/experience/store', [ProviderController::class, 'storeExperience'])->name('experience.store');
+    
+    Route::get('/experience/modify/{id}', [ProviderController::class, 'experienceModifyForm'])->name('experience.modify');
+    Route::post('/experience/update/{id}', [ProviderController::class, 'updateExperience'])->name('experience.update');
 });
+
+
 
 Route::middleware(['auth', 'role:cliente'])->group(function () {
     Route::get('/client/client-profile/{menu}', [UserController::class, 'viewClientProfile'])->name('client.profile');

@@ -9,7 +9,7 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-        <form id="form" action="{{ route('experience.create') }}" method="post" enctype="multipart/form-data">
+        <form id="form" action="{{ route('experience.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <label for="">{{ __('labels.name') }}</label>
