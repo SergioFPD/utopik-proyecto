@@ -38,6 +38,6 @@ class NavController extends Controller
             $experiencia = "error";
         }
 
-        return View('_modals.reserve-create', compact('experiencia'));
+        return View('_modals.reserve-form', compact('experiencia'));
     }
 }

@@ -4,7 +4,9 @@
     @include('_modals.message')
     
     <div class="content provider-menu">
-        <h3>PERFIL CLIENTE</h3>
+        @component('components.row-profile')
+        @slot('menuTitulo', 'Perfil de usuario')
+    @endcomponent
         <div>
             <div class="menu-items">
                 <a class="menu-item" href="{{ route('client.profile', 'reserves') }}">Ver mis reservas</a>

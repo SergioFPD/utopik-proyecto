@@ -35,16 +35,6 @@
     /* Visible completamente */
 }
 
-
-.menu-items {
-
-    background-color: aquamarine;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    cursor: pointer;
-}
-
 .menu-item:hover {
     background-color: blueviolet;
 }

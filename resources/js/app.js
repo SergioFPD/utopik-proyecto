@@ -1,10 +1,12 @@
 import './bootstrap';
 
-// Abre el modal según su id recibido
+// Abre (desoculta) el modal según su id recibido
 window.openModal = function (modal) {
 
     // Obtener los elementos
     const modalWindow = document.getElementById(modal);
+
+    // Botón cerrar del modal
     const closeModal = modalWindow.querySelector(".close");
 
     // Abrir el modal con efecto de fade-in
@@ -29,26 +31,29 @@ window.openModal = function (modal) {
 
 };
 
-document.insertModalPage = function (ruta, modalName) {
+// Inserta una página modal recibida por la ruta de un controlador
+window.insertModalPage = function (ruta, modalName) {
 
+    // Línea HTML en la que se agregará la página modal
+    // HA DE ESTAR DEFINIDA EN LA PÁGINA
     const modalContent = document.getElementById('modalPageContent');
+    const spinner = document.getElementById('spinner');
 
+    spinner.style.display = 'block';
     // Realiza una solicitud AJAX para cargar el contenido del modal
     fetch(ruta)
         .then(response => response.text())
         .then(html => {
             modalContent.innerHTML = html; // Inserta el contenido en el modal
+            // Una vez insertada la página modal, la visualiza
+            spinner.style.display = 'none';
             openModal(modalName);
         })
         .catch(error => {
             alert('Error al cargar el contenido');
 
         });
-
-
 }
-
-
 
 // Establece los valores en un formulario y lo abre como modal
 window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaDelete, modal) {
@@ -64,35 +69,7 @@ window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaD
     openModal(modal);
 }
 
-// window.openModalMakeReserve = function (experiencia_id, fechas, titulo, image) {
-
-//     const modalUser = document.getElementById('modal-new-reserve');
-
-//     const select = document.getElementById('data_options');
-
-//     modalUser.querySelector('#experiencia_id').value = experiencia_id;
-//     modalUser.querySelector('#nombre').innerText = titulo;
-//     modalUser.querySelector('#res-image').src = image;
-
-//     console.log(fechas);
-
-//     select.options.length = 0;
-//     const option = new Option('Selecciona', '0');
-
-//     option.selected = true;
-//     option.disabled = true;
-//     option.value = "";
-//     select.add(option);
-//     fechas.forEach(fecha => {
-
-//         const option = new Option(fecha.fecha, fecha.id);
-//         select.add(option);
-
-//     });
-
-//     openModal('modal-new-reserve');
-// }
-
+// Abre el modal de añadir actividad y le asigna un id al input experiencia_id
 window.addActivity = function (modal, experiencia_id) {
     const modalUser = document.getElementById(modal);
 
@@ -114,13 +91,16 @@ if (document.querySelector('.modal.show')) {
 
 }
 
-// Esta función elimina todos los mensajes de error del formulario
+// Elimina todos los mensajes de error del formulario
 window.clearValidationErrors = function () {
     // Eliminar errores del DOM
     const errorMessages = document.querySelectorAll('.error-message');
     errorMessages.forEach(error => error.remove());
 }
 
+// En los formularios con un slider selector, cambia el valor del output por
+// el valor seleccionado en el selector
+// Calcula el precio total y lo establece en total-price
 window.updateSliderValue = function (value, output, priceAdult, priceChild) {
     document.getElementById(output).textContent = value;
     const adult = parseInt(document.getElementById('value-adults').value);
@@ -129,7 +109,9 @@ window.updateSliderValue = function (value, output, priceAdult, priceChild) {
 }
 
 
-//----------
+// Se ejecuta dentro de la página correspondiente
+// Se ocupa de añadir una fecha a un listado y prepara el array
+// para el controlador
 const multipleDates = {
     init: function () {
         this.launch();
@@ -162,7 +144,7 @@ const multipleDates = {
         });
 
 
-        // Renderizar la lista de fechas
+        // Actualiza la lista de fechas
         function renderListaFechas() {
             // Vaciar la lista actual
             listaFechas.innerHTML = '';
@@ -186,16 +168,17 @@ const multipleDates = {
                 listaFechas.appendChild(li);
             });
 
-            // Actualizar el campo oculto
+            // Actualizar el campo oculto con el valor que se enviará al controlador
             fechasHidden.value = JSON.stringify(fechas);
         }
 
-        // Pone las fechas que ya tiene la experiencia
+        // Pone las fechas que ya tiene la experiencia al cargar la página
         renderListaFechas();
     }
 };
-//-------------
 
+// Se carga en la página correspondiente
+// Se encarga de mostrar en un div la imagen seleccionada
 const imageViewer = {
     init: function () {
         this.launch();
@@ -227,15 +210,14 @@ const imageViewer = {
 };
 
 
-
-// Se ejecuta al cargar la página
+// Se ejecuta al cargar la página (JQUERY)
 $(function () {
+    // Recoge el valor de la clase content de la página
     const content = $('.content');
 
-
-
-    // Si la página contiene la clase "inicio" ejecuta el carrusel
-    if (content.hasClass('provider-menu')) {
+    // Si la página es la del menú proveedor ejecuta las funciones que va a utilizar
+    // -- Esto evita que esas funciones se carguen en todas las páginas --
+    if (content.hasClass('form-experience')) {
         imageViewer.init();
         multipleDates.init();
     }

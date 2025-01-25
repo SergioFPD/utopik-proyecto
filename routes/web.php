@@ -34,21 +34,25 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:proveedor'])->group(function () {
     
-    Route::post('/activity/store', [ProviderController::class, 'storeActivity'])->name('activity.store');
     Route::get('/provider/prov-profile/{menu}', [ProviderController::class, 'viewProviderProfile'])->name('provider.profile');
 
     Route::get('/experience/form', [ProviderController::class, 'experienceCreateForm'])->name('experience.form');
     Route::post('/experience/store', [ProviderController::class, 'storeExperience'])->name('experience.store');
-    
     Route::get('/experience/modify/{id}', [ProviderController::class, 'experienceModifyForm'])->name('experience.modify');
     Route::post('/experience/update/{id}', [ProviderController::class, 'updateExperience'])->name('experience.update');
+
+    Route::get('/activity/form/{experience_id}', [ProviderController::class, 'activityCreateForm'])->name('activity.form');
+    Route::post('/activity/store', [ProviderController::class, 'storeActivity'])->name('activity.store');
+    Route::get('/activity/modify/{id}', [ProviderController::class, 'activityModifyForm'])->name('activity.modify');
+    Route::post('/activity/update/{id}', [ProviderController::class, 'updateActivity'])->name('activity.update');
+    Route::delete('/activity/delete/{id}', [ProviderController::class, 'deleteActivity'])->name('activity.delete');
 });
 
 
 
 Route::middleware(['auth', 'role:cliente'])->group(function () {
     Route::get('/client/client-profile/{menu}', [UserController::class, 'viewClientProfile'])->name('client.profile');
-    Route::post('/client/create/reserve', [UserController::class, 'createReserve'])->name('reserve.create');
+    Route::post('/client/store/reserve', [UserController::class, 'storeReserve'])->name('reserve.store');
     Route::get('/form/reserve/{experience}', [NavController::class, 'formReserve'])->name('form.reserve');
 });
 

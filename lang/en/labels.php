@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'app-title' => 'Welcome to Utopik: make it real!',
     'name' => 'Name',
     'email' => 'Your email',
     'city' => 'City',
@@ -15,6 +15,8 @@ return [
     'price_child' => 'Child price',
     'new_experience' => 'New experience',
     'modify_experience' => 'Modify experience',
+    'modify_activity' => 'Modify activity',
+    'new_activity' => 'New activity',
     'new_reserve' => 'New reservation',
 
     'form_register' => 'Registration form',

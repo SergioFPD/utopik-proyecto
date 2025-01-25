@@ -17,22 +17,6 @@ use Illuminate\Validation\ValidationException;
 
 class ProviderController extends Controller
 {
-
-    public function experienceCreateForm()
-    {
-        $paises = Pais::all();
-        $mode = 'create';
-        return view('experience-form', compact('mode','paises'));
-    }
-
-    public function experienceModifyForm($experiencia_id)
-    {
-        $paises = Pais::all();
-        $experiencia = Experiencia::find(Crypt::decryptString($experiencia_id));
-        $mode = 'modify';
-        return view('experience-form', compact('experiencia', 'mode','paises'));
-    }
-
     public function viewProviderProfile($menu)
     {
         $user = Auth::user();
@@ -40,6 +24,14 @@ class ProviderController extends Controller
         $experiencias = $user->experiencia;
         $paises = Pais::all();
         return view('provider.prov-profile', compact('experiencias', 'menu', 'paises'));
+    }
+
+    // Formularios de experiencias ---------------------------
+    public function experienceCreateForm()
+    {
+        $paises = Pais::all();
+        $mode = 'create';
+        return view('experience-form', compact('mode','paises'));
     }
 
     public function storeExperience(Request $request)
@@ -107,10 +99,53 @@ class ProviderController extends Controller
         return redirect()->route('provider.profile', 'experiences');
     }
 
+    public function experienceModifyForm($experiencia_id)
+    {
+        $paises = Pais::all();
+        $experiencia = Experiencia::find(Crypt::decryptString($experiencia_id));
+        $mode = 'modify';
+        return view('experience-form', compact('experiencia', 'mode','paises'));
+    }
+
     public function updateExperience(Request $request, $experience_id) {
 
         return redirect()->back()->with('success', 'POR HACER');
     }
+
+    // Formularios de actividades ---------------------------
+    public function activityCreateForm($experience_id)
+    {
+        $experiencia = Experiencia::find(Crypt::decryptString($experience_id));
+        $mode = 'create';
+        return view('_modals/activity-form', compact('mode', 'experiencia'));
+    }
+
+    public function activityModifyForm($activity_id)
+    {
+        $actividad = Actividad::find(Crypt::decryptString($activity_id));
+        $mode = 'modify';
+        return view('_modals/activity-form', compact('mode', 'actividad'));
+    }
+
+    public function updateActivity(Request $request, $activity_id) {
+        $actividad = Actividad::find(Crypt::decryptString($activity_id));
+
+        $actividad->nombre = $request->nombre;
+        $actividad->descripcion = $request->descripcion;
+        $actividad->dia = $request->dia;
+        $actividad->save();
+        return redirect()->back()->with('success', 'Actividad actualizada');
+    }
+
+    public function deleteActivity($id)
+    {
+
+        $actividad = Actividad::find(Crypt::decryptString($id));
+
+        $actividad->delete();
+        return redirect()->back()->with('success', 'Actividad eliminada');
+    }
+    
 
     public function storeActivity(Request $request)
     {
@@ -128,9 +163,7 @@ class ProviderController extends Controller
             throw new ValidationException($validator);
         }
 
-
-
-        $experiencia = Experiencia::find(Crypt::decryptString($request->experiencia_id));
+        $experiencia = Experiencia::find(Crypt::decryptString($request->experience_id));
 
         $experiencia->actividad()->create([
             'nombre' => $request->nombre,
@@ -140,9 +173,5 @@ class ProviderController extends Controller
         ]);
 
         return redirect()->back();
-    }
-
-    public function updateActivity(Request $request, $activity_id) {
-        return redirect()->back()->with('success', 'POR HACER');
     }
 }

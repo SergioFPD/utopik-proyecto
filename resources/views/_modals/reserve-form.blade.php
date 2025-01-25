@@ -12,7 +12,7 @@
                 style="width: 100%" alt="">
         </div>
         <div>
-            <form action="{{ route('reserve.create') }}" method="post">
+            <form action="{{ route('reserve.store') }}" method="post">
                 @csrf
                 <input type="hidden" value="{{ $experiencia->getEncryptedId() }}" name="experiencia_id">
                 <label for="slider">{{ __('labels.num_adult') }} ({{ $experiencia->precio_adulto }}€)</label>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('actividades', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->longText('descripcion');
             $table->integer('dia')->default(1);
             $table->string('imagen')->nullable();
 

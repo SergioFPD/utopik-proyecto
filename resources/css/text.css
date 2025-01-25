@@ -1,0 +1,20 @@
+.text-title {
+    margin: 0;
+    color: var(--color-texto-claro);
+    line-height: 1.4;
+    font-weight: bold;
+    text-shadow: 1px 1px 16px rgb(0 0 0 / 90%);
+}
+
+.text-small {
+    font-size: 2em;
+}
+
+.text-big {
+    font-size: 4em;
+}
+
+.vip-rotate {
+    font-size: 22px;
+    transform: rotate(270deg);
+}

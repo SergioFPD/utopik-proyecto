@@ -11,14 +11,14 @@
     
         <!-- Incluir jQuery UI JS -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <title>Document</title>
+    <title>{{__('labels.app-title')}}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 
 <body>
     {{-- VER ERRORES --}}
-    <div style="margin-top: 100px; color: #fff">
+    {{-- <div style="margin-top: 100px; color: #fff">
         <p>LISTA DE ERRORES</p>
         @if ($errors->any())
             <div>
@@ -29,7 +29,7 @@
                 </ul>
             </div>
         @endif
-    </div>
+    </div> --}}
     {{-- VER ERRORES END --}}
     {{-- Menu de navegación --}}
     @include('layouts.menu')

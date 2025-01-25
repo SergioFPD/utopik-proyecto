@@ -27,7 +27,7 @@ class UserController extends Controller
         return view('client.client-profile', compact('reservas', 'menu'));
     }
 
-    public function createReserve(Request $request)
+    public function storeReserve(Request $request)
     {
         $user = Auth::user();
 

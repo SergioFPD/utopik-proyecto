@@ -4,49 +4,60 @@
     @include('_modals.user-create')
     @include('_modals.provider-create')
     @include('_modals.message')
-    
+
+
     <div class="content admin-menu">
-        <h3>PERFIL ADMINISTRADOR</h3>
+        @component('components.row-profile')
+            @slot('menuTitulo', 'Perfil administrador')
+        @endcomponent
         <div>
             <div class="menu-items">
-                <a class="menu-item" href="{{ route('admin.profile', 'users') }}">Listado de usuarios</a>
-                <a class="menu-item" href="{{ route('admin.profile', 'providers') }}">Listado de Proveedores</a>
+                <a class="menu-item @if ($menu == 'users') select @endif"
+                    href="{{ route('admin.profile', 'users') }}">
+                    <p>Listado de usuarios</p>
+                </a>
+                <a class="menu-item  @if ($menu == 'providers') select @endif"
+                    href="{{ route('admin.profile', 'providers') }}">
+                    <p>Listado de Proveedores</p>
+                </a>
 
             </div>
             @if ($menu == 'users')
                 <div class="user-list menu">
-                    <ul>
-                        @foreach ($usuarios as $user)
-                            @if ($user->rol != 'proveedor' && $user->email != Auth::user()->email)
-                                <li> {{ $user->nombre }} <button
-                                        onclick="openModalModifyUser('{{ $user->nombre }}','{{ $user->bloqueado }}', '{{ $user->rol }}', '{{ route('admin.update.user', $user->getEncryptedId()) }}', '{{ route('admin.delete.user', $user->getEncryptedId()) }}','modal-userdata')">Editar</button>
-                                </li>
-                            @endif
-                        @endforeach
 
-                    </ul>
+                    @foreach ($usuarios as $user)
+                        @if ($user->rol != 'proveedor' && $user->email != Auth::user()->email)
+                            <div class="user-content">
+                                <p> {{ $user->nombre }} </p>
+                                <button class="btn-standard"
+                                    onclick="openModalModifyUser('{{ $user->nombre }}','{{ $user->bloqueado }}', '{{ $user->rol }}', '{{ route('admin.update.user', $user->getEncryptedId()) }}', '{{ route('admin.delete.user', $user->getEncryptedId()) }}','modal-userdata')">Editar</button>
 
-                    <button onclick="openModal('modal-newuser')">Nuevo usuario</button>
+                            </div>
+                        @endif
+                    @endforeach
+
                 </div>
             @endif
             @if ($menu == 'providers')
-                <div class="provider-list menu">
-                    <ul>
-                        @foreach ($usuarios as $user)
-                            @if ($user->rol == 'proveedor')
-                                <li> {{ $user->nombre }} <button
-                                        onclick="openModalModifyUser('{{ $user->nombre }}','{{ $user->bloqueado }}', '{{ $user->rol }}', '{{ route('admin.update.user', $user->id) }}', '{{ route('admin.delete.user', $user->id) }}','modal-userdata')">Editar</button>
-                                </li>
-                            @endif
-                        @endforeach
+                <div class="user-list menu">
+                    @foreach ($usuarios as $user)
+                        @if ($user->rol == 'proveedor')
+                            <div class="user-content">
+                                <p> {{ $user->nombre }} </p>
+                                <button class="btn-standard"
+                                    onclick="openModalModifyUser('{{ $user->nombre }}','{{ $user->bloqueado }}', '{{ $user->rol }}', '{{ route('admin.update.user', $user->id) }}', '{{ route('admin.delete.user', $user->id) }}','modal-userdata')">Editar</button>
 
-                    </ul>
-
-                    <button onclick="openModal('modal-provider')">Nuevo proveedor</button>
+                            </div>
+                        @endif
+                    @endforeach
+                    <button class="btn-standard" onclick="openModal('modal-provider')">Nuevo proveedor</button>
                 </div>
             @endif
 
+
         </div>
+
+    </div>
 
     </div>
 @endsection

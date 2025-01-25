@@ -66,4 +66,16 @@ class Experiencia extends Model
 {
     return $this->imagen->first();
 }
+
+public function getFormatedPrice()
+{
+
+    // Convertir a entero
+    $entero = (int)$this->precio_adulto;
+    
+    // Dar formato con punto de miles
+    $formateado = number_format($entero, 0, '.', '.');
+    
+    return $formateado;
+}
 }

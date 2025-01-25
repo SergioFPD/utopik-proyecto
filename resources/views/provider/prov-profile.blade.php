@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     @include('_modals.reserve-modify')
-    @include('_modals.experience-create')
-    @include('_modals.activity-create')
     @include('_modals.message')
 
     <div class="content provider-menu">
-        <h3>PERFIL PROVEEDOR</h3>
+        @component('components.row-profile')
+            @slot('menuTitulo', 'Perfil de empresa')
+        @endcomponent
         <div>
             <div class="menu-items">
                 <a class="menu-item"
@@ -39,8 +39,6 @@
                             <a class="btn-standard" href="{{ route('experience.modify', $experiencia->getEncryptedId()) }}">
                                 <p>{{ __('buttons.modify_experience') }}</p>
                             </a>
-                            <button
-                                onclick="addActivity('modal-new-activity', '{{ $experiencia->getEncryptedId() }}')">{{ __('buttons.add_activity') }}</button>
                         </div>
                     @endforeach
 
@@ -53,21 +51,23 @@
             @endif
             @if ($menu == 'reserves')
                 <div class="reserve-list menu">
-                    <ul>
-                        @foreach ($experiencias as $experiencia)
-                            @if ($experiencia->reserva != null)
-                                @foreach ($experiencia->reserva as $reserva)
-                                    <li> Nombre de experiencia: {{ $experiencia->nombre }}
-                                    </li>
-                                    <li>Adultos: {{ $reserva->adultos }}</li>
-                                    <li>Usuario: {{ $reserva->user->nombre }}</li>
-                                    <li>Precio por adulto: {{ $reserva->precio_adulto }}€</li>
-                                    <li>Precio total: {{ $reserva->dimePrecioTotal() }}€</li>
-                                @endforeach
-                            @endif
-                        @endforeach
-
-                    </ul>
+                    @foreach ($experiencias as $experiencia)
+                        @if ($experiencia->reserva != null)
+                            @foreach ($experiencia->reserva as $reserva)
+                                <div class="reserve-content">
+                                    <h3> Nombre de experiencia: {{ $experiencia->nombre }}</h3>
+                                    <p>Adultos: {{ $reserva->adultos }}</p>
+                                    <p>Cliente: {{ $reserva->user->nombre }}</p>
+                                    <p>Email del cliente: {{ $reserva->user->email }}</p>
+                                    <p>Precio total de la reserva: {{ $reserva->dimePrecioTotal() }}€</p>
+                                </div>
+                            @endforeach
+                        @else
+                            <div>
+                                <p>SIN RESERVAS</p>
+                            </div>
+                        @endif
+                    @endforeach
 
                 </div>
             @endif

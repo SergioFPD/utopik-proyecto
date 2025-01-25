@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->id();
-            $table->string('pais');  // Nombre del país
+            $table->string('pais');
+            $table->longText('descripcion');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

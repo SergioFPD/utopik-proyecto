@@ -3,8 +3,8 @@
     --color-texto-claro: #ececec;
     --color-texto-oscuro: #252525;
     --color-fondo-menu: #EDF6FA;
-    --color-azul-uno: #1C798E;
-    --color-azul-dos: #40AEC7;
+    --color-azul-uno: #40AEC7;
+    --color-azul-dos: #1C798E;
     --color-azul-tres: #1C3940;
     --color-vip-uno: #CFB000;
     --color-vip-dos: #AE981C;
@@ -15,6 +15,7 @@
     --color-resaltado-menu: #FED1D1;
 
     --color-boton: #0F5B6C;
+    --color-boton-borrar: #6c290f;
     --color-texto-boton: #ffffff;
 
     --color-sobre-boton: #755b06;
