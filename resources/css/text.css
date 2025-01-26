@@ -3,6 +3,10 @@
     color: var(--color-texto-claro);
     line-height: 1.4;
     font-weight: bold;
+    
+}
+
+.text-shadow{
     text-shadow: 1px 1px 16px rgb(0 0 0 / 90%);
 }
 
@@ -17,4 +21,9 @@
 .vip-rotate {
     font-size: 22px;
     transform: rotate(270deg);
+}
+
+.vip-rotate-card1 {
+    font-size: 22px;
+    transform: rotate(90deg);
 }

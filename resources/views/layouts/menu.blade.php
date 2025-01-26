@@ -1,45 +1,80 @@
+@php
+
+    if (Auth::user()) {
+        $rol = Auth::user()->rol;
+        $logeado = true;
+    } else {
+        $rol = 'guest';
+        $logeado = false;
+    }
+
+    if ($rol == 'admin') {
+        $nomBoton = 'Perfil admin';
+        $rutaPerfil = route('admin.profile', 'users');
+    } elseif ($rol == 'proveedor') {
+        $nomBoton = 'Perfil proveedor';
+        $rutaPerfil = route('provider.profile', 'experiences');
+    } else {
+        $nomBoton = 'Acceso empresas';
+        $rutaPerfil = route('home'); // TODO
+    }
+
+@endphp
+{{-- Modales ocultos --}}
+@include('_modals.register')
+
 <div class="navmenu">
     <div class="container">
         <div class="left">
             <div class="img-logo">
-                <a href="{{ route('landing') }}"><img src="{{ asset('storage/images/utopik_logo_alpha.png') }}"
+                <a href="{{ route('home') }}"><img src="{{ asset('storage/images/utopik_logo_alpha.png') }}"
                         alt=""></a>
             </div>
         </div>
 
+        <div class="middle">
+            @component('menus.country-select')
+                @slot('listaPaises')
+                    @if ($paises != null)
+                        @foreach ($paises as $pais)
+                            <a class="country-select-item" href="{{ route('country', $pais->pais) }}">
+                                <p>{{ $pais->pais }}</p>
+                            </a>
+                        @endforeach
+                    @endif
+                @endslot
+
+            @endcomponent
+        </div>
+
         <!-- Lado derecho del menú -->
         <div class="right">
-            @auth
-                @if (Auth::user()->rol === 'cliente')
-                    @include('_modals.user-menu')
-                @endif
-                <a href="{{ route('logout') }}">
-                    <button>{{ __('buttons.logout') }}</button>
-                </a>
 
-                <!-- Comprobar el rol del usuario -->
-                @if (Auth::user()->rol === 'admin')
-                    <p>Tienes permisos de Administrador.</p>
-                    <a href="{{ route('admin.profile', 'users') }}">
-                        <button>Zona admin</button>
-                    </a>
-                @elseif (Auth::user()->rol === 'cliente')
-                    <p>Eres un Usuario cliente.</p>
-                    <a href="{{ route('client.profile', 'reserves') }}">
-                        <button>Zona cliente</button>
-                    </a>
-                @elseif (Auth::user()->rol === 'proveedor')
-                    <p>Eres un Usuario proveedor.</p>
-                    <a href="{{ route('provider.profile', 'experiences') }}">
-                        <button>Zona proveedores</button>
+            <div class="right-up">
+                <a class="btn-standard" href="{{ $rutaPerfil }}">
+                    <p>{{ $nomBoton }}</p>
+                </a>
+            </div>
+
+            <div class="right-down">
+                @if ($rol == 'cliente')
+                    @include('menus.user-menu')
+                @endif
+                @if (!$logeado)
+                    @include('_modals.login')
+                @endif
+                @if (!$logeado)
+                    <a class="btn-standard" onclick="openModal('modal-register')">
+                        <p>{{ __('buttons.register') }}</p>
                     </a>
                 @endif
-            @else
-                <button onclick="openModal('modal-register')">{{ __('buttons.register') }}</button>
-                @include('_modals.register')
-                @include('_modals.login')
-            @endauth
-            @include('_partials.lang')
+                @if ($logeado && $rol != 'cliente')
+                    <a class="btn-standard" href="{{ route('logout') }}">
+                        <p>{{ __('buttons.logout') }}</p>
+                    </a>
+                @endif
+                @include('_partials.lang')
+            </div>
 
         </div>
     </div>

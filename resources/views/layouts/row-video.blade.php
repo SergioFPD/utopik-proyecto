@@ -12,6 +12,3 @@
     <p class="text-title text-small">Explora lo utópico</p>
 
 </div>
-@component('components.barra')
-@slot('color', 'barra-azul-oscuro')
-@endcomponent

@@ -1,5 +1,5 @@
 <div class="modal-user-menu">
-        <p>Bienvenido {{ Auth::user()->nombre }}</p>
+        <p>Bienvenido {{ Auth::user()->nombre }}<img src="{{asset('storage/images/menu-down.svg')}}" alt=""></p>
     <div class="modal user-menu">
         <div class="user-menu-content">
 

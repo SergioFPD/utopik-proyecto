@@ -13,6 +13,7 @@ class Experiencia extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
+        'descripcion_corta',
         'vip',
         'activa',
         'duracion',

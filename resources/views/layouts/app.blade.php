@@ -5,13 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Incluir jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Incluir jQuery UI CSS -->
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    
-        <!-- Incluir jQuery UI JS -->
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <title>{{__('labels.app-title')}}</title>
+    <!-- Incluir jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Incluir jQuery UI JS -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <title>{{ __('labels.app-title') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -32,6 +41,7 @@
     </div> --}}
     {{-- VER ERRORES END --}}
     {{-- Menu de navegación --}}
+    @include('_modals.message')
     @include('layouts.menu')
     @yield('content')
 </body>

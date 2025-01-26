@@ -17,6 +17,7 @@ return new class extends Migration
             $table->boolean('vip')->default(false);
             $table->boolean('activa')->default(true);
             $table->longText('descripcion');
+            $table->string('descripcion_corta');
             $table->integer('duracion')->default(1);
             $table->decimal('precio_adulto', 10, 2)->default(1000);
             $table->decimal('precio_nino', 10, 2)->default(500);

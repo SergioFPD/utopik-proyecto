@@ -20,9 +20,10 @@ use App\Http\Controllers\NavController;
 |
 */
 
+Route::view('/pruebas', 'pruebas')->name('pruebas');
 
-
-Route::get('/', [NavController::class, 'index'])->name('landing');
+Route::get('/', [NavController::class, 'home'])->name('home');
+Route::get('/country/{name}', [NavController::class, 'country'])->name('country');
 Route::get('/experience/detail/{nombre}', [NavController::class, 'viewDetail'])->name('experience.detail');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

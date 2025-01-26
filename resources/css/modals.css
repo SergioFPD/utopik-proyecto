@@ -11,7 +11,7 @@
 
 .modal.center {
     position: fixed;
-    z-index: 10;
+    z-index: 50;
     top: 0;
     left: 0;
     width: 100%;
@@ -125,10 +125,10 @@
 
 .modal.user-menu {
 
-    right: -15px;
-    padding-top: 73px;
-    height: 156px;
-    top: 17px;
+    right: -20px;
+    padding-top: 50px;
+    height: 147px;
+    top: 11px;
     position: absolute;
     animation: slideInFromRight 0.2s ease-out;
 }
@@ -142,8 +142,10 @@
 }
 
 .modal-user-menu {
+    margin: 0 20px;
     display: block !important;
     position: relative;
+    cursor: pointer;
 }
 
 .modal-user-menu:hover .modal.user-menu {
@@ -170,6 +172,65 @@
 }
 
 .menu-user-item:hover {
+    background: var(--color-resaltado-menu);
+    color: var(--color-texto-resaltado-menu);
+
+}
+
+/* COUNTRY SELECTION */
+
+.modal-country-select {
+    display: block !important;
+    position: relative;
+    cursor: pointer;
+}
+
+.modal-country-select p {
+    font-weight: bold;
+}
+
+.modal.country-select {
+
+    right: -15px;
+    padding-top: 44px;
+    height: auto;
+    top: 17px;
+    position: absolute;
+    animation: slideInFromRight 0.2s ease-out;
+}
+
+.country-select-content {
+    padding: 10px 20px;
+    height: auto;
+    width: 150px;
+    background: var(--color-fondo-modal);
+    border-radius: 0 0 20px 20px;
+}
+
+.modal-country-select:hover .modal.country-select {
+
+    display: block !important;
+
+}
+
+.modal-country-select:focus-within .modal.country-select {
+
+    display: block !important;
+}
+
+.country-select-item {
+    display: block;
+    color: var(--color-texto-oscuro);
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.country-select-item p{
+   margin: 0;
+}
+
+.country-select-item:hover {
     background: var(--color-resaltado-menu);
     color: var(--color-texto-resaltado-menu);
 

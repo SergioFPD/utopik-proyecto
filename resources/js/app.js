@@ -1,5 +1,90 @@
 import './bootstrap';
 
+const activaCarruselTotal = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+
+            $(".owl-carousel").owlCarousel({
+                items: 3,               // Número de elementos a mostrar
+                loop: true,             // Si el carrusel debe hacer un loop infinito
+                margin: 20,             // Espacio entre los elementos
+                autoplay: false,         // Reproducir automáticamente
+                autoplayTimeout: 3000,  // Tiempo entre los deslizamientos (en milisegundos)
+                dots: true,            // Activar los dots
+                nav: false,             // Desactivar flechas de navegación
+                responsive: {
+                    0: {
+                        items: 1         // En pantallas pequeñas, solo 1 elemento
+                    },
+                    600: {
+                        items: 2         // En pantallas medianas, 2 elementos
+                    },
+                    1000: {
+                        items: 3         // En pantallas grandes, 3 elementos
+                    }
+                }
+            });
+    }
+};
+
+const activaCarrusel = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+
+        if ($(window).width() < 1200) {
+            $(".owl-carousel").owlCarousel({
+                items: 3,               // Número de elementos a mostrar
+                loop: true,             // Si el carrusel debe hacer un loop infinito
+                margin: 20,             // Espacio entre los elementos
+                autoplay: false,         // Reproducir automáticamente
+                autoplayTimeout: 3000,  // Tiempo entre los deslizamientos (en milisegundos)
+                dots: true,            // Activar los dots
+                nav: false,             // Desactivar flechas de navegación
+                responsive: {
+                    0: {
+                        items: 1         // En pantallas pequeñas, solo 1 elemento
+                    },
+                    600: {
+                        items: 2         // En pantallas medianas, 2 elementos
+                    },
+                    1000: {
+                        items: 3         // En pantallas grandes, 3 elementos
+                    }
+                }
+            });
+        }
+
+    }
+};
+
+const iniciaCarruselMax = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+
+        console.log("Carrusel iniciado");
+
+        activaCarrusel.init();
+
+        $(window).resize(function () {
+            // Eliminar el carrusel si la ventana es mayor o igual a 1200px
+            if ($(window).width() >= 1200) {
+                if ($(".owl-carousel").hasClass("owl-loaded")) {
+                    $(".owl-carousel").trigger('destroy.owl.carousel').removeClass("owl-loaded");
+                }
+            } else {
+                activaCarrusel.init();
+            }
+        });
+
+    }
+};
+
 // Abre (desoculta) el modal según su id recibido
 window.openModal = function (modal) {
 
@@ -210,6 +295,20 @@ const imageViewer = {
 };
 
 
+document.addEventListener('scroll', function () {
+    const elementos = document.querySelectorAll('.card-experience');
+    const triggerPoint = window.innerHeight / 1.2; // Punto de activación
+  
+    elementos.forEach((el) => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < triggerPoint) {
+        el.classList.add('visible'); // Añade la clase cuando es visible
+      }
+    });
+  });
+
+
+
 // Se ejecuta al cargar la página (JQUERY)
 $(function () {
     // Recoge el valor de la clase content de la página
@@ -220,5 +319,10 @@ $(function () {
     if (content.hasClass('form-experience')) {
         imageViewer.init();
         multipleDates.init();
+    }
+
+    // Si la página contiene la clase "home" ejecuta el carrusel
+    if (content.hasClass('home')) {
+        activaCarruselTotal.init();
     }
 });

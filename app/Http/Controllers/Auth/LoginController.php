@@ -19,11 +19,11 @@ class LoginController extends Controller
         // Intentar autenticar al usuario
         if (Auth::attempt($request->only('email', 'password'))) {
             // Redirigir al inicio si la autenticación es exitosa
-            return redirect('/');
+            return redirect()->back();
         }
 
         // Redirigir de vuelta con un mensaje de error si falla
-        return redirect('/')->with('error', 'Parece que tus credenciales no son válidas');
+        return redirect()->back()->with('error', 'Parece que tus credenciales no son válidas');
     }
 
     public function logout()

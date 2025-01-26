@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Models\Pais;
 use Illuminate\Support\Facades\Crypt;
 
 class AdminController extends Controller
@@ -12,9 +13,10 @@ class AdminController extends Controller
 
     public function viewProfile($menu)
     {
+        $paises = Pais::all();
 
         $usuarios = User::all();
-        return view('admin.admin-profile', compact('usuarios', 'menu'));
+        return view('admin.admin-profile', compact('usuarios', 'menu', 'paises'));
     }
 
     public function createUser(UserRequest $request)

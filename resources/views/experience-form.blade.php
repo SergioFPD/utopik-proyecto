@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('_modals.message')
-
     {{-- Recibe variable $experiencia y $mode en caso de modificacion --}}
 
     @php
