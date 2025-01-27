@@ -51,7 +51,7 @@
 }
 
 .row-blue {
-    padding: 10px 30% 100px 10%;
+    padding: 10px 30% 5% 10%;
     color: var(--color-texto-claro);
     background: var(--color-azul-dos);
 }
@@ -79,6 +79,11 @@
 
 }
 
+html {
+    font-size: 14px;
+    /* Base para rem */
+}
+
 body {
     font-family: "Montserrat", serif;
     color: var(--color-azul-dos);
@@ -88,7 +93,7 @@ body {
     background: var(--color-fondo-web);
     flex-direction: column;
     line-height: 1.4;
-
+    font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
 .content {
@@ -113,7 +118,7 @@ body {
     top: 0;
     border-radius: 65px 0 0 65px;
     right: 0;
-    z-index: 10;
+    z-index: 20;
     background-color: var(--color-fondo-menu);
     width: 100%;
     max-width: calc(((100vw - var(--ancho-web)) / 2) + var(--ancho-web) - 80px);
@@ -121,6 +126,11 @@ body {
     display: flex;
     position: fixed;
     align-items: center;
+}
+
+.navmenu.menu-profile {
+
+    background-color: var(--color-fondo-menu-profile);
 }
 
 .navmenu .container {
@@ -174,6 +184,21 @@ body {
     padding-right: 17px;
 }
 
+.btn-standard.alpha {
+    background: none;
+    border: 1px solid var(--color-texto-claro);
+}
+
+.btn-standard.alpha2 {
+    background: none;
+    border: 1px solid var(--color-texto-oscuro);
+    box-shadow: none !important;
+}
+
+.btn-standard.alpha2 p {
+    color: var(--color-texto-oscuro);
+}
+
 .btn-standard.delete {
     background: var(--color-boton-borrar);
 
@@ -188,17 +213,55 @@ body {
     color: var(--color-texto-sobre-boton) !important;
 }
 
+.gold-button {
+    background: var(--color-vip-dos) !important;
+}
+
+
+.blue-button {
+    background: var(--color-azul-uno) !important;
+}
+
+.border-line {
+    gap: 10px;
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
+    border: 1px solid var(--color-azul-tres);
+    flex-direction: row;
+    align-items: center;
+}
+
+.border-line p {
+    color: var(--color-azul-tres);
+    margin: 0;
+}
+
+.border-line img {
+    width: 24px;
+}
+
 
 /* MENU LOGO */
 .img-logo {
     position: relative;
     width: 300px;
+    margin-right: 20px;
 }
 
-.img-logo img {
+.img-logo .logo {
+    background-size: cover;
+    background-position: center;
+    height: 100px;
     width: 100%;
 }
 
+/* MENU LOGO PROFILE */
+.navmenu.menu-profile .img-logo {
+    width: 110px;
+}
 
 .image-preview-container {
 
@@ -254,31 +317,6 @@ body {
     margin: 10px;
 }
 
-.menu-items {
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-
-}
-
-.menu-item {
-
-    padding: 20px;
-    border-radius: 10px 10px 0 0;
-    background: #db7f7f;
-    color: #000;
-    cursor: pointer;
-    text-decoration: none;
-
-}
-
-.menu-item.select {
-
-    background: #43c7df !important;
-
-}
-
 .activity-modify-list {
     border: 1px solid;
     border-radius: 20px;
@@ -317,10 +355,9 @@ body {
 .card-experience {
 
     border-radius: 20px;
-    height: 400px;
     margin: 30px 0;
     overflow: hidden;
-    background: var(--color-azul-uno);
+    background: var(--color-azul-dos);
 
     opacity: 0;
     /* Oculto inicialmente */
@@ -338,14 +375,9 @@ body {
     /* En su posición final */
 }
 
-.card-experience.gold {
+.gold {
 
-    background: var(--color-vip-uno);
-}
-
-.card1.gold {
-
-    background: var(--color-vip-uno);
+    background: var(--color-vip-dos) !important;
 }
 
 .card-exp-container {
@@ -357,7 +389,6 @@ body {
 .card-exp-left {
     position: relative;
     width: 40%;
-    height: 100%;
     overflow: hidden;
 
 }
@@ -387,7 +418,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgb(10 81 89 / 74%), rgb(0 0 0 / 0%));
+    background: linear-gradient(90deg, rgb(0 0 0 / 74%), rgb(0 0 0 / 0%));
     z-index: 1;
 }
 
@@ -399,33 +430,43 @@ body {
     position: relative;
 }
 
-.buttons {
-    position: absolute;
-    bottom: 0;
+.exp-buttons {
     margin: 20px;
-    bottom: 0;
     display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.exp-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .exp-price {
-    right: 0;
-    bottom: 0;
-    position: absolute;
+
     font-weight: 500;
     padding: 30px;
     text-align: right;
 }
 
 .exp-info {
-
+    margin: 0 10px;
     overflow: auto;
-    max-height: 70%;
+    max-height: 100%;
+}
+
+.exp-location {
+    margin: 5px;
+    color: var(--color-texto-oscuro);
+    font-weight: 500;
+
 }
 
 .exp-vip {
     display: flex;
     color: var(--color-texto-claro);
-    background: var(--color-vip-dos);
+    background: var(--color-vip-uno);
     font-weight: bold;
     align-items: center;
 }
@@ -516,7 +557,8 @@ body {
     height: 200px;
     background: var(--color-azul-tres);
     color: var(--color-texto-claro);
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 /* MENU */
@@ -525,4 +567,76 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+}
+
+/* EMPRESA LOGIN */
+.provider-login-image {
+    overflow: hidden;
+    position: relative;
+    height: 600px;
+}
+
+.provider-login-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.provider-login-container {
+    width: 100%;
+    gap: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -42%);
+    display: flex;
+    z-index: 10;
+    position: absolute;
+    flex-direction: row;
+    align-items: center;
+}
+
+.provider-login-container .right {
+    padding: 8%;
+    width: 40%;
+}
+
+.provider-login-container .left {
+    padding: 8%;
+    width: 60%;
+    color: var(--color-texto-claro);
+}
+
+.provider-login-container .right .form {
+    text-align: center;
+    border-radius: 20px;
+    background: #00000066;
+    padding: 20px;
+}
+
+.provider-login-container .form h3 {
+    color: var(--color-texto-claro);
+}
+
+.provider-login-container .left .btn-standard {
+    font-weight: bold;
+}
+
+.provider-login-container .left img {
+    width: 23px;
+    margin-right: 10px;
+}
+
+.fundido-dos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(0 0 0 / 14%), rgb(0 0 0 / 78%));
+    z-index: 1;
+}
+
+.row-provider-login .fondo-azul-dos {
+    z-index: 10;
 }

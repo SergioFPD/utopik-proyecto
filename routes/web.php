@@ -20,14 +20,15 @@ use App\Http\Controllers\NavController;
 |
 */
 
-Route::view('/pruebas', 'pruebas')->name('pruebas');
+Route::view('/pruebas', 'pruebas');
 
 Route::get('/', [NavController::class, 'home'])->name('home');
+Route::get('/provider/login', [NavController::class, 'providerLogin'])->name('provider.login');
 Route::get('/country/{name}', [NavController::class, 'country'])->name('country');
 Route::get('/experience/detail/{nombre}', [NavController::class, 'viewDetail'])->name('experience.detail');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/admin-profile/{menu}', [AdminController::class, 'viewProfile'])->name('admin.profile');
+    Route::get('/profiles/admin-profile/{menu}', [AdminController::class, 'viewProfile'])->name('admin.profile');
     Route::post('/admin/create/user', [AdminController::class, 'createUser'])->name('admin.create.user');
     Route::put('/admin/update/user/{user}', [AdminController::class, 'updateUser'])->name('admin.update.user');
     Route::delete('/admin/delete/user/{user}', [AdminController::class, 'deleteUser'])->name('admin.delete.user');
@@ -35,7 +36,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:proveedor'])->group(function () {
     
-    Route::get('/provider/prov-profile/{menu}', [ProviderController::class, 'viewProviderProfile'])->name('provider.profile');
+    Route::get('/profiles/prov-profile/{menu}', [ProviderController::class, 'viewProviderProfile'])->name('provider.profile');
 
     Route::get('/experience/form', [ProviderController::class, 'experienceCreateForm'])->name('experience.form');
     Route::post('/experience/store', [ProviderController::class, 'storeExperience'])->name('experience.store');
@@ -52,7 +53,7 @@ Route::middleware(['auth', 'role:proveedor'])->group(function () {
 
 
 Route::middleware(['auth', 'role:cliente'])->group(function () {
-    Route::get('/client/client-profile/{menu}', [UserController::class, 'viewClientProfile'])->name('client.profile');
+    Route::get('/profiles/client-profile/{menu}', [UserController::class, 'viewClientProfile'])->name('client.profile');
     Route::post('/client/store/reserve', [UserController::class, 'storeReserve'])->name('reserve.store');
     Route::get('/form/reserve/{experience}', [NavController::class, 'formReserve'])->name('form.reserve');
 });
@@ -65,6 +66,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['guest','blocked'])->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
     Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('register.user');
+    
 });
 
 

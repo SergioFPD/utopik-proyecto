@@ -125,7 +125,7 @@
 
 .modal.user-menu {
 
-    right: -20px;
+    right: 5px;
     padding-top: 50px;
     height: 147px;
     top: 11px;
@@ -183,6 +183,10 @@
     display: block !important;
     position: relative;
     cursor: pointer;
+}
+
+.modal-country-select p {
+    text-align: center;
 }
 
 .modal-country-select p {

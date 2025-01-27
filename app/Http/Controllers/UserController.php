@@ -17,8 +17,6 @@ class UserController extends Controller
 
     public function viewClientProfile($menu)
     {
-
-        $paises = Pais::all();
         $user = Auth::user();
 
         $reservas = Reserva::join('exp_fechas', 'exp_fechas.id', '=', 'reservas.exp_fecha_id') // unir tabla exp_fechas y reservas por id
@@ -26,7 +24,7 @@ class UserController extends Controller
             ->orderBy('exp_fechas.fecha', 'asc')  // Ordenar por la fecha de la tabla 'exp_fechas'
             ->get();
 
-        return view('client.client-profile', compact('reservas', 'menu', 'paises'));
+        return view('profiles.client-profile', compact('reservas', 'menu'));
     }
 
     public function storeReserve(Request $request)

@@ -16,7 +16,7 @@
         $rutaPerfil = route('provider.profile', 'experiences');
     } else {
         $nomBoton = 'Acceso empresas';
-        $rutaPerfil = route('home'); // TODO
+        $rutaPerfil = route('provider.login'); // TODO
     }
 
 @endphp
@@ -27,8 +27,9 @@
     <div class="container">
         <div class="left">
             <div class="img-logo">
-                <a href="{{ route('home') }}"><img src="{{ asset('storage/images/utopik_logo_alpha.png') }}"
-                        alt=""></a>
+                <a href="{{ route('home') }}">
+                    <div class="logo"></div>
+                </a>
             </div>
         </div>
 
@@ -38,7 +39,7 @@
                     @if ($paises != null)
                         @foreach ($paises as $pais)
                             <a class="country-select-item" href="{{ route('country', $pais->pais) }}">
-                                <p>{{ $pais->pais }}</p>
+                                <p>{{ __('countries.' . $pais->pais) }}</p>
                             </a>
                         @endforeach
                     @endif
@@ -51,9 +52,11 @@
         <div class="right">
 
             <div class="right-up">
-                <a class="btn-standard" href="{{ $rutaPerfil }}">
-                    <p>{{ $nomBoton }}</p>
-                </a>
+                @if (($logeado && $rol != 'cliente') || !$logeado)
+                    <a class="btn-standard gold-button" href="{{ $rutaPerfil }}">
+                        <p>{{ $nomBoton }}</p>
+                    </a>
+                @endif
             </div>
 
             <div class="right-down">
@@ -69,7 +72,7 @@
                     </a>
                 @endif
                 @if ($logeado && $rol != 'cliente')
-                    <a class="btn-standard" href="{{ route('logout') }}">
+                    <a class="btn-standard alpha2" href="{{ route('logout') }}">
                         <p>{{ __('buttons.logout') }}</p>
                     </a>
                 @endif
@@ -79,3 +82,19 @@
         </div>
     </div>
 </div>
+<style>
+    .navmenu .img-logo .logo {
+        background-image: url('{{ asset('storage/images/utopik_logo_alpha.png') }}');
+    }
+
+    @media (max-width: 800px) {
+
+        .navmenu .img-logo .logo {
+            background-image: url('{{ asset('storage/images/utopik_circle2_alpha.png') }}');
+        }
+
+        .navmenu .img-logo {
+            width: 110px;
+        }
+    }
+</style>

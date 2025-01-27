@@ -1,4 +1,8 @@
 @extends('layouts.app')
+
+@section('navMenu')
+    @include('menus.nav-menu-profile')
+@endsection
 @section('content')
     @include('_modals.user-modify')
     @include('_modals.user-create')
@@ -8,20 +12,11 @@
 
     <div class="content admin-menu">
         @component('components.row-profile')
-            @slot('menuTitulo', 'Perfil administrador')
+            @slot('menuTitulo', __('labels.profile_admin'))
+            @slot('menuSubTitulo', $menu)
         @endcomponent
         <div>
-            <div class="menu-items">
-                <a class="menu-item @if ($menu == 'users') select @endif"
-                    href="{{ route('admin.profile', 'users') }}">
-                    <p>Listado de usuarios</p>
-                </a>
-                <a class="menu-item  @if ($menu == 'providers') select @endif"
-                    href="{{ route('admin.profile', 'providers') }}">
-                    <p>Listado de Proveedores</p>
-                </a>
 
-            </div>
             @if ($menu == 'users')
                 <div class="user-list menu">
 

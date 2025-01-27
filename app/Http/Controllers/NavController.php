@@ -13,39 +13,46 @@ use Illuminate\Http\Request;
 
 class NavController extends Controller
 {
+
+    // Todas las vistas tendrán la variable paises para el menu
+    // a traves del AppServiceProvider de Providers
     public function home()
     {
-        $paises = Pais::all();
+
         $experiencias = Experiencia::all();
-        return View('home', compact('experiencias', 'paises'));
+        return View('home', compact('experiencias'));
+    }
+
+    public function providerLogin()
+    {
+        return View('provider-login');
     }
 
     public function country($country)
     {
+        $experiencias = Experiencia::all();
         $paisElegido = Pais::firstWhere('pais', $country);
-        $paises = Pais::all();
         if($country == 'World'){
-            $experiencias = Experiencia::all();
+            $experienciasPais = Experiencia::all();
         }else{
 
-            $experiencias = Experiencia::whereHas('ciudad.pais', function ($query) use ($country){
+            $experienciasPais = Experiencia::whereHas('ciudad.pais', function ($query) use ($country){
                 $query->where('pais', $country); // Filtrar por el país
             })->get();
     
         }
        
-        return View('experiences', compact('experiencias', 'paises', 'paisElegido'));
+        return View('experiences-by-country', compact('experiencias', 'experienciasPais', 'paisElegido'));
     }
 
     public function viewDetail($nombre)
     {
         $experiencia = Experiencia::firstWhere('nombre', $nombre);
-        $paises = Pais::all();
 
         if ($experiencia == null || ($experiencia->vip && ((Auth::check() && (!Auth::user()->vip && Auth::user()->rol != 'admin')) || !Auth::check()))) {
             return redirect()->route('landing');
         } else {
-            return View('detail', compact('experiencia', 'paises'));
+            return View('detail', compact('experiencia'));
         }
     }
 

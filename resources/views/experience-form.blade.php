@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('navMenu')
+    @include('menus.nav-menu')
+@endsection
+
 @section('content')
     {{-- Recibe variable $experiencia y $mode en caso de modificacion --}}
 

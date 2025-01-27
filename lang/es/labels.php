@@ -1,8 +1,19 @@
 <?php
 
 return [
-'app-title' => 'Bienvenido a Utopik: hazlo real!',
+    'profile_user' => 'Perfil de usuario',
+    'profile_provider' => 'Perfil de proveedor',
+    'profile_admin' => 'Perfil de administrador',
+    'welcome' => 'Bienvenido',
+    'welcome-to' => 'Bienvenido a',
+    'app-title' => 'Bienvenido a Utopik: hazlo real!',
+    'discover-world' => 'Descubre el mundo',
+    'discover-last' => 'Descubre lo último',
+    'explore-utopic' => 'Explora lo utópico',
     'name' => 'Nombre',
+    'vip_points' => 'Puntos VIP',
+    'need_pints' => 'Necesitas :points más para ser VIP',
+    'you_are_vip' => 'YOU ARE VIP USER',
     'email' => 'Tu email',
     'city' => 'Ciudad',
     'country' => 'País',

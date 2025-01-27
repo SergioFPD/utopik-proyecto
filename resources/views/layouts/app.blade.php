@@ -42,7 +42,7 @@
     {{-- VER ERRORES END --}}
     {{-- Menu de navegación --}}
     @include('_modals.message')
-    @include('layouts.menu')
+    @yield('navMenu')
     @yield('content')
 </body>
 

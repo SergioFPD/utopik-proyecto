@@ -1,21 +1,30 @@
 @extends('layouts.app')
+
+@section('navMenu')
+    @include('menus.nav-menu-profile')
+@endsection
 @section('content')
     @include('_modals.reserve-modify')
     @include('_modals.message')
-    
+
     <div class="content provider-menu">
         @component('components.row-profile')
-        @slot('menuTitulo', 'Perfil de usuario')
-    @endcomponent
+            @slot('menuTitulo', __('labels.profile_user'))
+            @slot('menuSubTitulo', $menu)
+        @endcomponent
         <div>
-            <div class="menu-items">
-                <a class="menu-item" href="{{ route('client.profile', 'reserves') }}">Ver mis reservas</a>
-                <a class="menu-item" href="{{ route('client.profile', 'user_data') }}">Mis datos personales</a>
-
-            </div>
             @if ($menu == 'user_data')
                 <div class="userdata-list menu">
-                    <p>{{ Auth::user()->nombre }} </p>
+                    <p>{{ __('labels.name') }}: {{ Auth::user()->nombre }} </p>
+                    <p>{{ __('labels.email') }}: {{ Auth::user()->email }} </p>
+                    
+                    @if (Auth::user()->puntos < 30)
+                    <p>{{ __('labels.vip_points') }}: {{ Auth::user()->puntos }} </p>
+                    <p>{{ __('labels.need_pints', ['points' => 30 - Auth::user()->puntos]) }} </p>
+                    @else
+                    <p>{{ __('labels.you_are_vip') }}</p>
+
+                    @endif
                 </div>
             @endif
             @if ($menu == 'reserves')

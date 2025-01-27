@@ -13,10 +13,8 @@ class AdminController extends Controller
 
     public function viewProfile($menu)
     {
-        $paises = Pais::all();
-
         $usuarios = User::all();
-        return view('admin.admin-profile', compact('usuarios', 'menu', 'paises'));
+        return view('profiles.admin-profile', compact('usuarios', 'menu'));
     }
 
     public function createUser(UserRequest $request)

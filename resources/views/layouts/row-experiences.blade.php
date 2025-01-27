@@ -5,12 +5,16 @@
 
 <div class="content-margin row">
     <h1>{{ __('app.experience_list') }}</h1>
-    @if ($experiencias->count() == 0)
+    @if ($experienciasPais->count() == 0)
         <p>{{ __('app.no_experience_list') }}</p>
     @else
-        @foreach ($experiencias as $experiencia)
+        @foreach ($experienciasPais as $experiencia)
             @if (!$experiencia->vip || ($experiencia->vip && $esVip))
-                @component('components.experience-card-list')
+                @component('components.experience-card')
+                    @slot('ciudad', $experiencia->ciudad->ciudad)
+                    @slot('pais')
+                        {{ __('countries.' . $experiencia->ciudad->pais->pais) }}
+                    @endslot
                     @slot('nombreExperiencia', $experiencia->nombre)
                     @slot('rutaImagen')
 

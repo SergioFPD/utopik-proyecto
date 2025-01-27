@@ -1,10 +1,21 @@
 <?php
 
 return [
+    'profile_user' => 'User profile',
+    'profile_provider' => 'Provider profile',
+    'profile_admin' => 'Admin profile',
+    'welcome' => 'Welcome',
+    'welcome-to' => 'Welcome to',
     'app-title' => 'Welcome to Utopik: make it real!',
+    'discover-world' => 'Discover the World',
+    'discover-last' => 'Discover the latest',
+    'explore-utopic' => 'Explore the utopian',
     'name' => 'Name',
-    'email' => 'Your email',
+    'email' => 'email',
     'city' => 'City',
+    'vip_points' => 'VIP Points',
+    'need_pints' => 'You need :points more to be VIP',
+    'you_are_vip' => 'ERES CLIENTE VIP',
     'country' => 'Country',
     'select_country' => 'Select country',
     'description' => 'Description',

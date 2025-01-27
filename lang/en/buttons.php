@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+'go_home' => 'Back home',
     'new_user' => 'New user',
     'edit' => 'Edit',
     'close' => 'Close',

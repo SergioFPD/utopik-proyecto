@@ -1,22 +1,20 @@
 @extends('layouts.app')
+
+@section('navMenu')
+    @include('menus.nav-menu-profile')
+@endsection
 @section('content')
     @include('_modals.reserve-modify')
     @include('_modals.message')
 
     <div class="content provider-menu">
         @component('components.row-profile')
-            @slot('menuTitulo', 'Perfil de empresa')
+            @slot('menuTitulo', __('labels.profile_provider'))
+            @slot('menuSubTitulo', $menu)
         @endcomponent
         <div>
-            <div class="menu-items">
-                <a class="menu-item"
-                    href="{{ route('provider.profile', 'experiences') }}">{{ __('buttons.my_experiences') }}</a>
-                <a class="menu-item"
-                    href="{{ route('provider.profile', 'reserves') }}">{{ __('buttons.my_reservations') }}</a>
 
-            </div>
             @if ($menu == 'experiences')
-                <h3>{{ __('app.your_experiences') }}</h3>
                 <div class="experience-list menu">
 
                     @foreach ($experiencias as $experiencia)

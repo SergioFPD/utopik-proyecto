@@ -18,7 +18,7 @@ const activaCarruselTotal = {
                     0: {
                         items: 1         // En pantallas pequeñas, solo 1 elemento
                     },
-                    600: {
+                    800: {
                         items: 2         // En pantallas medianas, 2 elementos
                     },
                     1000: {
@@ -322,7 +322,7 @@ $(function () {
     }
 
     // Si la página contiene la clase "home" ejecuta el carrusel
-    if (content.hasClass('home')) {
+    if (content.hasClass('home') || content.hasClass('experiences')) {
         activaCarruselTotal.init();
     }
 });

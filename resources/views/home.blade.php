@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('navMenu')
+    @include('menus.nav-menu')
+@endsection
+
 @section('content')
     <div class="content home">
         @php
@@ -8,12 +12,13 @@
         @endphp
         @component('components.row-profile')
             @slot('menuTitulo', 'El home')
+            @slot('menuSubTitulo', 'subtitulo')
         @endcomponent
         @component('components.barra')
             @slot('fondo', 'fondo-azul-dos')
             @slot('color', 'fondo-blanco')
         @endcomponent
-        @include('layouts.row-exp-cards')
+        @include('layouts.row-last-experiences')
         @component('components.barra')
             @slot('fondo', 'fondo-blanco')
             @slot('color', 'fondo-azul-dos')

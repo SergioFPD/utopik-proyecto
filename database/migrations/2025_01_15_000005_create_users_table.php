@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();  // email
             $table->string('imagen')->nullable();  // Imagen de usuario (opcional, puede ser nulo)
             $table->boolean('vip')->default(false);  // Campo 'vip', por defecto es false
+            $table->integer('puntos')->default(0);  // Campo para puntos VIP
             $table->boolean('bloqueado')->default(false);  // Campo 'bloqueado', por defecto es false
             $table->enum('rol', ['admin', 'cliente', 'proveedor'])->default('cliente');  // Campo 'rol', puede ser 'admin' o 'cliente'
             $table->unsignedBigInteger('ciudad_id')->nullable();  // Ciudad de residencia

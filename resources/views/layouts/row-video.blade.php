@@ -9,6 +9,6 @@
 
 
     </div>
-    <p class="text-title text-small">Explora lo utópico</p>
+    <p class="text-title text-small">{{__('labels.explore-utopic')}}</p>
 
 </div>

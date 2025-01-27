@@ -26,6 +26,8 @@ class LoginController extends Controller
         return redirect()->back()->with('error', 'Parece que tus credenciales no son válidas');
     }
 
+    
+
     public function logout()
     {
         Auth::logout(); // Cerrar sesión

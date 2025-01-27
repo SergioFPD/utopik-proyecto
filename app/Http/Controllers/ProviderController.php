@@ -22,16 +22,14 @@ class ProviderController extends Controller
         $user = Auth::user();
 
         $experiencias = $user->experiencia;
-        $paises = Pais::all();
-        return view('provider.prov-profile', compact('experiencias', 'menu', 'paises'));
+        return view('profiles.prov-profile', compact('experiencias', 'menu'));
     }
 
     // Formularios de experiencias ---------------------------
     public function experienceCreateForm()
     {
-        $paises = Pais::all();
         $mode = 'create';
-        return view('experience-form', compact('mode','paises'));
+        return view('experience-form', compact('mode'));
     }
 
     public function storeExperience(Request $request)
@@ -101,10 +99,9 @@ class ProviderController extends Controller
 
     public function experienceModifyForm($experiencia_id)
     {
-        $paises = Pais::all();
         $experiencia = Experiencia::find(Crypt::decryptString($experiencia_id));
         $mode = 'modify';
-        return view('experience-form', compact('experiencia', 'mode','paises'));
+        return view('experience-form', compact('experiencia', 'mode'));
     }
 
     public function updateExperience(Request $request, $experience_id) {
