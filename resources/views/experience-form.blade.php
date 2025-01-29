@@ -68,6 +68,7 @@
     <div class="content form-experience">
         @component('components.row-profile')
             @slot('menuTitulo', $titulo)
+            @slot('menuSubTitulo', 'nueva reserva')
         @endcomponent
         <div class="modify-exp-content">
             <form id="form" action="{{ $action }}" method="post" enctype="multipart/form-data">

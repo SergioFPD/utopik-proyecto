@@ -37,6 +37,15 @@ class AdminController extends Controller
         return redirect()->route('admin.profile', 'users')->with('success', __('alerts.user_updated', ['name' => $user->nombre]));
     }
 
+    public function updateProvider(Request $request, $provider_id)
+    {
+        $user = User::find(Crypt::decryptString($provider_id));
+
+        $user->bloqueado = $request->bloqueado;
+        $user->save();
+        return redirect()->route('admin.profile', 'providers')->with('success', __('alerts.user_updated', ['name' => $user->nombre]));
+    }
+
     public function deleteUser($user_id)
     {
 
@@ -44,5 +53,14 @@ class AdminController extends Controller
 
         $user->delete();
         return redirect()->back()->with('success', __('alerts.user_deleted', ['name' => $user->nombre]));
+    }
+
+    public function storeCountry(Request $request)
+    {
+
+
+        Pais::create($request->all());
+
+        return redirect()->back()->with('success', __('alerts.country_created', ['name' => $request->pais]));
     }
 }

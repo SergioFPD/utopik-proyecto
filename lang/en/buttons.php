@@ -1,7 +1,7 @@
 <?php
 
 return [
-'go_home' => 'Back home',
+    'go_home' => 'Back home',
     'new_user' => 'New user',
     'edit' => 'Edit',
     'close' => 'Close',
@@ -17,6 +17,7 @@ return [
     'save_activity' => 'Save activity',
     'add_activity' => 'Add activity',
     'update_activity' => 'Update activity',
+    'update_profile' => 'Update profile info',
     'delete_activity' => 'Delete activity',
     'register' => 'Register',
     'access' => 'Access',
@@ -27,5 +28,13 @@ return [
     'create-user' => 'Create user',
     'make-reserve' => 'Make reserve',
     'reserve-detail' => 'View details',
+    'my_experiences' => 'My experiences',
+    'my_reservations' => 'My bookings',
+    'users' => 'Users',
+    'providers' => 'Providers',
+    'countries' => 'Countries',
+    'view_experience' => 'View experience',
+    'pay_all' => 'Pay the rest',
+
 
 ];

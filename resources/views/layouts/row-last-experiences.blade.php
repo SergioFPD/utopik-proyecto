@@ -1,8 +1,14 @@
-<div class="carousel-container">
+@component('components.barra')
+    @slot('color', 'fondo-blanco')
+@endcomponent
+@php
+    $esVip = Auth::check() && (Auth::user()->vip || Auth::user()->rol == 'admin');
+@endphp
+<div class="carousel-container row">
     @if ($experiencias == null || $experiencias->count() == 0)
         <p class="text-title text-small texto-azul-dos">Sin experiencias</p>
     @else
-        <p class="text-title text-small texto-azul-dos">{{__('labels.discover-last')}}</p>
+        <p class="text-title text-small texto-azul-dos">{{ __('labels.discover-last') }}</p>
         <div class="owl-carousel">
             @foreach ($experiencias as $experiencia)
                 @if (!$experiencia->vip || ($experiencia->vip && $esVip))

@@ -22,8 +22,10 @@ class Reserva extends Model
     public function dimePrecioTotal(){
 
         $adultos = $this->adultos;
+        $menores = $this->menores;
         $precioAdulto = $this->experiencia->precio_adulto;
-        return $adultos*$precioAdulto;
+        $precioMenor = $this->experiencia->precio_nino;
+        return ($adultos*$precioAdulto)+($menores*$precioMenor);
 
     }
     

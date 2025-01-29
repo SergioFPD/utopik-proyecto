@@ -57,6 +57,7 @@
                         <p>{{ $nomBoton }}</p>
                     </a>
                 @endif
+                @include('_partials.lang')
             </div>
 
             <div class="right-down">
@@ -76,7 +77,7 @@
                         <p>{{ __('buttons.logout') }}</p>
                     </a>
                 @endif
-                @include('_partials.lang')
+                
             </div>
 
         </div>

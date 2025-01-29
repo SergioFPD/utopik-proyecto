@@ -9,11 +9,8 @@
 
         @include('layouts.row-provider-login')
 
+        @include('layouts.row-info-empresa')
 
-        @component('components.barra')
-        @slot('fondo', 'fondo-blanco')
-        @slot('color', 'fondo-azul-tres')
-    @endcomponent
         {{-- Footer variable según la página mostrada --}}
         @component('components.footer')
             @slot('footerContent')

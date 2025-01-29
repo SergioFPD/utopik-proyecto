@@ -1,0 +1,63 @@
+/* FORMS */
+form {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-inputs {
+    padding: 20px 9px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-inputs-user {
+    padding: 20px 0;
+    gap: 11px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-inputs-user input {
+    width: 100%;
+}
+
+input{
+    border: 1px solid var(--color-azul-dos);
+}
+
+input[type="file"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    height: 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Animación del modal entrando desde la derecha */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        /* Comienza fuera del área visible */
+    }
+
+    to {
+        transform: translateX(0);
+        /* Llega a su posición final */
+    }
+}
+
+
+.experience-image input[type="file"] {
+    display: none;
+}

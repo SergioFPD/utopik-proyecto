@@ -1,6 +1,5 @@
 /* MODALS */
 
-@import './root.css';
 
 /* Estilos del modal */
 .modal {
@@ -124,7 +123,6 @@
 /* USER MENU */
 
 .modal.user-menu {
-
     right: 5px;
     padding-top: 50px;
     height: 147px;
@@ -137,25 +135,22 @@
     padding: 10px 20px;
     height: 132px;
     width: 150px;
-    background: var(--color-fondo-modal);
+    background: var(--color-fondo-menu);
     border-radius: 0 0 20px 20px;
 }
 
 .modal-user-menu {
     margin: 0 20px;
-    display: block !important;
+    display:flex;
     position: relative;
     cursor: pointer;
 }
 
 .modal-user-menu:hover .modal.user-menu {
-
     display: block !important;
-
 }
 
 .modal-user-menu:focus-within .modal.user-menu {
-
     display: block !important;
 }
 
@@ -187,15 +182,12 @@
 
 .modal-country-select p {
     text-align: center;
-}
-
-.modal-country-select p {
     font-weight: bold;
 }
 
 .modal.country-select {
 
-    right: -15px;
+    right: 12px;
     padding-top: 44px;
     height: auto;
     top: 17px;
@@ -204,21 +196,18 @@
 }
 
 .country-select-content {
-    padding: 10px 20px;
+    padding: 8%;
     height: auto;
-    width: 150px;
-    background: var(--color-fondo-modal);
+    width: 100%;
+    background: var(--color-fondo-menu);
     border-radius: 0 0 20px 20px;
 }
 
 .modal-country-select:hover .modal.country-select {
-
     display: block !important;
-
 }
 
 .modal-country-select:focus-within .modal.country-select {
-
     display: block !important;
 }
 
@@ -227,17 +216,18 @@
     color: var(--color-texto-oscuro);
     text-decoration: none;
     border-radius: 10px;
-    padding: 10px;
+    padding: 7px 10px;
 }
 
 .country-select-item p{
-   margin: 0;
+    width: 100%;
+    margin: 0;
+    font-weight: normal;
 }
 
 .country-select-item:hover {
     background: var(--color-resaltado-menu);
     color: var(--color-texto-resaltado-menu);
-
 }
 
 /* MESSAGE */
@@ -253,7 +243,6 @@
 }
 
 .modal-content p{
-
     font-weight: bold;
 }
 
@@ -263,36 +252,5 @@
 
 
 
-/* ------------ */
-
-.error-message {
-    color: rgb(199, 66, 66);
-}
 
 
-/* FORMS */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input[type="email"],
-input[type="password"] {
-    height: 20px;
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
-}
-
-/* Animación del modal entrando desde la derecha */
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%);
-        /* Comienza fuera del área visible */
-    }
-
-    to {
-        transform: translateX(0);
-        /* Llega a su posición final */
-    }
-}

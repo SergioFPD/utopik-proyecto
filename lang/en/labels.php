@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'experience_list' => 'Discover these amazing experiences',
+    'no_experience_list' => 'We are sorry, we dont have any experiences in this country yet.',
     'profile_user' => 'User profile',
     'profile_provider' => 'Provider profile',
     'profile_admin' => 'Admin profile',
@@ -12,10 +14,13 @@ return [
     'explore-utopic' => 'Explore the utopian',
     'name' => 'Name',
     'email' => 'email',
+    'phone' => 'Phone',
+    'user_image' => 'Profile picture',
     'city' => 'City',
-    'vip_points' => 'VIP Points',
+    'vip_points' => 'Points',
     'need_pints' => 'You need :points more to be VIP',
-    'you_are_vip' => 'ERES CLIENTE VIP',
+    'you_are_vip' => 'YOU ARE VIP USER',
+    'you_are_not_vip' => 'You are not a VIP user yet',
     'country' => 'Country',
     'select_country' => 'Select country',
     'description' => 'Description',
@@ -29,7 +34,8 @@ return [
     'modify_activity' => 'Modify activity',
     'new_activity' => 'New activity',
     'new_reserve' => 'New reservation',
-
+    'reserves' => 'My bookings',
+    'user_data' => 'My profile data',
     'form_register' => 'Registration form',
     'client' => 'Client',
     'admin' => 'Administrator',
@@ -44,7 +50,22 @@ return [
     'num_child' => 'How many children',
     'pay_reserve' => 'Pay reservation',
     'select_date' => 'Select experience date',
-    'hello' => 'Hello!',
+    'hello' => 'Hello traveler!',
+    'how_many_adult' => 'Number of adults: ',
+    'price_per_adult' => 'Price per adult: ',
+    'how_many_child' => 'Number of children: ',
+    'price_per_child' => 'Price per child: ',
+    'total_price' => 'Total price: ',
+    'departure' => 'Departure date: ',
+    'adults' => 'Adults',
+    'childs' => 'Childs',
+    'days' => 'Days',
+    'total_price' => 'Total price',
+    'reservation_of' => 'Reservation',
+    'rest_to_pay' => 'Rest to pay',
+    'departure_on' => 'Departure on',
+
+
 
 
 ];

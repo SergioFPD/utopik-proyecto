@@ -32,6 +32,6 @@ class RegisterController extends Controller
         $user = User::create($request->all());
         // Iniciar sesión automáticamente después del registro
         auth()->login($user);
-        return redirect()->route('landing')->with('success', 'Registro realizado');
+        return redirect()->back()->with('success', 'Registro realizado');
     }
 }

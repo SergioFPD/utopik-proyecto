@@ -7,41 +7,127 @@
     @include('_modals.reserve-modify')
     @include('_modals.message')
 
-    <div class="content provider-menu">
+    <div class="content user-profile">
         @component('components.row-profile')
             @slot('menuTitulo', __('labels.profile_user'))
-            @slot('menuSubTitulo', $menu)
+            @slot('menuSubTitulo')
+
+                @if ($menu == 'user_data')
+                    {{ __('labels.user_data') }}
+                @elseif($menu == 'reserves')
+                    {{ __('labels.reserves') }}
+                @endif
+
+            @endslot
         @endcomponent
-        <div>
-            @if ($menu == 'user_data')
-                <div class="userdata-list menu">
-                    <p>{{ __('labels.name') }}: {{ Auth::user()->nombre }} </p>
-                    <p>{{ __('labels.email') }}: {{ Auth::user()->email }} </p>
-                    
-                    @if (Auth::user()->puntos < 30)
-                    <p>{{ __('labels.vip_points') }}: {{ Auth::user()->puntos }} </p>
-                    <p>{{ __('labels.need_pints', ['points' => 30 - Auth::user()->puntos]) }} </p>
-                    @else
-                    <p>{{ __('labels.you_are_vip') }}</p>
 
-                    @endif
+        @if ($menu == 'user_data')
+            <div class="userdata-list menu row">
+
+                <div class="top">
+                    <div class="left">
+
+                        <form action="{{ route('client.update.user') }}" method="post" enctype="multipart/form-data">
+                            @method('PUT')
+                            @csrf
+
+                            <div class="form-inputs-user">
+                                {{-- name --}}
+                                <div class="form-group">
+                                    <label for="name">{{ __('labels.name') }}</label>
+                                    <input type="text" name="name" value="{{ Auth::user()->nombre }}" required>
+                                </div>
+                                {{-- email --}}
+                                <div class="form-group">
+
+                                    <label for="email">{{ __('labels.email') }}</label>
+                                    <input type="text" name="email" value="{{ Auth::user()->email }}" disabled>
+                                </div>
+                                {{-- phone --}}
+                                <div class="form-group">
+
+                                    <label for="phone">{{ __('labels.phone') }}</label>
+                                    <input type="text" name="phone" value="{{ Auth::user()->telefono }}" required>
+                                </div>
+                                {{-- city --}}
+                                <div class="form-group">
+
+                                    <label for="city">{{ __('labels.city') }}</label>
+                                    <input type="text" name="city" value="{{ Auth::user()->ciudad }}" required>
+                                </div>
+                                {{-- image --}}
+                                <div class="form-group">
+                                    <label for="image">{{ __('labels.user_image') }}</label>
+                                    <input type="file" name="image" id="image" accept="image/*">
+                                </div>
+                                {{-- send --}}
+                                <input class="btn-standard" type="submit" value="{{ __('buttons.update_profile') }}">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="right">
+                        <div class="user-image">
+
+                            <img src="{{ Auth::user()->imagen ? asset('storage/' . Auth::user()->imagen) : asset('storage/images/user-img.png') }}"
+                                alt="user-image">
+                        </div>
+                        <div class="points">
+                            <p class="text-small">{{ Auth::user()->puntos }}</p>
+                            <p class="text-very-small">{{ __('labels.vip_points') }}</p>
+                        </div>
+
+                        @if (Auth::user()->puntos >= 30)
+                            <div class="imvip yesvip">
+                                <p>{{ __('labels.you_are_vip') }}</p>
+                            </div>
+                        @else
+                            <div class="imvip notvip">
+                                <p>{{ __('labels.you_are_not_vip') }}</p>
+                            </div>
+                        @endif
+
+
+                    </div>
                 </div>
-            @endif
-            @if ($menu == 'reserves')
-                <div class="reserve-list menu">
-                    @foreach ($reservas as $reserva)
-                        <p> {{ $reserva->experiencia->nombre }}</p>
-                        <p>Fecha de reserva: {{ $reserva->exp_fecha->fecha }}</p>
-                        <p>Adultos: {{ $reserva->menores }}</p>
-                        <p>Precio por adulto: {{ $reserva->experiencia->precio_nino }}€</p>
-                        <p>Adultos: {{ $reserva->adultos }}</p>
-                        <p>Precio por adulto: {{ $reserva->experiencia->precio_adulto }}€</p>
-                        <p>Precio total: {{ $reserva->dimePrecioTotal() }}€</p>
-                    @endforeach
-                </div>
-            @endif
+            </div>
+            <hr>
+        @endif
+        @if ($menu == 'reserves')
+            <div class="reserve-list menu row">
+                @foreach ($reservas as $reserva)
+                    @component('components.bookings')
+                        @slot('rutaImagen')
+                            {{ $reserva->experiencia->imagen->first()
+                                ? asset('storage/' . $reserva->experiencia->imagen->first()->ruta)
+                                : asset('storage/images/no-image.jpg') }}
 
-        </div>
+                        @endslot
+                        @slot('esVip', $reserva->experiencia->vip)
+                        @slot('titulo', $reserva->experiencia->nombre)
+                        @slot('descripcionCorta', $reserva->experiencia->descripcion_corta)
+                        @slot('dias', $reserva->experiencia->duracion)
+                        @slot('adultos', $reserva->adultos)
+                        @slot('menores', $reserva->menores)
+                        @slot('precioTotal', $reserva->dimePrecioTotal())
+                        @slot('pagoReserva', '395')
+                        @slot('fecha', $reserva->exp_fecha->fecha)
+                        @slot('restoPagar', $reserva->dimePrecioTotal() - 395)
+                        @slot('experienciaNombre', $reserva->experiencia->nombre)
+                    @endcomponent
+                @endforeach
+            </div>
+        @endif
 
+
+        @include('layouts.row-last-experiences')
+        {{-- Footer variable según la página mostrada --}}
+        @component('components.footer')
+            @slot('footerContent')
+                Este es el footer de perfil cliente
+            @endslot
+        @endcomponent
     </div>
+
+
 @endsection

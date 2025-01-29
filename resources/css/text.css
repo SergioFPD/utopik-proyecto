@@ -1,6 +1,14 @@
+html {
+    font-size: 14px;
+    /* Base para rem */
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
 .text-title {
     margin: 0;
-    color: var(--color-texto-claro);
     line-height: 1.4;
     font-weight: bold;
     
@@ -10,8 +18,20 @@
     text-shadow: 1px 1px 16px rgb(0 0 0 / 90%);
 }
 
+.text-very-small {
+    font-size: 0.8em;
+}
+
+.text-price {
+    font-size: 1.3em !important;
+}
+
 .text-small {
     font-size: 2em;
+}
+
+.text-medium {
+    font-size: 3em;
 }
 
 .text-big {

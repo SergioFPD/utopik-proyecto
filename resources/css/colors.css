@@ -1,0 +1,72 @@
+
+/* TEXT ----------------------------------------------- */
+
+.texto-azul-uno {
+    color: var(--color-azul-uno);
+}
+
+.texto-azul-dos {
+    color: var(--color-azul-dos);
+}
+
+.texto-azul-tres {
+    color: var(--color-azul-tres);
+}
+
+.texto-blanco {
+    color: #ffffff;
+}
+
+/* BACKGROUND ----------------------------------------------- */
+
+.fondo-modal {
+    background: var(--color-fondo-modal);
+}
+
+.fondo-azul-dos {
+    background: var(--color-azul-dos);
+}
+
+.fondo-azul-uno {
+    background: var(--color-azul-uno);
+}
+
+.fondo-azul-tres {
+    background: var(--color-azul-tres);
+}
+
+.fondo-blanco {
+    background: #ffffff;
+}
+
+.barra-fondo-blanco {
+    background: #ffffff;
+}
+
+.gold {
+    background: var(--color-vip-dos) !important;
+}
+
+/* BUTTONS ----------------------------------------------- */
+.btn-standard.alpha2 p {
+    color: var(--color-texto-oscuro);
+}
+
+.btn-standard.delete {
+    background: var(--color-boton-borrar);
+}
+
+.gold-button {
+    background: var(--color-vip-dos) !important;
+}
+
+.blue-button {
+    background: var(--color-azul-uno) !important;
+}
+
+/* ERROR MESSAGE */
+.error-message {
+    color: rgb(199, 66, 66);
+}
+
+

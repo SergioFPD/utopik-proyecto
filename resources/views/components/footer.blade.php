@@ -1,6 +1,9 @@
 
-    <div class="row-footer">
-
+@component('components.barra')
+@slot('color', 'fondo-azul-tres')
+@endcomponent
+ <div class="row-footer">
+ 
         <div class="footer-left">
             <div class="footer-logo">
                 <img src="{{ asset('storage/images/utopik_logo_footer.png') }}" alt="">

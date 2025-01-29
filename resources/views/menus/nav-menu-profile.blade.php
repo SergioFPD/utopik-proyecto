@@ -9,9 +9,9 @@
     }
 
     if ($rol == 'cliente') {
-        $nomBoton1 = 'Mis reservas';
+        $nomBoton1 = __('labels.reserves');
         $rutaBoton1 = route('client.profile', 'reserves');
-        $nomBoton2 = 'Mis datos';
+        $nomBoton2 = __('labels.user_data');
         $rutaBoton2 = route('client.profile', 'user_data');
     } elseif ($rol == 'proveedor') {
         $nomBoton1 = __('buttons.my_experiences');
@@ -19,12 +19,12 @@
         $nomBoton2 = __('buttons.my_reservations');
         $rutaBoton2 = route('provider.profile', 'reserves');
     } else {
-        $nomBoton1 = 'Usuarios';
+        $nomBoton1 = __('buttons.users');
         $rutaBoton1 = route('admin.profile', 'users');
-        $nomBoton2 = 'Proveedores';
+        $nomBoton2 = __('buttons.providers');
         $rutaBoton2 = route('admin.profile', 'providers');
-        $nomBoton3 = 'Paises';
-        $rutaBoton3 = route('admin.profile', 'providers');
+        $nomBoton3 = __('buttons.countries');
+        $rutaBoton3 = route('admin.profile', 'countries');
     }
 
 @endphp
@@ -35,8 +35,8 @@
     <div class="container">
         <div class="left">
             <div class="img-logo">
-                <a href="{{ route('home') }}"><img class="logo" src="{{ asset('storage/images/utopik_circle_alpha.png') }}"
-                        alt=""></a>
+                <a href="{{ route('home') }}"><img class="logo"
+                        src="{{ asset('storage/images/utopik_circle_alpha.png') }}" alt=""></a>
             </div>
         </div>
 
@@ -55,6 +55,8 @@
                         <p>{{ $nomBoton3 }}</p>
                     </a>
                 @endif
+            @else
+                <p class="texto-blanco text-small text-shadow">Zona empresas</p>
             @endif
         </div>
 

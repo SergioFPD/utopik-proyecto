@@ -12,7 +12,7 @@
             @slot('menuTitulo', __('labels.profile_provider'))
             @slot('menuSubTitulo', $menu)
         @endcomponent
-        <div>
+        <div class="row">
 
             @if ($menu == 'experiences')
                 <div class="experience-list menu">
@@ -69,8 +69,14 @@
 
                 </div>
             @endif
-
+            
         </div>
 
+        {{-- Footer variable según la página mostrada --}}
+        @component('components.footer')
+            @slot('footerContent')
+                Este es el footer del perfil proveedor
+            @endslot
+        @endcomponent
     </div>
 @endsection

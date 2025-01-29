@@ -21,6 +21,8 @@ class User extends Authenticatable
     protected $fillable = [
         'nombre',
         'email',
+        'telefono',
+        'ciudad',
         'password',
         'rol'
     ];
@@ -53,11 +55,6 @@ class User extends Authenticatable
     public function experiencia()
     {
         return $this->hasMany(Experiencia::class);
-    }
-
-    public function ciudad()
-    {
-        return $this->belongsTo(Ciudad::class);
     }
 
     public function dime()

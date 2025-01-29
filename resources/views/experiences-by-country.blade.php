@@ -19,22 +19,12 @@
                 @slot('imagenPais', asset('storage/' . $paisElegido->imagen))
             @endcomponent
         @endif
-        @component('components.barra')
-            @slot('color', 'fondo-blanco')
-            @slot('fondo', 'fondo-azul-dos')
-        @endcomponent
+
         @include('layouts.row-experiences')
 
-        @component('components.barra')
-            @slot('fondo', 'fondo-blanco')
-            @slot('color', 'fondo-azul-tres')
-        @endcomponent
+        @include('layouts.row-conditions')
 
         @include('layouts.row-last-experiences')
-        @component('components.barra')
-            @slot('fondo', 'fondo-blanco')
-            @slot('color', 'fondo-azul-dos')
-        @endcomponent
 
         {{-- Footer variable según la página mostrada --}}
         @component('components.footer')

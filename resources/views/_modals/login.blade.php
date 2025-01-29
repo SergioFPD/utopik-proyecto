@@ -3,7 +3,7 @@
     <div class="modal login">
         <div class="login-content">
             <h3>{{ __('labels.hello') }}</h3>
-            <form action="{{ route('login') }}" method="post">
+            <form action="{{ route('login.user') }}" method="post">
                 @csrf
 
                 <div class="form-inputs">

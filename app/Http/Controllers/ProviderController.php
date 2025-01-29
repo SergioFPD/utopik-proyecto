@@ -69,8 +69,8 @@ class ProviderController extends Controller
 
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
-            'vip' => $request->vip,
-            'activa' => $request->activa,
+            'vip' => '0',
+            'activa' => '1',
             'duracion' => $request->duracion,
             'precio_adulto' => $request->precio_adulto,
             'precio_nino' => $request->precio_nino,
@@ -94,7 +94,7 @@ class ProviderController extends Controller
 
         ]);
 
-        return redirect()->route('provider.profile', 'experiences');
+        return redirect()->route('provider.profile', 'experiences')->with('success', 'Experiencia creada');
     }
 
     public function experienceModifyForm($experiencia_id)

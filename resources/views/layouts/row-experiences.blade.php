@@ -2,12 +2,15 @@
     $esVip = Auth::check() && (Auth::user()->vip || Auth::user()->rol == 'admin');
     $esCliente = Auth::check() && Auth::user()->rol == 'cliente';
 @endphp
-
+@component('components.barra')
+    @slot('color', 'fondo-blanco')
+@endcomponent
 <div class="content-margin row">
-    <h1>{{ __('app.experience_list') }}</h1>
+
     @if ($experienciasPais->count() == 0)
-        <p>{{ __('app.no_experience_list') }}</p>
+        <h1>{{ __('labels.no_experience_list') }}</h1>
     @else
+        <h1>{{ __('labels.experience_list') }}</h1>
         @foreach ($experienciasPais as $experiencia)
             @if (!$experiencia->vip || ($experiencia->vip && $esVip))
                 @component('components.experience-card')

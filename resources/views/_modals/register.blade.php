@@ -1,6 +1,6 @@
 <div id="modal-register" class="modal center @if($errors->all() && $errors->has('modal-register')) show @endif">
 
-    <div class="modal-content">
+    <div class="modal-content fondo-modal">
         <h1>{{ __('labels.form_register') }}</h1>
         <span class="close">&times;</span>
         <form action="{{ route('register.user') }}" method="post">

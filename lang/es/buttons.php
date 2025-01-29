@@ -17,6 +17,7 @@ return [
     'save_experience' => 'Guardar experiencia',
     'save_activity' => 'Guardar actividad',
     'update_activity' => 'Actualizar actividad',
+    'update_profile' => 'Actualizar información de perfil',
     'delete_activity' => 'Eliminar actividad',
     'register' => 'Registrate',
     'access' => 'Entrar',
@@ -27,4 +28,6 @@ return [
     'create-user' => 'Create usuario',
     'make-reserve' => 'Hacer reserva',
     'reserve-detail' => 'Ver detalles',
+    'view_experience' => 'Ver experiencia',
+    'pay_all' => 'Pagar resto',
 ];

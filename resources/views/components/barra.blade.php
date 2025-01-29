@@ -1,3 +1,3 @@
-<div class="{{ $fondo }}" style="position: relative; width:100%; height: 100px">
+<div style="position: relative; width:100%;">
     <div class="barra {{ $color }}"></div>
 </div>

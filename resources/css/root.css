@@ -2,6 +2,7 @@
     --color-fondo-web: #1c1c1b;
     --color-texto-claro: #ececec;
     --color-texto-oscuro: #252525;
+    --color-fondo-blanco: #EDF6FA;
     --color-fondo-menu: #EDF6FA;
     --color-fondo-menu-profile: #57879fc9;
     --color-azul-uno: #40AEC7;
@@ -12,6 +13,7 @@
     --color-fondo: #f4f4f4;
     --color-texto: #333333;
     --color-fondo-modal: #DFF2FB;
+    --color-fondo-form: #DFF2FB;
     --color-texto-resaltado-menu: #EE5A5A;
     --color-resaltado-menu: #FED1D1;
 

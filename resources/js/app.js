@@ -146,7 +146,9 @@ window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaD
 
     modalUser.querySelector('#nombre').innerText = "Modificar usuario " + nombre;
     modalUser.querySelector('#bloqueado').value = bloqueado;
-    modalUser.querySelector('#rol').value = rol;
+    if(rol != null){
+        modalUser.querySelector('#rol').value = rol;
+    }
     // Establecer la acción del formulario
     modalUser.querySelector('#editForm').setAttribute('action', rutaCreate);
     modalUser.querySelector('#delete').setAttribute('action', rutaDelete);
@@ -322,7 +324,7 @@ $(function () {
     }
 
     // Si la página contiene la clase "home" ejecuta el carrusel
-    if (content.hasClass('home') || content.hasClass('experiences')) {
+    if (content.hasClass('home') || content.hasClass('experiences')  || content.hasClass('provider-login') || content.hasClass('user-profile')) {
         activaCarruselTotal.init();
     }
 });

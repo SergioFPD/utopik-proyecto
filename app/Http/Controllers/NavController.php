@@ -50,7 +50,7 @@ class NavController extends Controller
         $experiencia = Experiencia::firstWhere('nombre', $nombre);
 
         if ($experiencia == null || ($experiencia->vip && ((Auth::check() && (!Auth::user()->vip && Auth::user()->rol != 'admin')) || !Auth::check()))) {
-            return redirect()->route('landing');
+            return redirect()->route('home');
         } else {
             return View('detail', compact('experiencia'));
         }
