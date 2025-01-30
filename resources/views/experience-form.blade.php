@@ -81,14 +81,14 @@
                 @enderror
                 {{-- Ciudad --}}
                 <label for="">{{ __('labels.city') }}</label>
-                <input type="text" name="ciudad" value="{{ $la_ciudad }}">
+                <input type="text" name="ciudad" value="{{ $la_ciudad }}" required>
                 @error('ciudad')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
                 {{-- Pais --}}
                 <label for="pais">{{ __('labels.select_country') }}</label>
                 <select id="pais" name="pais_id" required>
-                    <option value="">{{ __('labels.select_country') }}</option>
+                    <option value="" selected disabled>{{ __('labels.select_country') }}</option>
                     @foreach ($paises as $pais)
                         <option value="{{ $pais->id }}" @if ($pais->pais == $el_pais) selected @endif>
                             {{ $pais->pais }}</option>
@@ -96,7 +96,7 @@
                 </select>
                 {{-- Descripcion --}}
                 <label for="">{{ __('labels.description') }}</label>
-                <textarea name="descripcion" rows="5">{{ $descripcion }}</textarea>
+                <textarea id="editor-advanced" name="descripcion">{{ $descripcion }}</textarea>
                 @error('descripcion')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
@@ -128,10 +128,12 @@
 
                 {{-- VIP --}}
                 <label for="">{{ __('labels.is_vip') }}</label>
-                <input type="checkbox" name="vip" {{ $vip }} />
+                <input type="hidden" name="vip" value="0">
+                <input type="checkbox" name="vip" value="1" {{ $vip }} />
                 {{-- Activa --}}
                 <label for="">{{ __('labels.active') }}</label>
-                <input type="checkbox" name="activa" {{ $activa }} />
+                <input type="hidden" name="activa" value="0">
+                <input type="checkbox" name="activa" value="1" {{ $activa }} />
                 {{-- Duración --}}
                 <label for="slider">{{ __('labels.days_count') }}</label>
                 <div class="slider-value"><span id="slider-value-one">{{ $duracion }}</span></div>

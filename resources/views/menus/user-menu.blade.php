@@ -3,7 +3,7 @@
         <p class="border-vip">VIP</p>
     @endif
     <div class="border-line">
-        <p>{{ __('labels.welcome') }} {{ Auth::user()->nombre }}</p>
+        <p>{{ __('labels.hello') }} {{ Auth::user()->nombre }}</p>
         <img src="{{ asset('storage/images/menu-down.svg') }}" alt="">
     </div>
     <div class="modal user-menu">

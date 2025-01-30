@@ -25,7 +25,7 @@
                 <option value="cliente">{{__('labels.client')}}</option>
                 <option value="admin">{{__('labels.admin')}}</option>
             </select>
-            <input class="btn-standard" type="submit" value="{{ __('buttons.create-user') }}">
+            <input class="btn-standard" type="submit" value="{{ __('buttons.create_user') }}">
         </form>
     </div>
 </div>

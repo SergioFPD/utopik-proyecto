@@ -6,26 +6,26 @@ const activaCarruselTotal = {
     },
     launch: function () {
 
-            $(".owl-carousel").owlCarousel({
-                items: 3,               // Número de elementos a mostrar
-                loop: true,             // Si el carrusel debe hacer un loop infinito
-                margin: 20,             // Espacio entre los elementos
-                autoplay: false,         // Reproducir automáticamente
-                autoplayTimeout: 3000,  // Tiempo entre los deslizamientos (en milisegundos)
-                dots: true,            // Activar los dots
-                nav: false,             // Desactivar flechas de navegación
-                responsive: {
-                    0: {
-                        items: 1         // En pantallas pequeñas, solo 1 elemento
-                    },
-                    800: {
-                        items: 2         // En pantallas medianas, 2 elementos
-                    },
-                    1000: {
-                        items: 3         // En pantallas grandes, 3 elementos
-                    }
+        $(".owl-carousel").owlCarousel({
+            items: 3,               // Número de elementos a mostrar
+            loop: true,             // Si el carrusel debe hacer un loop infinito
+            margin: 20,             // Espacio entre los elementos
+            autoplay: false,         // Reproducir automáticamente
+            autoplayTimeout: 3000,  // Tiempo entre los deslizamientos (en milisegundos)
+            dots: true,            // Activar los dots
+            nav: false,             // Desactivar flechas de navegación
+            responsive: {
+                0: {
+                    items: 1         // En pantallas pequeñas, solo 1 elemento
+                },
+                800: {
+                    items: 2         // En pantallas medianas, 2 elementos
+                },
+                1000: {
+                    items: 3         // En pantallas grandes, 3 elementos
                 }
-            });
+            }
+        });
     }
 };
 
@@ -146,7 +146,7 @@ window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaD
 
     modalUser.querySelector('#nombre').innerText = "Modificar usuario " + nombre;
     modalUser.querySelector('#bloqueado').value = bloqueado;
-    if(rol != null){
+    if (rol != null) {
         modalUser.querySelector('#rol').value = rol;
     }
     // Establecer la acción del formulario
@@ -192,7 +192,8 @@ window.updateSliderValue = function (value, output, priceAdult, priceChild) {
     document.getElementById(output).textContent = value;
     const adult = parseInt(document.getElementById('value-adults').value);
     const child = parseInt(document.getElementById('value-child').value);
-    document.getElementById('total-price').textContent = "TOTAL: " + ((priceAdult * adult) + (priceChild * child)) + "€";
+    document.getElementById('total-price').textContent = (((priceAdult * adult) + (priceChild * child))).toLocaleString('de-DE') + "€";
+    document.getElementById('total-booking').textContent = ((adult + child) * 395).toLocaleString('de-DE') + "€";
 }
 
 
@@ -296,18 +297,72 @@ const imageViewer = {
     }
 };
 
+// Activa un oyente para ver si un formulario ha sido modificado
+const checkForm = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+        imageViewer.init();
+        const formulario = document.getElementById("myForm");
+        const boton = document.getElementById("submitButton");
+
+        // Guarda los valores iniciales del formulario
+        const valoresIniciales = new FormData(formulario);
+
+        formulario.addEventListener("input", function () {
+            const valoresActuales = new FormData(formulario);
+            let modificado = false;
+
+            // Compara los valores actuales con los iniciales
+            for (let [clave, valor] of valoresActuales.entries()) {
+                if (valor instanceof File) {
+                    if (valoresActuales.get("image").name != '') {
+                        modificado = true;
+                        break;
+                    }
+
+                } else if (valor != valoresIniciales.get(clave)) {
+                    modificado = true;
+                    break;
+                }
+            }
+
+            // Muestra u oculta el botón según si hubo cambios
+            if (modificado) {
+                boton.classList.remove("disabled");
+            } else {
+                boton.classList.add("disabled");
+            }
+        });
+
+    }
+};
+
+// Editor de texto avanzado
+// Usar el id "editor-advanced" en el input del textarea para convertirlo en editor
+const textEditor = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+
+        CKEDITOR.replace('editor-advanced');
+    }
+};
+
 
 document.addEventListener('scroll', function () {
     const elementos = document.querySelectorAll('.card-experience');
     const triggerPoint = window.innerHeight / 1.2; // Punto de activación
-  
+
     elementos.forEach((el) => {
-      const elementTop = el.getBoundingClientRect().top;
-      if (elementTop < triggerPoint) {
-        el.classList.add('visible'); // Añade la clase cuando es visible
-      }
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < triggerPoint) {
+            el.classList.add('visible'); // Añade la clase cuando es visible
+        }
     });
-  });
+});
 
 
 
@@ -323,8 +378,23 @@ $(function () {
         multipleDates.init();
     }
 
+    // activa el editor de texto avanzado en la página de crear experiencia
+    if (content.hasClass('form-experience')) {
+        textEditor.init();
+    }
+
+    // activa el oyente para activar el boton del formulario
+    if (content.hasClass('user-profile')) {
+        checkForm.init();
+    }
+
     // Si la página contiene la clase "home" ejecuta el carrusel
-    if (content.hasClass('home') || content.hasClass('experiences')  || content.hasClass('provider-login') || content.hasClass('user-profile')) {
+    if (content.hasClass('home')
+        || content.hasClass('experiences')
+        || content.hasClass('provider-login')
+        || content.hasClass('user-profile')
+        || content.hasClass('experience-detail')
+    ) {
         activaCarruselTotal.init();
     }
 });

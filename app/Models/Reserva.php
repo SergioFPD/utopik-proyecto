@@ -20,13 +20,21 @@ class Reserva extends Model
     ];
 
     public function dimePrecioTotal(){
-
         $adultos = $this->adultos;
         $menores = $this->menores;
         $precioAdulto = $this->experiencia->precio_adulto;
         $precioMenor = $this->experiencia->precio_nino;
         return ($adultos*$precioAdulto)+($menores*$precioMenor);
+    }
 
+    public function dimePrecioReserva(){
+        $adultos = $this->adultos;
+        $menores = $this->menores;
+        return ($adultos+$menores)*395;
+    }
+
+    public function dimePorPagar(){
+        return $this->dimePrecioTotal()-$this->dimePrecioReserva();
     }
     
     public function user()

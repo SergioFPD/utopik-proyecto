@@ -20,6 +20,8 @@
 
     <!-- Owl Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <title>{{ __('labels.app-title') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

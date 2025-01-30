@@ -47,12 +47,13 @@ class NavController extends Controller
 
     public function viewDetail($nombre)
     {
+        $experiencias = Experiencia::all();
         $experiencia = Experiencia::firstWhere('nombre', $nombre);
 
         if ($experiencia == null || ($experiencia->vip && ((Auth::check() && (!Auth::user()->vip && Auth::user()->rol != 'admin')) || !Auth::check()))) {
             return redirect()->route('home');
         } else {
-            return View('detail', compact('experiencia'));
+            return View('experience-detail', compact('experiencia', 'experiencias'));
         }
     }
 

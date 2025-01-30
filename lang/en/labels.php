@@ -49,14 +49,14 @@ return [
     'num_adult' => 'How many adults',
     'num_child' => 'How many children',
     'pay_reserve' => 'Pay reservation',
-    'select_date' => 'Select experience date',
-    'hello' => 'Hello traveler!',
+    'select_date' => 'Select departure date',
+    'hello' => 'Hello ',
+    'hello_traveler' => 'Hello traveler!',
     'how_many_adult' => 'Number of adults: ',
     'price_per_adult' => 'Price per adult: ',
     'how_many_child' => 'Number of children: ',
     'price_per_child' => 'Price per child: ',
     'total_price' => 'Total price: ',
-    'departure' => 'Departure date: ',
     'adults' => 'Adults',
     'childs' => 'Childs',
     'days' => 'Days',
@@ -64,8 +64,11 @@ return [
     'reservation_of' => 'Reservation',
     'rest_to_pay' => 'Rest to pay',
     'departure_on' => 'Departure on',
-
-
+    'during' => 'During',
+    'the_experience' => 'The experience',
+    'amount' => 'Total amount: ',
+    'reservation' => 'Reservation price: ',
+    'departure_date' => 'Departure date',
 
 
 ];

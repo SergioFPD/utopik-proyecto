@@ -14,7 +14,7 @@
         @if (Auth::check() && Auth::user()->rol == 'cliente')
             <a class="btn-standard"
                 onclick="insertModalPage('{{ route('form.reserve', $experiencia->getEncryptedId()) }}', 'modal-new-reserve')">
-                <p>{{ __('buttons.make-reserve') }}</p>
+                <p>{{ __('buttons.make_reserve') }}</p>
             </a>
         @endif
 

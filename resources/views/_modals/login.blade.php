@@ -2,7 +2,7 @@
     <p>{{ __('buttons.login') }}</p>
     <div class="modal login">
         <div class="login-content">
-            <h3>{{ __('labels.hello') }}</h3>
+            <h3>{{ __('labels.hello_traveler') }}</h3>
             <form action="{{ route('login.user') }}" method="post">
                 @csrf
 

@@ -27,7 +27,7 @@
                 <div class="top">
                     <div class="left">
 
-                        <form action="{{ route('client.update.user') }}" method="post" enctype="multipart/form-data">
+                        <form id="myForm" action="{{ route('client.update.user') }}" method="post" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
 
@@ -61,7 +61,7 @@
                                     <input type="file" name="image" id="image" accept="image/*">
                                 </div>
                                 {{-- send --}}
-                                <input class="btn-standard" type="submit" value="{{ __('buttons.update_profile') }}">
+                                <input id="submitButton" class="btn-standard disabled" type="submit" value="{{ __('buttons.update_profile') }}">
                             </div>
                         </form>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="right">
                         <div class="user-image">
 
-                            <img src="{{ Auth::user()->imagen ? asset('storage/' . Auth::user()->imagen) : asset('storage/images/user-img.png') }}"
+                            <img id="image-preview" src="{{ Auth::user()->imagen ? asset('storage/' . Auth::user()->imagen) : asset('storage/images/user-img.png') }}"
                                 alt="user-image">
                         </div>
                         <div class="points">
@@ -110,9 +110,10 @@
                         @slot('adultos', $reserva->adultos)
                         @slot('menores', $reserva->menores)
                         @slot('precioTotal', $reserva->dimePrecioTotal())
-                        @slot('pagoReserva', '395')
+                        @slot('pagoReserva', $reserva->dimePrecioReserva())
+
                         @slot('fecha', $reserva->exp_fecha->fecha)
-                        @slot('restoPagar', $reserva->dimePrecioTotal() - 395)
+                        @slot('restoPagar', $reserva->dimePorPagar())
                         @slot('experienciaNombre', $reserva->experiencia->nombre)
                     @endcomponent
                 @endforeach

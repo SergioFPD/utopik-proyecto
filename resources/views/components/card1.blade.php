@@ -13,7 +13,7 @@
         <p class="card1-country">{{ $pais }}</p>
         <div class="button-container">
             <a class="btn-standard" href="{{ $rutaDetalle }}">
-                <p>{{ __('buttons.reserve-detail') }}</p>
+                <p>{{ __('buttons.reserve_detail') }}</p>
             </a>
         </div>
     </div>

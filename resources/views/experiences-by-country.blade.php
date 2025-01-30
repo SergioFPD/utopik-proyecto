@@ -11,7 +11,7 @@
 @section('content')
     <div class="content experiences">
         @if ($paisElegido != null)
-            @component('components.row-country')
+            @component('components.row-country-head')
                 @slot('pais')
                 {{__('countries.'.$paisElegido->pais)}}
                 @endslot

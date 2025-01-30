@@ -26,7 +26,7 @@
             @enderror
 
             <input type="hidden" name="rol" value="proveedor">
-            <input class="btn-standard" type="submit" value="{{ __('buttons.create-provider') }}">
+            <input class="btn-standard" type="submit" value="{{ __('buttons.create_provider') }}">
         </form>
  
     </div>

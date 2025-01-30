@@ -15,17 +15,17 @@
             <div class="exp-info">
                 <h3>{{ $nombreExperiencia }}</h3>
                 <p class="exp-location">{{ $ciudad }} ({{ $pais }})</p>
-                <p>{{ $descripcion }}</p>
+                <p>{!! $descripcion !!}</p>
 
             </div>
             <div class="exp-data">
                 <div class="exp-buttons">
                     <a class="btn-standard" href="{{ $rutaDetalle }}">
-                        <p>{{ __('buttons.reserve-detail') }}</p>
+                        <p>{{ __('buttons.reserve_detail') }}</p>
                     </a>
                     @if ($esCliente)
                         <a class="btn-standard" onclick="insertModalPage('{{ $ruta }}', '{{ $modal }}')">
-                            <p>{{ __('buttons.make-reserve') }}</p>
+                            <p>{{ __('buttons.make_reserve') }}</p>
                         </a>
                     @endif
                 </div>

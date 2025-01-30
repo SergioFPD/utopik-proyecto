@@ -1,11 +1,9 @@
 /* MODALS */
 
-
 /* Estilos del modal */
 .modal {
     display: none;
     /* Oculto por defecto */
-
 }
 
 .modal.center {
@@ -25,6 +23,11 @@
     /* Transición para el fade-in */
     overflow: hidden;
 
+}
+
+.modal-content p {
+    font-weight: bold;
+    margin: 0;
 }
 
 .modal.show {
@@ -63,6 +66,7 @@
 }
 
 .close {
+    z-index: 10;
     color: #aaa;
     font-size: 24px;
     font-weight: bold;
@@ -83,6 +87,72 @@
 .close:hover {
     color: #000;
 }
+
+/* RESERVE FORM */
+.res-image-container {
+    position: relative;
+    width: calc(100% + 40px);
+    margin: -20px -20px 10px -20px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.res-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.res-title {
+    z-index: 5;
+    color: var(--color-texto-claro);
+    text-shadow: 1px 1px 16px rgb(0 0 0 / 90%);
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+}
+
+#modal-new-reserve form .price {
+    margin: 0;
+    font-size: 0.7em;
+    font-weight: 500;
+}
+
+#modal-new-reserve .data-enter {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-new-reserve .values {
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#modal-new-reserve .values .left {
+    text-align: left;
+}
+
+#modal-new-reserve .slider-value {
+    font-weight: bold;
+}
+
+#modal-new-reserve select {
+    color: var(--color-azul-tres);
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid var(--color-azul-tres);
+}
+
+#modal-new-reserve .amount {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
 
 
 /* LOGIN USER */
@@ -141,7 +211,7 @@
 
 .modal-user-menu {
     margin: 0 20px;
-    display:flex;
+    display: flex;
     position: relative;
     cursor: pointer;
 }
@@ -162,8 +232,8 @@
     padding: 10px;
 }
 
-.menu-user-item p{
-   margin: 0;
+.menu-user-item p {
+    margin: 0;
 }
 
 .menu-user-item:hover {
@@ -219,7 +289,7 @@
     padding: 7px 10px;
 }
 
-.country-select-item p{
+.country-select-item p {
     width: 100%;
     margin: 0;
     font-weight: normal;
@@ -242,15 +312,6 @@
     padding: 29px;
 }
 
-.modal-content p{
-    font-weight: bold;
-}
-
-#modal-message .modal-content img{
+#modal-message .modal-content img {
     width: 50px;
 }
-
-
-
-
-

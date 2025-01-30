@@ -17,6 +17,10 @@
     color: #ffffff;
 }
 
+.texto-oro {
+    color: var(--color-texto-oro);
+}
+
 /* BACKGROUND ----------------------------------------------- */
 
 .fondo-modal {

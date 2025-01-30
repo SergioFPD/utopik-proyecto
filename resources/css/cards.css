@@ -6,7 +6,7 @@
     justify-content: space-evenly;
 }
 
-/* CARDS */
+/* CARD1 */
 .card1 {
     height: 100%;
     border-radius: 15px;
@@ -15,11 +15,9 @@
 }
 
 .card1 .img-content {
-
     position: relative;
     height: 12em;
     overflow: hidden;
-
 }
 
 .card1 .img-content img {
@@ -69,26 +67,7 @@
     margin-top: 10px;
 }
 
-.owl-stage {
-
-    display: flex;
-}
-
-/* @media (min-width: 1200px) {
-
-    .owl-carousel {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .card1 {
-        height: auto;
-
-    }
-
-} */
+/* CARD2 */
 
 .card2 {
     height: 100%;
@@ -124,6 +103,10 @@
     margin-top: 10px;
 }
 
+.owl-stage {
+    display: flex;
+}
+
 .owl-carousel button.owl-dot {
     width: 10px;
     height: 10px;
@@ -133,7 +116,6 @@
     display: inline-block;
     cursor: pointer;
     background-color: var(--color-azul-uno);
-
 }
 
 .owl-carousel button.owl-dot.active {
@@ -151,10 +133,9 @@
 
 .owl-carousel .item {
     width: 100%;
-    /* Asegúrate de que los elementos usen el espacio disponible */
 }
 
-
+/* UNKNOW */
 .exp-vip-card1 {
     height: 185px;
     top: -62px;
@@ -168,7 +149,101 @@
     transform: rotate(302deg);
 }
 
-/* BOOKING */
+/* EXPERIENCE CARD LONG */
+
+.card-experience {
+    border-radius: 20px;
+    margin: 30px 0;
+    overflow: hidden;
+    background: var(--color-azul-dos);
+    opacity: 0;
+    /* Oculto inicialmente */
+    transform: translateY(50px);
+    /* Desplazado hacia abajo */
+    transition: all 0.8s ease-out;
+    /* Transición suave */
+}
+
+.card-experience.visible {
+    opacity: 1;
+    /* Aparece */
+    transform: translateY(0);
+    /* En su posición final */
+}
+
+.card-exp-container {
+    display: flex;
+    height: 100%;
+}
+
+.card-exp-left {
+    position: relative;
+    width: 40%;
+    overflow: hidden;
+}
+
+.card-exp-left .exp-fechas {
+    z-index: 10;
+    margin: 20px;
+    font-weight: 500;
+    position: absolute;
+    color: #fff;
+    text-shadow: 1px 1px 7px rgb(0 0 0 / 90%);
+}
+
+.card-exp-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-exp-right {
+    width: 60%;
+    padding: 10px;
+    color: var(--color-texto-claro);
+    position: relative;
+}
+
+.exp-buttons {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.exp-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.exp-price {
+    font-weight: 500;
+    padding: 30px;
+    text-align: right;
+}
+
+.exp-info {
+    margin: 0 10px;
+    overflow: auto;
+    max-height: 100%;
+}
+
+.exp-location {
+    margin: 5px;
+    color: var(--color-texto-oscuro);
+    font-weight: 500;
+}
+
+.exp-vip {
+    display: flex;
+    color: var(--color-texto-claro);
+    background: var(--color-vip-uno);
+    font-weight: bold;
+    align-items: center;
+}
+
+/* BOOKING CARD */
 
 .card-booking {
     overflow: hidden;
@@ -210,23 +285,11 @@
     align-items: flex-start;
 }
 
-.fundido-down:before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgb(0 0 0 / 74%), rgb(0 0 0 / 0%));
-    z-index: 1;
-
-}
-
 .card-booking .book-title {
     font-weight: bold;
 }
 
-.card-booking .book-info {
+.book-info {
     color: var(--color-texto-claro);
     line-height: 0;
     gap: 20px;
@@ -253,4 +316,74 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+}
+
+/* ACTIVITY CARD */
+.row-act-card-right,
+.row-act-card-left {
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.card-activity {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card-act-container {
+    display: flex;
+    height: 100%;
+}
+
+/* Card left */
+.row-act-card-left .col-left {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+}
+
+.row-act-card-left .col-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.row-act-card-left .col-right {
+    width: 50%;
+    padding-left: 25px;
+    color: var(--color-azul-tres);
+    position: relative;
+}
+
+/* Card right */
+.row-act-card-right .col-right {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+}
+.row-act-card-right .col-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.row-act-card-right .col-left {
+    width: 50%;
+    padding-right: 25px;
+    color: var(--color-fondo-blanco);
+    position: relative;
+}
+
+.exp-info {
+    margin: 0 10px;
+    overflow: auto;
+    max-height: 100%;
+}
+
+.day-box {
+    border-radius: 5px;
+    width: fit-content;
+    line-height: 0;
+    padding: 4px 15px;
+    margin-bottom: 20px;
 }
