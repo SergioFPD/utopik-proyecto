@@ -7,5 +7,7 @@ return [
     'user_deleted' => 'Usuario :name eliminado',
     'user_blocked' => 'Lo siento :name, tu cuenta está bloquedada. Por favor, consulta con un administrador.',
     'country_created' => 'Se ha creado el país :name',
-
+    'experience_updated' => 'Experiencia actualizada',
+    'activity_created' => 'Actividad añadida',
+    'activity_updated' => 'Actividad actualizada',
 ];

@@ -10,13 +10,13 @@
         <div class="user-menu-content">
 
             <a class="menu-user-item" href="{{ route('client.profile', 'user_data') }}">
-                <p>Mi perfil</p>
+                <p>{{__('labels.my_profile')}}</p>
             </a>
             <a class="menu-user-item" href="{{ route('client.profile', 'reserves') }}">
-                <p>Mis reservas</p>
+                <p>{{__('labels.my_bookings')}}</p>
             </a>
             <a class="menu-user-item" href="{{ route('logout') }}">
-                <p>Cerrar sesión</p>
+                <p>{{__('labels.logout')}}</p>
             </a>
 
         </div>

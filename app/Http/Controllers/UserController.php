@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function viewClientProfile($menu)
     {
-        $experiencias = Experiencia::all();
+        $ultimasExperiencias = Experiencia::orderBy('created_at', 'desc')->take(5)->get();
         if ($menu == 'reserves') {
             $user = Auth::user();
             $reservas = Reserva::join('exp_fechas', 'exp_fechas.id', '=', 'reservas.exp_fecha_id') // unir tabla exp_fechas y reservas por id
@@ -31,7 +31,7 @@ class UserController extends Controller
         }
 
 
-        return view('profiles.client-profile', compact('experiencias', 'reservas', 'menu'));
+        return view('profiles.client-profile', compact('ultimasExperiencias', 'reservas', 'menu'));
     }
 
     public function storeReserve(Request $request)

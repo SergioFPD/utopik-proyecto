@@ -303,10 +303,12 @@
 }
 
 .card-booking .price-box {
+    gap: 10px;
     margin-top: -1px;
     line-height: 0;
     padding: 0 20px;
-    width: 50%;
+    width: auto;
+    min-width: 50%;
     display: flex;
     border: 1px solid;
     justify-content: space-between;

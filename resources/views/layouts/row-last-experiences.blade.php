@@ -5,12 +5,12 @@
     $esVip = Auth::check() && (Auth::user()->vip || Auth::user()->rol == 'admin');
 @endphp
 <div class="carousel-container row">
-    @if ($experiencias == null || $experiencias->count() == 0)
-        <p class="text-title text-small texto-azul-dos">Sin experiencias</p>
+    @if ($ultimasExperiencias == null || $ultimasExperiencias->count() == 0)
+        <p class="text-title text-small texto-azul-dos">{{__('labels.no_experience')}}</p>
     @else
         <p class="text-title text-small texto-azul-dos">{{ __('labels.discover-last') }}</p>
         <div class="owl-carousel">
-            @foreach ($experiencias as $experiencia)
+            @foreach ($ultimasExperiencias as $experiencia)
                 @if (!$experiencia->vip || ($experiencia->vip && $esVip))
                     @component('components.card1')
                         @slot('rutaImagen')

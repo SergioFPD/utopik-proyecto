@@ -1,7 +1,7 @@
 <?php
 
 return [
-'home_header' => 'Live experiences that only a few can have',
+'home_header' => 'Exclusive destinations for those who seek the extraordinary',
 'home-header-text1' => 'We believe that travel can be transformative. That it can empower the communities we visit. And that it can make the world a better place.',
 'home-header-text2' => 'Join us on a high-level handcrafted journey through the most unique destinations this world has to offer.<',
 'home-header-text3' => 'A meaningful way to travel',
@@ -23,5 +23,26 @@ return [
 <li>If a participant decides to withdraw for any reason before departure, they must notify Utopik Travel in writing.</li>
 <li>The refund will be calculated based on the date Utopik Travel receives this notification.</li>
 </ul>',
+
+'reserve_terms' => '
+    <p>The remaining cost of the trip must be paid 30 days after booking the trip or 60 days before departure, whichever comes first.</p>
+    <p>Certain portions of the trip cost are refundable, depending on the date of the refund request.</p>
+    <p>If a participant decides to withdraw for any reason before departure, Utopik Travel must be notified in writing.  
+    The refund will be calculated based on the date Utopik Travel receives this notification.</p>',
+
+'reserve_refund_title' => 'Refund Policy',
+'reserve_refund' => '
+    <p>The amount of your refund depends on how far in advance you notify us of your cancellation in relation to the trip start date.</p>
+<ul>
+<li>More than five months before: Everything is refundable!</li>
+<li>Less than five months before: 75% of the trip cost is refundable, except for the non-refundable €30 booking fee. There is no charge to change the trip destination or start date.</li>
+<li>Less than four months before: 50% of the trip cost is refundable, except for the non-refundable €30 booking fee. A €100 fee applies to change the trip destination or start date.</li>
+<li>Less than three months before: 25% of the trip cost is refundable, except for the non-refundable €30 booking fee. A €395 fee applies to change the trip destination or start date.</li>
+<li>Less than two months before: The trip cost is non-refundable. Changes to the trip destination or start date are not possible and will be subject to the refund policy.</li>
+</ul>
+<p>If the balance has not been paid in full, the above percentages apply to all money paid as of the cancellation date.  
+Transfers will incur the applicable fee to change trips. Additionally, your refund policy level will carry over to your new trip (e.g., for transfers made less than three months before the trip, the new trip cost will still be 25% refundable, regardless of the new date).</p>  
+<p>NOTE: Participants who have purchased trip cancellation insurance will be refunded by the insurance company up until the program departure date.</p>',
+
 
 ];

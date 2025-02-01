@@ -9,14 +9,14 @@
     }
 
     if ($rol == 'admin') {
-        $nomBoton = 'Perfil admin';
+        $nomBoton = __('buttons.admin_profile');
         $rutaPerfil = route('admin.profile', 'users');
     } elseif ($rol == 'proveedor') {
-        $nomBoton = 'Perfil proveedor';
+        $nomBoton = __('buttons.provider_profile');
         $rutaPerfil = route('provider.profile', 'experiences');
     } else {
-        $nomBoton = 'Acceso empresas';
-        $rutaPerfil = route('provider.login'); // TODO
+        $nomBoton = __('buttons.business_area');
+        $rutaPerfil = route('provider.login');
     }
 
 @endphp
@@ -95,7 +95,7 @@
         }
 
         .navmenu .img-logo {
-            width: 110px;
+            width: 116px;
         }
     }
 </style>

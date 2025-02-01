@@ -47,6 +47,11 @@
     background: #ffffff;
 }
 
+.fondo-claro{
+
+    background: var(--color-fondo-blanco);
+}
+
 .gold {
     background: var(--color-vip-dos) !important;
 }

@@ -278,3 +278,23 @@
     display: flex;
     flex-direction: row;
 }
+
+/* TERMS CONDITIONS */
+.terms-container {
+    margin: 0 15%;
+    border-radius: 20px;
+    background: var(--color-azul-tres);
+    padding: 2% 3%;
+}
+
+.terms-container {
+color: var(--color-texto-claro);
+}
+
+.row-terms {
+    display: flex;
+    background: var(--color-fondo-blanco);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

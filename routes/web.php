@@ -20,7 +20,11 @@ use App\Http\Controllers\NavController;
 |
 */
 
-Route::view('/pruebas', 'pruebas');
+
+
+Route::view('/pedro', 'prueba');
+
+Route::get('/lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang');
 
 Route::get('/', [NavController::class, 'home'])->name('home');
 Route::get('/country/{name}', [NavController::class, 'country'])->name('country');
@@ -35,21 +39,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:proveedor'])->group(function () {
-    
+
+    Route::get('/check-name/{name}', [ProviderController::class, 'checkName'])->name('check.name');
+
     Route::get('/profiles/prov-profile/{menu}', [ProviderController::class, 'viewProviderProfile'])->name('provider.profile');
 
     Route::get('/experience/form', [ProviderController::class, 'experienceCreateForm'])->name('experience.form');
-    Route::post('/experience/store', [ProviderController::class, 'storeExperience'])->name('experience.store');
+    Route::get('/activity/form/{exp_id}/{act_id}/{mode}', [ProviderController::class, 'activityListForm'])->name('activity.form');
+
+
     Route::get('/experience/modify/{id}', [ProviderController::class, 'experienceModifyForm'])->name('experience.modify');
     Route::post('/experience/update/{id}', [ProviderController::class, 'updateExperience'])->name('experience.update');
 
-    Route::get('/activity/form/{experience_id}', [ProviderController::class, 'activityCreateForm'])->name('activity.form');
     Route::post('/activity/store', [ProviderController::class, 'storeActivity'])->name('activity.store');
-    Route::get('/activity/modify/{id}', [ProviderController::class, 'activityModifyForm'])->name('activity.modify');
     Route::post('/activity/update/{id}', [ProviderController::class, 'updateActivity'])->name('activity.update');
     Route::delete('/activity/delete/{id}', [ProviderController::class, 'deleteActivity'])->name('activity.delete');
 });
-
+Route::post('/experience/store', [ProviderController::class, 'storeExperience'])->name('experience.store');
 
 
 Route::middleware(['auth', 'role:cliente'])->group(function () {
@@ -61,16 +67,11 @@ Route::middleware(['auth', 'role:cliente'])->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
-    
 });
 
-Route::middleware(['guest','blocked'])->group(function () {
+Route::middleware(['guest', 'blocked'])->group(function () {
     Route::get('/provider/login', [NavController::class, 'providerLogin'])->name('provider.login');
     Route::post('/login/user', [LoginController::class, 'loginUser'])->middleware('guest')->name('login.user');
     Route::post('/login/provider', [LoginController::class, 'loginProvider'])->middleware('guest')->name('login.provider');
     Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('register.user');
-    
 });
-
-
-Route::get('/lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang');

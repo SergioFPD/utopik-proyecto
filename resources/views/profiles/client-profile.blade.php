@@ -96,6 +96,8 @@
         @if ($menu == 'reserves')
             <div class="reserve-list menu row">
                 @foreach ($reservas as $reserva)
+
+                @if ($reserva->experiencia != null)
                     @component('components.bookings')
                         @slot('rutaImagen')
                             {{ $reserva->experiencia->imagen->first()
@@ -116,8 +118,11 @@
                         @slot('restoPagar', $reserva->dimePorPagar())
                         @slot('experienciaNombre', $reserva->experiencia->nombre)
                     @endcomponent
+                    @endif
                 @endforeach
             </div>
+
+            @include('layouts.row-conditions-full')
         @endif
 
 

@@ -6,6 +6,14 @@
     /* Oculto por defecto */
 }
 
+#modal-register hr{
+
+    height: 1px;
+    border: none;
+    background-color: var(--color-azul-dos);
+    margin-bottom: 6%;
+}
+
 .modal.center {
     position: fixed;
     z-index: 50;
@@ -214,6 +222,7 @@
     display: flex;
     position: relative;
     cursor: pointer;
+    align-items: center;
 }
 
 .modal-user-menu:hover .modal.user-menu {
@@ -256,9 +265,8 @@
 }
 
 .modal.country-select {
-
     right: 12px;
-    padding-top: 44px;
+    padding-top: 38px;
     height: auto;
     top: 17px;
     position: absolute;
@@ -314,4 +322,30 @@
 
 #modal-message .modal-content img {
     width: 50px;
+}
+
+/* Animación del modal entrando desde la derecha */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        /* Comienza fuera del área visible */
+    }
+
+    to {
+        transform: translateX(0);
+        /* Llega a su posición final */
+    }
+}
+
+/* Animación del modal entrando desde la derecha */
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(100%);
+        /* Comienza fuera del área visible */
+    }
+
+    to {
+        transform: translateY(0);
+        /* Llega a su posición final */
+    }
 }

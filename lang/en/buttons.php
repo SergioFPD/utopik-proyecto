@@ -17,7 +17,7 @@ return [
     'save_activity' => 'Save activity',
     'add_activity' => 'Add activity',
     'update_activity' => 'Update activity',
-    'update_profile' => 'Update profile info',
+    'update_profile' => 'Update profile',
     'delete_activity' => 'Delete activity',
     'register' => 'Register',
     'access' => 'Access',
@@ -35,6 +35,10 @@ return [
     'countries' => 'Countries',
     'view_experience' => 'View experience',
     'pay_all' => 'Pay the rest',
-
-
+    'charge_image' => 'Charge image',
+    'modify_activities' => 'Modify activities',
+    'save_activity' => 'Save activity',
+    'business_area' => 'Business area',
+    'admin_profile' => 'Admin zone',
+    'provider_profile' => 'Company Area',
 ];

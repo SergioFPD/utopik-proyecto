@@ -19,8 +19,8 @@ class NavController extends Controller
     public function home()
     {
 
-        $experiencias = Experiencia::all();
-        return View('home', compact('experiencias'));
+        $ultimasExperiencias = Experiencia::orderBy('created_at', 'desc')->take(5)->get();
+        return View('home', compact('ultimasExperiencias'));
     }
 
     public function providerLogin()
@@ -30,7 +30,8 @@ class NavController extends Controller
 
     public function country($country)
     {
-        $experiencias = Experiencia::all();
+        $ultimasExperiencias = Experiencia::orderBy('created_at', 'desc')->take(5)->get();
+       
         $paisElegido = Pais::firstWhere('pais', $country);
         if($country == 'World'){
             $experienciasPais = Experiencia::all();
@@ -42,18 +43,18 @@ class NavController extends Controller
     
         }
        
-        return View('experiences-by-country', compact('experiencias', 'experienciasPais', 'paisElegido'));
+        return View('experiences-by-country', compact('ultimasExperiencias', 'experienciasPais', 'paisElegido'));
     }
 
     public function viewDetail($nombre)
     {
-        $experiencias = Experiencia::all();
+        $ultimasExperiencias = Experiencia::orderBy('created_at', 'desc')->take(5)->get();
         $experiencia = Experiencia::firstWhere('nombre', $nombre);
 
         if ($experiencia == null || ($experiencia->vip && ((Auth::check() && (!Auth::user()->vip && Auth::user()->rol != 'admin')) || !Auth::check()))) {
             return redirect()->route('home');
         } else {
-            return View('experience-detail', compact('experiencia', 'experiencias'));
+            return View('experience-detail', compact('experiencia', 'ultimasExperiencias'));
         }
     }
 

@@ -56,7 +56,7 @@
                     </a>
                 @endif
             @else
-                <p class="texto-blanco text-small text-shadow">Zona empresas</p>
+                <p class="texto-blanco text-small text-shadow">{{__('buttons.business_area')}}</p>
             @endif
         </div>
 

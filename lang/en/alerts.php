@@ -7,4 +7,7 @@ return [
     'user_deleted' => 'User :name deleted',
     'user_blocked' => 'Sorry :name, your account is blocked. Please contact with admin.',
     'country_created' => 'Country :name has been created',
+    'experience_updated' => 'Experience updated',
+    'activity_created' => 'Activity created',
+    'activity_updated' => 'Activity updated',
 ];

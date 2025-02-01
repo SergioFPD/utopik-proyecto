@@ -91,28 +91,31 @@ window.openModal = function (modal) {
     // Obtener los elementos
     const modalWindow = document.getElementById(modal);
 
-    // Botón cerrar del modal
-    const closeModal = modalWindow.querySelector(".close");
+    if (modalWindow != null) {
+        // Botón cerrar del modal
+        const closeModal = modalWindow.querySelector(".close");
 
-    // Abrir el modal con efecto de fade-in
-    modalWindow.style.display = "flex"; // Mostrar el modal
-    setTimeout(() => modalWindow.classList.add("show"), 10); // Iniciar la animación
+        // Abrir el modal con efecto de fade-in
+        modalWindow.style.display = "flex"; // Mostrar el modal
+        setTimeout(() => modalWindow.classList.add("show"), 10); // Iniciar la animación
 
-    // Cerrar el modal con efecto de fade-out
-    closeModal.addEventListener("click", () => {
-        modalWindow.classList.remove("show"); // Iniciar el fade-out
-        setTimeout(() => (modalWindow.style.display = "none"),
-            500); // Esperar la animación antes de ocultarlo
-    });
-
-    // Cerrar el modal al hacer clic fuera del contenido
-    window.addEventListener("click", (e) => {
-        if (e.target === modalWindow) {
+        // Cerrar el modal con efecto de fade-out
+        closeModal.addEventListener("click", () => {
             modalWindow.classList.remove("show"); // Iniciar el fade-out
             setTimeout(() => (modalWindow.style.display = "none"),
                 500); // Esperar la animación antes de ocultarlo
-        }
-    });
+        });
+
+        // Cerrar el modal al hacer clic fuera del contenido
+        window.addEventListener("click", (e) => {
+            if (e.target === modalWindow) {
+                modalWindow.classList.remove("show"); // Iniciar el fade-out
+                setTimeout(() => (modalWindow.style.display = "none"),
+                    500); // Esperar la animación antes de ocultarlo
+            }
+        });
+
+    }
 
 };
 
@@ -124,20 +127,22 @@ window.insertModalPage = function (ruta, modalName) {
     const modalContent = document.getElementById('modalPageContent');
     const spinner = document.getElementById('spinner');
 
-    spinner.style.display = 'block';
-    // Realiza una solicitud AJAX para cargar el contenido del modal
-    fetch(ruta)
-        .then(response => response.text())
-        .then(html => {
-            modalContent.innerHTML = html; // Inserta el contenido en el modal
-            // Una vez insertada la página modal, la visualiza
-            spinner.style.display = 'none';
-            openModal(modalName);
-        })
-        .catch(error => {
-            alert('Error al cargar el contenido');
+    if (modalContent != null) {
+        spinner.style.display = 'block';
+        // Realiza una solicitud AJAX para cargar el contenido del modal
+        fetch(ruta)
+            .then(response => response.text())
+            .then(html => {
+                modalContent.innerHTML = html; // Inserta el contenido en el modal
+                // Una vez insertada la página modal, la visualiza
+                spinner.style.display = 'none';
+                openModal(modalName);
+            })
+            .catch(error => {
+                alert('Error al cargar el contenido');
 
-        });
+            });
+    }
 }
 
 // Establece los valores en un formulario y lo abre como modal
@@ -160,29 +165,35 @@ window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaD
 window.addActivity = function (modal, experiencia_id) {
     const modalUser = document.getElementById(modal);
 
-    modalUser.querySelector('#experiencia_id').value = experiencia_id;
+    if (modalUser != null) {
+        modalUser.querySelector('#experiencia_id').value = experiencia_id;
 
-    openModal(modal);
+        openModal(modal);
+    }
 }
 
 // Activa la opción de cerrar un formulario abierto tras un error de contenido
 if (document.querySelector('.modal.show')) {
     const modalOpened = document.getElementsByClassName("modal show")[0];
-    const closeModal = modalOpened.querySelector(".close");
-    closeModal.addEventListener("click", () => {
-        clearValidationErrors();
-        modalOpened.classList.remove("show"); // Iniciar el fade-out
-        setTimeout(() => (modalOpened.style.display = "none"),
-            500); // Esperar la animación antes de ocultarlo
-    });
 
+    if (modalOpened != null) {
+        const closeModal = modalOpened.querySelector(".close");
+        closeModal.addEventListener("click", () => {
+            clearValidationErrors();
+            modalOpened.classList.remove("show"); // Iniciar el fade-out
+            setTimeout(() => (modalOpened.style.display = "none"),
+                500); // Esperar la animación antes de ocultarlo
+        });
+    }
 }
 
 // Elimina todos los mensajes de error del formulario
 window.clearValidationErrors = function () {
     // Eliminar errores del DOM
     const errorMessages = document.querySelectorAll('.error-message');
-    errorMessages.forEach(error => error.remove());
+    if (errorMessages != null) {
+        errorMessages.forEach(error => error.remove());
+    }
 }
 
 // En los formularios con un slider selector, cambia el valor del output por
@@ -190,10 +201,12 @@ window.clearValidationErrors = function () {
 // Calcula el precio total y lo establece en total-price
 window.updateSliderValue = function (value, output, priceAdult, priceChild) {
     document.getElementById(output).textContent = value;
-    const adult = parseInt(document.getElementById('value-adults').value);
-    const child = parseInt(document.getElementById('value-child').value);
-    document.getElementById('total-price').textContent = (((priceAdult * adult) + (priceChild * child))).toLocaleString('de-DE') + "€";
-    document.getElementById('total-booking').textContent = ((adult + child) * 395).toLocaleString('de-DE') + "€";
+    if (priceAdult != null) {
+        const adult = parseInt(document.getElementById('value-adults').value);
+        const child = parseInt(document.getElementById('value-child').value);
+        document.getElementById('total-price').textContent = (((priceAdult * adult) + (priceChild * child))).toLocaleString('de-DE') + "€";
+        document.getElementById('total-booking').textContent = ((adult + child) * 395).toLocaleString('de-DE') + "€";
+    }
 }
 
 
@@ -207,29 +220,36 @@ const multipleDates = {
     launch: function () {
 
         const idiomaPagina = document.documentElement.lang;
-        var textoBoton = "Add new date";
+
+        var textoBoton = "";
         if (idiomaPagina == 'es') {
             textoBoton = "Añade nueva fecha";
+        } else {
+            textoBoton = "Add new date";
         }
         const fechaInput = document.getElementById('fechaInput');
-        fechaInput.value = textoBoton;
+
+
+
         const listaFechas = document.getElementById('listaFechas');
         const fechasHidden = document.getElementById('fechasHidden');
         let fechas = JSON.parse(fechasHidden.value);
+        if (fechaInput != null) {
+            fechaInput.value = textoBoton;
+            $("#fechaInput").datepicker({
+                showButtonPanel: true,  // Opcional, muestra el panel con "Hoy" y "Cerrar"
+                dateFormat: "yy-mm-dd",  // Establece el formato de la fecha
+                onSelect: function (dateText, inst) {
+                    if (dateText) {
+                        // Agregar la fecha al array y renderizar la lista
+                        fechas.push(dateText);
+                        renderListaFechas();
+                        fechaInput.value = textoBoton;
 
-        $("#fechaInput").datepicker({
-            showButtonPanel: true,  // Opcional, muestra el panel con "Hoy" y "Cerrar"
-            dateFormat: "yy-mm-dd",  // Establece el formato de la fecha
-            onSelect: function (dateText, inst) {
-                if (dateText) {
-                    // Agregar la fecha al array y renderizar la lista
-                    fechas.push(dateText);
-                    renderListaFechas();
-                    fechaInput.value = textoBoton;
-
+                    }
                 }
-            }
-        });
+            });
+        }
 
 
         // Actualiza la lista de fechas
@@ -239,12 +259,13 @@ const multipleDates = {
 
             // Crear nuevos elementos de la lista
             fechas.forEach((fecha, index) => {
-                const li = document.createElement('li');
-                li.textContent = fecha;
+                const unaFecha = document.createElement('p');
+                unaFecha.classList.add("one_date");
+                unaFecha.textContent = fecha;
 
                 // Botón para eliminar la fecha
                 const eliminarBtn = document.createElement('button');
-                eliminarBtn.textContent = 'Eliminar';
+                eliminarBtn.textContent = 'X';
                 eliminarBtn.type = 'button';
                 eliminarBtn.addEventListener('click', () => {
                     // Eliminar la fecha del array y renderizar de nuevo
@@ -252,8 +273,8 @@ const multipleDates = {
                     renderListaFechas();
                 });
 
-                li.appendChild(eliminarBtn);
-                listaFechas.appendChild(li);
+                unaFecha.appendChild(eliminarBtn);
+                listaFechas.appendChild(unaFecha);
             });
 
             // Actualizar el campo oculto con el valor que se enviará al controlador
@@ -261,7 +282,10 @@ const multipleDates = {
         }
 
         // Pone las fechas que ya tiene la experiencia al cargar la página
-        renderListaFechas();
+        if (listaFechas != null) {
+            renderListaFechas();
+        }
+
     }
 };
 
@@ -275,24 +299,29 @@ const imageViewer = {
 
         console.log('imagen preview activado');
 
-        document.getElementById('image').addEventListener('change', function (event) {
-            const file = event.target.files[0]; // Obtener el archivo seleccionado
-            const preview = document.getElementById('image-preview'); // Elemento de previsualización
+        const image = document.getElementById('image');
 
-            if (file) {
-                const reader = new FileReader();
+        if (image != null) {
 
-                // Cuando se carga la imagen, actualizar el src del <img>
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
+            image.addEventListener('change', function (event) {
+                const file = event.target.files[0]; // Obtener el archivo seleccionado
+                const preview = document.getElementById('image-preview'); // Elemento de previsualización
 
-                };
+                if (file) {
+                    const reader = new FileReader();
 
-                reader.readAsDataURL(file); // Leer el archivo como una URL de datos
-            } else {
-                preview.src = '#';
-            }
-        });
+                    // Cuando se carga la imagen, actualizar el src del <img>
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+
+                    };
+
+                    reader.readAsDataURL(file); // Leer el archivo como una URL de datos
+                } else {
+                    preview.src = '#';
+                }
+            });
+        }
 
     }
 };
@@ -303,39 +332,85 @@ const checkForm = {
         this.launch();
     },
     launch: function () {
-        imageViewer.init();
+
         const formulario = document.getElementById("myForm");
         const boton = document.getElementById("submitButton");
 
-        // Guarda los valores iniciales del formulario
-        const valoresIniciales = new FormData(formulario);
+        if (formulario != null) {
+            // Guarda los valores iniciales del formulario
+            const valoresIniciales = new FormData(formulario);
 
-        formulario.addEventListener("input", function () {
-            const valoresActuales = new FormData(formulario);
-            let modificado = false;
+            formulario.addEventListener("input", function () {
+                const valoresActuales = new FormData(formulario);
+                let modificado = false;
 
-            // Compara los valores actuales con los iniciales
-            for (let [clave, valor] of valoresActuales.entries()) {
-                if (valor instanceof File) {
-                    if (valoresActuales.get("image").name != '') {
+                // Compara los valores actuales con los iniciales
+                for (let [clave, valor] of valoresActuales.entries()) {
+                    if (valor instanceof File) {
+                        if (valoresActuales.get("image").name != '') {
+                            modificado = true;
+                            break;
+                        }
+
+                    } else if (valor != valoresIniciales.get(clave)) {
                         modificado = true;
                         break;
                     }
-
-                } else if (valor != valoresIniciales.get(clave)) {
-                    modificado = true;
-                    break;
                 }
-            }
 
-            // Muestra u oculta el botón según si hubo cambios
-            if (modificado) {
-                boton.classList.remove("disabled");
-            } else {
-                boton.classList.add("disabled");
-            }
-        });
+                // Muestra u oculta el botón según si hubo cambios
+                if (modificado) {
+                    boton.classList.remove("disabled");
+                } else {
+                    boton.classList.add("disabled");
+                }
+            });
 
+        }
+
+    }
+};
+
+// Comprueba si el nombre introducido en el formulario ya existe en la BBDD
+const checkName = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+
+        let timeout;
+
+        window.checkNombre = function (nombreOriginal) {
+
+            clearTimeout(timeout);
+
+            // Establecer un nuevo timeout de 1500 ms
+            timeout = setTimeout(function () {
+                // Llamada AJAX para comprobar si el texto existe en la base de datos
+                let nombre = $('#nombreExp').val();
+
+                console.log('Comprobando: ' + nombre);
+                console.log('Original: ' + nombreOriginal);
+
+                if (nombre.length > 0 && nombre != nombreOriginal) {
+                    $.ajax({
+                        url: '/check-name/' + nombre,
+                        type: 'GET',
+                        success: function (data) {
+                            if (data.exists) {
+                                $('#error-nombre').show();  // Muestra el error si el nombre ya existe
+                            } else {
+                                $('#error-nombre').hide();  // Oculta el error si el nombre no existe
+                            }
+                        }
+                    });
+                } else {
+                    $('#error-nombre').hide();  // Oculta el error si el campo está vacío
+                }
+
+            }, 1500);
+
+        }
     }
 };
 
@@ -356,12 +431,14 @@ document.addEventListener('scroll', function () {
     const elementos = document.querySelectorAll('.card-experience');
     const triggerPoint = window.innerHeight / 1.2; // Punto de activación
 
-    elementos.forEach((el) => {
-        const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < triggerPoint) {
-            el.classList.add('visible'); // Añade la clase cuando es visible
-        }
-    });
+    if (elementos != null) {
+        elementos.forEach((el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            if (elementTop < triggerPoint) {
+                el.classList.add('visible'); // Añade la clase cuando es visible
+            }
+        });
+    }
 });
 
 
@@ -376,16 +453,21 @@ $(function () {
     if (content.hasClass('form-experience')) {
         imageViewer.init();
         multipleDates.init();
+        textEditor.init();
+        checkName.init();
     }
 
     // activa el editor de texto avanzado en la página de crear experiencia
-    if (content.hasClass('form-experience')) {
+    if (content.hasClass('form-activity')) {
         textEditor.init();
+        imageViewer.init();
     }
 
     // activa el oyente para activar el boton del formulario
     if (content.hasClass('user-profile')) {
         checkForm.init();
+        imageViewer.init();
+
     }
 
     // Si la página contiene la clase "home" ejecuta el carrusel

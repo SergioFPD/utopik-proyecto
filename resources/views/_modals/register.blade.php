@@ -1,7 +1,8 @@
 <div id="modal-register" class="modal center @if($errors->all() && $errors->has('modal-register')) show @endif">
 
     <div class="modal-content fondo-modal">
-        <h1>{{ __('labels.form_register') }}</h1>
+        <h3>{{ __('labels.form_register') }}</h3>
+        <hr>
         <span class="close">&times;</span>
         <form action="{{ route('register.user') }}" method="post">
             @csrf
@@ -20,6 +21,7 @@
             @error('password')
                 <p class="error-message">{{ $message }}</p>
             @enderror
+            <hr>
             <input class="btn-standard" type="submit" value="{{ __('buttons.register') }}">
         </form>
     </div>

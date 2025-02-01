@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('navMenu')
-    @include('menus.nav-menu')
+@include('menus.nav-menu-profile')
 @endsection
 
 @section('content')
@@ -11,11 +11,13 @@
         // Declaro variables del formulario para cada caso: Crear/Modificar
         if ($mode == 'modify') {
             $titulo = __('labels.modify_experience');
+            $subtitulo = $experiencia->nombre;
             $action = route('experience.update', $experiencia->getEncryptedId());
             $boton = __('buttons.save_experience');
             $nombre = $experiencia->nombre;
             $la_ciudad = $experiencia->ciudad->ciudad;
             $el_pais = $experiencia->ciudad->pais->pais;
+            $descripcionCorta = $experiencia->descripcion_corta;
             $descripcion = $experiencia->descripcion;
             if ($experiencia->vip) {
                 $vip = 'checked';
@@ -48,11 +50,13 @@
             $precio_nino = $experiencia->precio_nino;
         } else {
             $titulo = __('labels.new_experience');
+            $subtitulo = '';
             $action = route('experience.store');
             $boton = __('buttons.add_experience');
             $nombre = '';
             $la_ciudad = '';
             $el_pais = '';
+            $descripcionCorta = '';
             $descripcion = '';
             $vip = '';
             $activa = 'checked';
@@ -68,130 +72,154 @@
     <div class="content form-experience">
         @component('components.row-profile')
             @slot('menuTitulo', $titulo)
-            @slot('menuSubTitulo', 'nueva reserva')
+            @slot('menuSubTitulo', $subtitulo)
         @endcomponent
-        <div class="modify-exp-content">
+        <div class="exp-form-content">
             <form id="form" action="{{ $action }}" method="post" enctype="multipart/form-data">
                 @csrf
-                {{-- Nombre --}}
-                <label for="">{{ __('labels.name') }}</label>
-                <input type="text" name="nombre" value="{{ $nombre }}">
-                @error('nombre')
+                
+                {{-- Info block --}}
+                <div class="exp-form-data">
+
+                    <div class="left">
+                        {{-- Nombre --}}
+                        <label for="">{{ __('labels.name') }}</label>
+                        <input type="text" id="nombreExp" name="nombre" value="{{ $nombre }}"
+                            oninput="checkNombre('{{ $nombre }}')" required>
+                        <span id="error-nombre"
+                            style="color: red; display: none;">{{ __('labels.this_name_exists') }}</span>
+                        @error('nombre')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
+                        {{-- Ciudad --}}
+                        <label for="">{{ __('labels.city') }}</label>
+                        <input type="text" name="ciudad" value="{{ $la_ciudad }}" required>
+                        @error('ciudad')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
+                        {{-- Pais --}}
+                        <label for="pais">{{ __('labels.select_country') }}</label>
+                        <select id="pais" name="pais_id" required>
+                            <option value="" selected disabled>{{ __('labels.select_country') }}</option>
+                            @foreach ($paises as $pais)
+                                @if ($pais->pais != 'World')
+                                    <option value="{{ $pais->id }}" @if ($pais->pais == $el_pais) selected @endif>
+                                        {{ $pais->pais }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="right">
+
+                        {{-- Precio adulto --}}
+                        <div class="group-col">
+                            <div class="group-row">
+                                <label for="">{{ __('labels.price_adult') }}</label>
+                                <div class="slider-value"><span id="slider-value-adult">{{ $precio_adulto }}</span>€</div>
+                            </div>
+                            <input type="range" name="precio_adulto" min="200" max="10000" step="50"
+                                value="{{ $precio_adulto }}" oninput="updateSliderValue(this.value, 'slider-value-adult')">
+                        </div>
+
+                        {{-- Precio niño --}}
+                        <div class="group-col">
+                            <div class="group-row">
+                                <label for="">{{ __('labels.price_child') }}</label>
+                                <div class="slider-value"><span id="slider-value-child">{{ $precio_nino }}</span>€</div>
+                            </div>
+                            <input type="range" name="precio_nino" min="200" max="10000" step="50"
+                                value="{{ $precio_nino }}" oninput="updateSliderValue(this.value, 'slider-value-child')">
+                        </div>
+                        {{-- VIP --}}
+                        <div class="group-input">
+
+                            <input type="hidden" name="vip" value="0">
+                            <input type="checkbox" name="vip" value="1" {{ $vip }} />
+                            <label for="">{{ __('labels.is_vip') }}</label>
+                        </div>
+
+                        {{-- Activa --}}
+                        <div class="group-input">
+
+                            <input type="hidden" name="activa" value="0">
+                            <input type="checkbox" name="activa" value="1" {{ $activa }} />
+                            <label for="">{{ __('labels.active') }}</label>
+                        </div>
+                        {{-- Duración --}}
+
+                        <div class="group-col">
+                            <div class="group-row">
+                                <label for="slider">{{ __('labels.days_count') }}</label>
+                                <div class="slider-value"><span id="slider-value-duration">{{ $duracion }}</span></div>
+                            </div>
+                            <input type="range" name="duracion" min="1" max="20" step="1"
+                                value="{{ $duracion }}"
+                                oninput="updateSliderValue(this.value, 'slider-value-duration')">
+                        </div>
+                    </div>
+                </div>
+
+                <label for="">{{ __('labels.image_and_dates') }}</label>
+                <div class="exp-form-date-img">
+
+                    <div class="left">
+                        {{-- Image --}}
+                        <div class="experience-image">
+                            <label for="image" class="btn-standard">{{ __('buttons.charge_image') }}</label>
+                            @error('image')
+                                <p class="error-message">{{ $message }}</p>
+                            @enderror
+
+                            <input type="file" name="image" id="image" accept="image/*">
+                        </div>
+                        <div class="image-preview-container">
+                            <!-- Contenedor para la previsualización -->
+                            <img id="image-preview" src="{{ $la_imagen }}" alt="experience">
+                        </div>
+                    </div>
+                    <div class="right">
+                        {{-- Dates --}}
+                        <div>
+                            <input class="btn-standard" type="text" id="fechaInput" value="Add date" readonly>
+                        </div>
+                        <div id="listaFechas" class="lista-fechas"></div>
+                        <!-- Campo oculto para enviar las fechas al backend -->
+                        <input type="hidden" name="fechas[]" id="fechasHidden" value="{{ $las_fechas }}" required>
+                        @error('fechas*')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                {{-- Short description --}}
+                <label for="">{{ __('labels.short_description') }}</label>
+                <textarea name="descripcionCorta" rows="5">{{ $descripcionCorta }}</textarea>
+                @error('descripcionCorta')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                {{-- Ciudad --}}
-                <label for="">{{ __('labels.city') }}</label>
-                <input type="text" name="ciudad" value="{{ $la_ciudad }}" required>
-                @error('ciudad')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
-                {{-- Pais --}}
-                <label for="pais">{{ __('labels.select_country') }}</label>
-                <select id="pais" name="pais_id" required>
-                    <option value="" selected disabled>{{ __('labels.select_country') }}</option>
-                    @foreach ($paises as $pais)
-                        <option value="{{ $pais->id }}" @if ($pais->pais == $el_pais) selected @endif>
-                            {{ $pais->pais }}</option>
-                    @endforeach
-                </select>
-                {{-- Descripcion --}}
+
+                {{-- Description --}}
                 <label for="">{{ __('labels.description') }}</label>
                 <textarea id="editor-advanced" name="descripcion">{{ $descripcion }}</textarea>
                 @error('descripcion')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                {{-- Imagen --}}
-                <div class="experience-image">
-                    <label for="image" class="btn-standard">Seleccionar imagen</label>
-                    @error('image')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
 
-                    <input type="file" name="image" id="image" accept="image/*" required>
+                <div class="button-container">
+                    <input class="btn-standard" type="submit" value="{{ $boton }}">
                 </div>
-                <div class="image-preview-container">
-                    <!-- Contenedor para la previsualización -->
-                    <img id="image-preview" src="{{ $la_imagen }}" alt="experience">
-                </div>
-                {{-- Fechas --}}
-
-                <div>
-                    <input class="btn-standard" type="text" id="fechaInput" value="Seleccionar fecha" readonly>
-                </div>
-                <ul id="listaFechas"></ul>
-                <!-- Campo oculto para enviar las fechas al backend -->
-                <input type="hidden" name="fechas[]" id="fechasHidden" value="{{ $las_fechas }}" required>
-                @error('fechas*')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
-
-
-                {{-- VIP --}}
-                <label for="">{{ __('labels.is_vip') }}</label>
-                <input type="hidden" name="vip" value="0">
-                <input type="checkbox" name="vip" value="1" {{ $vip }} />
-                {{-- Activa --}}
-                <label for="">{{ __('labels.active') }}</label>
-                <input type="hidden" name="activa" value="0">
-                <input type="checkbox" name="activa" value="1" {{ $activa }} />
-                {{-- Duración --}}
-                <label for="slider">{{ __('labels.days_count') }}</label>
-                <div class="slider-value"><span id="slider-value-one">{{ $duracion }}</span></div>
-                <input type="range" id="slider" name="duracion" min="1" max="20" step="1"
-                    value="{{ $duracion }}" oninput="updateSliderValue(this.value, 'slider-value-one')">
-                {{-- Precio adulto --}}
-                <label for="">{{ __('labels.price_adult') }}</label>
-                <div class="slider-value"><span id="slider-value-adult">{{ $precio_adulto }}</span>€</div>
-                <input type="range" id="slider" name="precio_adulto" min="200" max="10000" step="50"
-                    value="{{ $precio_adulto }}" oninput="updateSliderValue(this.value, 'slider-value-adult')">
-                {{-- Precio niño --}}
-                <label for="">{{ __('labels.price_child') }}</label>
-                <div class="slider-value"><span id="slider-value-child">{{ $precio_nino }}</span>€</div>
-                <input type="range" id="slider" name="precio_nino" min="200" max="10000" step="50"
-                    value="{{ $precio_nino }}" oninput="updateSliderValue(this.value, 'slider-value-child')">
-
-
-                <input class="btn-standard" type="submit" value="{{ $boton }}">
             </form>
 
         </div>
 
-        @if ($mode == 'modify')
-            <div class="activity-modify-list">
-                <p>Actividades:</p>
-                <div class="activity-list">
-
-                    @foreach ($experiencia->actividad as $actividad)
-                        <div class="activity-content">
-                            <p>{{ $actividad->nombre }}</p>
 
 
-                            <a class="btn-standard"
-                                onclick="insertModalPage('{{ route('activity.modify', $actividad->getEncryptedId()) }}', 'modal-activity-form')">
-                                <p>{{ __('buttons.modify_activity') }}</p>
-                            </a>
-                            <form action="{{ route('activity.delete', $actividad->getEncryptedId()) }}" method="post">
-                                @method('DELETE')
-                                @csrf
-                                <input class="btn-standard delete" type="submit"
-                                    value="{{ __('buttons.delete_activity') }}">
-                            </form>
-                        </div>
-                    @endforeach
-
-
-                </div>
-
-                <a class="btn-standard"
-                    onclick="insertModalPage('{{ route('activity.form', $experiencia->getEncryptedId()) }}', 'modal-activity-form')">
-                    <p>{{ __('buttons.add_activity') }}</p>
-
-                </a>
-            </div>
-            {{-- Donde se inyectará la página modal --}}
-            @include('_partials.page-content')
-        @endif
-
+        {{-- Footer variable según la página mostrada --}}
+        @component('components.footer')
+            @slot('footerContent')
+                Este es el footer del formulario de experiencias
+            @endslot
+        @endcomponent
 
     </div>
 

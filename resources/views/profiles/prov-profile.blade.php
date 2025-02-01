@@ -10,7 +10,13 @@
     <div class="content provider-menu">
         @component('components.row-profile')
             @slot('menuTitulo', __('labels.profile_provider'))
-            @slot('menuSubTitulo', $menu)
+            @slot('menuSubTitulo')
+                @if ($menu == 'experiences')
+                    {{ __('labels.my_experiences') }}
+                @else
+                    {{ __('labels.my_bookings') }}
+                @endif
+            @endslot
         @endcomponent
         <div class="row">
 
@@ -29,18 +35,32 @@
                                 <ul>
                                     @foreach ($experiencia->actividad as $actividad)
                                         <li>{{ $actividad->nombre }}</li>
+                                        <a class="btn-standard"
+                                            href="{{ route('activity.form', ['exp_id' => $experiencia->getEncryptedId(), 'act_id' => $actividad->getEncryptedId(), 'mode' => 'modify']) }}">
+                                            <p>{{ __('buttons.modify_activity') }}</p>
+                                        </a>
                                     @endforeach
                                 </ul>
                             @else
                                 <p>SIN ACTIVIDADES</p>
                             @endif
-                            <a class="btn-standard" href="{{ route('experience.modify', $experiencia->getEncryptedId()) }}">
-                                <p>{{ __('buttons.modify_experience') }}</p>
-                            </a>
+                            <div>
+                                <a class="btn-standard"
+                                    href="{{ route('experience.modify', $experiencia->getEncryptedId()) }}">
+                                    <p>{{ __('buttons.modify_experience') }}</p>
+                                </a>
+                                <a class="btn-standard"
+                                    href="{{ route('activity.form', ['exp_id' => $experiencia->getEncryptedId(), 'act_id' => $experiencia->getEncryptedId(), 'mode' => 'create']) }}">
+                                    <p>{{ __('buttons.add_activity') }}</p>
+                                </a>
+
+                            </div>
                         </div>
                     @endforeach
 
                     <br><br>
+
+
                     <a class="btn-standard" href="{{ route('experience.form') }}">
                         <p>{{ __('buttons.add_experience') }}</p>
                     </a>
@@ -69,7 +89,7 @@
 
                 </div>
             @endif
-            
+
         </div>
 
         {{-- Footer variable según la página mostrada --}}

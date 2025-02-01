@@ -8,6 +8,7 @@
 {{ asset('storage/images/flag-united-kingdom.svg') }} @endif
             
             "
-                alt=""></a>
+                alt="">
+        </a>
     @endif
 @endforeach
