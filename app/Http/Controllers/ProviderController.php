@@ -11,6 +11,7 @@ use App\Models\Imagen;
 use App\Models\User;
 use App\Models\Actividad;
 use App\Models\Exp_fecha;
+use App\Models\Reserva;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -273,15 +274,20 @@ class ProviderController extends Controller
         }
 
         $user = Auth::user();
-        // Crear el nombre único para la imagen
-        $imageName = time() . '.' . $request->image->extension();
+        $rutaImagen = "";
 
-        // Crear una carpeta con el ID del usuario autenticado
-        $folderPath = "public/images/providers/" . $user->id . '/activities';
-        $folderUri = "images/providers/" . $user->id . '/activities'; // Se guardará como ruta de la imagen
+        // Si hay imagen
+        if ($request->image != null) {
+            // Crear el nombre único para la imagen
+            $imageName = time() . '.' . $request->image->extension();
 
+            // Crear una carpeta con el ID del usuario autenticado
+            $folderPath = "public/images/providers/" . $user->id . '/activities';
+            $folderUri = "images/providers/" . $user->id . '/activities'; // Se guardará como ruta de la imagen
 
-        $request->image->storeAs($folderPath, $imageName);
+            $request->image->storeAs($folderPath, $imageName);
+            $rutaImagen = $folderUri . "/" . $imageName;
+        }
 
         $experiencia = Experiencia::find(Crypt::decryptString($request->experience_id));
 
@@ -289,7 +295,7 @@ class ProviderController extends Controller
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'dia' => $request->dia,
-            'imagen' => $folderUri . "/" . $imageName,
+            'imagen' => $rutaImagen,
 
         ]);
 
@@ -301,5 +307,63 @@ class ProviderController extends Controller
     {
         $exists = Experiencia::where('nombre', $nombre)->exists();
         return response()->json(['exists' => $exists]);
+    }
+
+    // For open modal form evaluation
+    public function formEvaluate($reserve_id)
+    {
+        $reservation = Reserva::find(Crypt::decryptString($reserve_id));
+
+        $usuario = User::findOrFail($reservation->user_id);
+        $customer = $usuario->nombre;
+
+
+        return View('_modals.reserve-rate', compact('reservation', 'customer'));
+    }
+
+    public function rateCustomer(Request $request, $reservation_id)
+    {
+
+        $points = round(($request->one +
+            $request->two +
+            $request->three +
+            $request->four +
+            $request->five +
+            $request->six +
+            $request->seven
+        ) / 7);
+
+        // Compruebo que la nota no sea mayor de 10
+        if ($points > 10) {
+            return back()->with('error', __('alerts.invalid_rate'));
+        }
+
+        try {
+            // Obtener la reserva por su ID
+            $reservation = Reserva::findOrFail(Crypt::decryptString($reservation_id));
+
+            // Obtener el usuario por su ID en la reserva
+            $usuario = User::findOrFail($reservation->user_id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return back()->with('error', __('alerts.invalid_rate'.$e));
+        }
+
+
+        // Sumar la nueva puntuación a la actual
+        $usuario->puntos += $points;
+
+        // Actualizar puntos de la reserva
+        $reservation->puntuacion = $points;
+
+        // Si el usuario supera los 30 puntos, se establece como VIP
+        if ($usuario->puntos >= 30) {
+            $usuario->vip = true;
+        }
+
+        // Guardar cambios en la base de datos
+        $usuario->save();
+        $reservation->save();
+
+        return back()->with('success', __('alerts.reserve_evaluated'));
     }
 }

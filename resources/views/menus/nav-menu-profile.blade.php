@@ -9,9 +9,9 @@
     }
 
     if ($rol == 'cliente') {
-        $nomBoton1 = __('labels.reserves');
+        $nomBoton1 = __('buttons.reserves');
         $rutaBoton1 = route('client.profile', 'reserves');
-        $nomBoton2 = __('labels.user_data');
+        $nomBoton2 = __('buttons.user_data');
         $rutaBoton2 = route('client.profile', 'user_data');
     } elseif ($rol == 'proveedor') {
         $nomBoton1 = __('buttons.my_experiences');

@@ -4,12 +4,6 @@
     @include('menus.nav-menu-profile')
 @endsection
 @section('content')
-    @include('_modals.user-modify')
-    @include('_modals.provider-modify')
-    @include('_modals.user-create')
-    @include('_modals.provider-create')
-    @include('_modals.message')
-
 
     <div class="content admin-menu">
         @component('components.row-profile')
@@ -21,33 +15,34 @@
             @if ($menu == 'users')
                 <div class="user-list menu">
 
-                    @foreach ($usuarios as $user)
-                        @if ($user->rol != 'proveedor' && $user->email != Auth::user()->email)
+                    @foreach ($usuarios as $customer)
+                        @if ($customer->rol != 'proveedor' && $customer->email != Auth::user()->email)
                             <div class="user-content">
-                                <p> {{ $user->nombre }} </p>
-                                <button class="btn-standard"
-                                    onclick="openModalModifyUser('{{ $user->nombre }}','{{ $user->bloqueado }}', '{{ $user->rol }}', '{{ route('admin.update.user', $user->getEncryptedId()) }}', '{{ route('admin.delete.user', $user->getEncryptedId()) }}','modal-userdata')">Editar</button>
+                                <p> {{ $customer->nombre }} </p>
+                                    <button class="btn-standard"
+                                    onclick="insertModalPage('{{ route('form.customer', $customer->getEncryptedId()) }}', 'modal-userdata', false, true)">{{ __('buttons.modify') }}</button>
 
                             </div>
                         @endif
                     @endforeach
-
                 </div>
             @endif
             {{-- PROVIDERS --------------------------------- --}}
             @if ($menu == 'providers')
                 <div class="user-list menu">
-                    @foreach ($usuarios as $user)
-                        @if ($user->rol == 'proveedor')
+                    @foreach ($usuarios as $provider)
+                        @if ($provider->rol == 'proveedor')
                             <div class="user-content">
-                                <p> {{ $user->nombre }} </p>
+                                <p> {{ $provider->nombre }} </p>
                                 <button class="btn-standard"
-                                    onclick="openModalModifyUser('{{ $user->nombre }}','{{ $user->bloqueado }}', null, '{{ route('admin.update.provider', $user->getEncryptedId()) }}', '{{ route('admin.delete.user', $user->id) }}','modal-providerdata')">Editar</button>
+                                    onclick="insertModalPage('{{ route('form.provider', $provider->getEncryptedId()) }}', 'modal-provider', false, true)">{{ __('buttons.modify_provider') }}</button>
 
                             </div>
                         @endif
                     @endforeach
-                    <button class="btn-standard" onclick="openModal('modal-provider')">Nuevo proveedor</button>
+                    <button
+                        class="btn-standard"onclick="insertModalPage('{{ route('form.provider', 'new') }}', 'modal-provider', false, true)">{{ __('buttons.new_provider') }}</button>
+
                 </div>
             @endif
 
@@ -59,16 +54,22 @@
                         <div class="user-content">
                             <p> {{ $pais->pais }} </p>
                             <p> {{ $pais->descripcion }} </p>
-                            <button class="btn-standard" onclick="">Editar</button>
+                            <button class="btn-standard"
+                                onclick="insertModalPage('{{ route('form.country', $pais->getEncryptedId()) }}', 'modal-country-form', true, true)">{{ __('buttons.modify_country') }}</button>
 
                         </div>
                     @endforeach
-                    <button class="btn-standard" onclick="openModal('modal-provider')">Nuevo país</button>
+                    <button
+                        class="btn-standard"onclick="insertModalPage('{{ route('form.country', 'new') }}', 'modal-country-form', true, true)">{{ __('buttons.new_country') }}</button>
+
                 </div>
             @endif
 
 
         </div>
+
+        {{-- Donde se inyectará la página modal --}}
+        @include('_partials.page-content')
 
         {{-- Footer variable según la página mostrada --}}
         @component('components.footer')

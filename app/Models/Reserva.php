@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Reserva extends Model
 {
@@ -50,5 +51,10 @@ class Reserva extends Model
     public function exp_fecha()
     {
         return $this->belongsTo(Exp_fecha::class);
+    }
+
+    public function getEncryptedId()
+    {
+        return Crypt::encryptString($this->id);
     }
 }

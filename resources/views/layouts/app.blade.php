@@ -29,7 +29,7 @@
 
 <body>
     {{-- VER ERRORES --}}
-    {{-- <div style="margin-top: 100px; color: #fff">
+     {{-- <div style="margin-top: 100px; color: #fff">
         <p>LISTA DE ERRORES</p>
         @if ($errors->any())
             <div>
@@ -42,9 +42,12 @@
         @endif
     </div> --}}
     {{-- VER ERRORES END --}}
-    {{-- Menu de navegación --}}
+
+    {{-- Modal message window --}}
     @include('_modals.message')
+    {{-- Navigation menu --}}
     @yield('navMenu')
+
     @yield('content')
 </body>
 

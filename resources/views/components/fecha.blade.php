@@ -1,24 +1,24 @@
 @php
+    use Carbon\Carbon;
+
     $languages = Config::get('languages');
 
     // Obtener el idioma actual
     $currentLang = App::getLocale();
 
-    $date = new DateTime($fecha);
-    // Establecer la localización en función del idioma
-    switch ($currentLang) {
-        case 'es':
-            setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain');
-            $fechaLarga = strftime('%A, %d de %B de %Y', $date->getTimestamp());
-            break;
-        case 'en':
-            setlocale(LC_TIME, 'en_US.UTF-8', 'en_EN', 'English');
-            $fechaLarga = strftime('%A, %B %d, %Y', $date->getTimestamp());
-            break;
-        default:
-            setlocale(LC_TIME, 'en_US.UTF-8', 'en_EN', 'English');
-            $fechaLarga = strftime('%A, %B %d, %Y', $date->getTimestamp());
+    // Convertir la fecha a Carbon
+    $date = Carbon::parse($fecha);
+
+    // Establecer el idioma en Carbon
+    Carbon::setLocale($currentLang);
+
+    // Formato de fecha según el idioma
+    if ($currentLang === 'es') {
+        $fechaLarga = $date->isoFormat('dddd, D [de] MMMM [de] YYYY');
+    } else {
+        $fechaLarga = $date->isoFormat('dddd, MMMM D, YYYY');
     }
 
-    echo $fechaLarga;
+    echo ucfirst($fechaLarga); // Primera letra en mayúscula
 @endphp
+

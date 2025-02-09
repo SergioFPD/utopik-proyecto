@@ -38,9 +38,12 @@
                 @slot('listaPaises')
                     @if ($paises != null)
                         @foreach ($paises as $pais)
+                        {{-- El pais ha de estar activo --}}
+                        @if($pais->activo)
                             <a class="country-select-item" href="{{ route('country', $pais->pais) }}">
                                 <p>{{ __('countries.' . $pais->pais) }}</p>
                             </a>
+                           @endif 
                         @endforeach
                     @endif
                 @endslot

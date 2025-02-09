@@ -3,8 +3,6 @@
         {{-- Se recibe variable "experiencia" --}}
         <span class="close">&times;</span>
 
-
-
         <div class="res-image-container">
             <div class="fundido-down"></div>
             <img src="{{ $experiencia->imagen->first()

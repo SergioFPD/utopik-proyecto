@@ -4,8 +4,6 @@
     @include('menus.nav-menu-profile')
 @endsection
 @section('content')
-    @include('_modals.reserve-modify')
-    @include('_modals.message')
 
     <div class="content provider-menu">
         @component('components.row-profile')
@@ -42,7 +40,7 @@
                                     @endforeach
                                 </ul>
                             @else
-                                <p>SIN ACTIVIDADES</p>
+                                <p>{{ __('labels.no_experiences') }}</p>
                             @endif
                             <div>
                                 <a class="btn-standard"
@@ -78,11 +76,21 @@
                                     <p>Cliente: {{ $reserva->user->nombre }}</p>
                                     <p>Email del cliente: {{ $reserva->user->email }}</p>
                                     <p>Precio total de la reserva: {{ $reserva->dimePrecioTotal() }}€</p>
+                                    {{-- Se muestra botón de evaluar sólo si la reserva tiene 0 puntos --}}
+                                    @if ($reserva->puntuacion == 0)
+                                        <button class="btn-standard"
+                                            onclick="insertModalPage('{{ route('form.evaluate', $reserva->getEncryptedId()) }}', 'modal-reserve-rate', false, false)">{{ __('buttons.evaluate') }}</button>
+                                    @else
+                                    <p>Se ha evaluado con: {{ $reserva->puntuacion }} puntos</p>
+
+                                    @endif
+
+
                                 </div>
                             @endforeach
                         @else
                             <div>
-                                <p>SIN RESERVAS</p>
+                                <p>{{ __('labels.no_reservations') }}</p>
                             </div>
                         @endif
                     @endforeach
@@ -91,6 +99,9 @@
             @endif
 
         </div>
+
+        {{-- Donde se inyectará la página modal --}}
+        @include('_partials.page-content')
 
         {{-- Footer variable según la página mostrada --}}
         @component('components.footer')

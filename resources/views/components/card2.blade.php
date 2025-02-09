@@ -4,6 +4,6 @@
             <img src="{{ $rutaImagen }}" alt="experience image">
         </div>
         <h3 class="card2-title">{{ $titulo }}</h3>
-        {{ $descripcion }}
+        <p>{{ $descripcion }}</p>
     </div>
 </div>

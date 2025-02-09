@@ -64,19 +64,19 @@ class Experiencia extends Model
     }
 
     public function firstImage()
-{
-    return $this->imagen->first();
-}
+    {
+        return $this->imagen->first();
+    }
 
-public function getFormatedPrice()
-{
+    public function getFormatedPrice()
+    {
 
-    // Convertir a entero
-    $entero = (int)$this->precio_adulto;
-    
-    // Dar formato con punto de miles
-    $formateado = number_format($entero, 0, '.', '.');
-    
-    return $formateado;
-}
+        // Convertir a entero
+        $entero = (int)$this->precio_adulto;
+
+        // Dar formato con punto de miles
+        $formateado = number_format($entero, 0, '.', '.');
+
+        return $formateado;
+    }
 }

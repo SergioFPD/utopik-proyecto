@@ -15,7 +15,7 @@
                 </div>
                 @if (Auth::check() && Auth::user()->rol == 'cliente')
                     <a class="btn-standard gold"
-                        onclick="insertModalPage('{{ route('form.reserve', $rutaReserva) }}', 'modal-new-reserve')">
+                        onclick="insertModalPage('{{ route('form.reserve', $rutaReserva) }}', 'modal-new-reserve', true, false)">
                         <p>{{ __('buttons.make_reserve') }}</p>
                     </a>
                 @endif

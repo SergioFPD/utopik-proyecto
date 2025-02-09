@@ -4,8 +4,8 @@
     @include('menus.nav-menu-profile')
 @endsection
 @section('content')
-    @include('_modals.reserve-modify')
-    @include('_modals.message')
+{{-- Modal windows --}}
+    {{-- @include('_modals.reserve-modify') --}}
 
     <div class="content user-profile">
         @component('components.row-profile')

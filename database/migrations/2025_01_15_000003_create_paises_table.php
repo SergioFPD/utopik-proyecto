@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->id();
-            $table->string('pais');
+            $table->string('pais')->unique();
             $table->longText('descripcion');
+            $table->boolean('activo')->default(false);  // Define si un país es mostrado en la zona de selección de experiencias
             $table->string('imagen');
             $table->timestamps();
         });

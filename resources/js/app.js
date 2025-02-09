@@ -85,6 +85,63 @@ const iniciaCarruselMax = {
     }
 };
 
+// Activa un oyente para ver si un formulario ha sido modificado
+const checkForm = {
+    init: function () {
+        this.launch();
+    },
+    launch: function () {
+
+        const formulario = document.getElementById("myForm");
+        const boton = document.getElementById("submitButton");
+        if (boton != null) {
+            boton.classList.add("disabled");
+        }
+
+        if (formulario != null) {
+            // Guarda los valores iniciales del formulario
+            const valoresIniciales = new FormData(formulario);
+
+            formulario.addEventListener("input", function () {
+                const valoresActuales = new FormData(formulario);
+                let modificado = false;
+
+                console.log('cambiado input');
+
+                // Compara los valores actuales con los iniciales
+                for (let [clave, valor] of valoresActuales.entries()) {
+                    if (valor instanceof File) {
+                        if (valoresActuales.get("image").name != '') {
+                            modificado = true;
+                            break;
+                        }
+
+                    } else if (valor != valoresIniciales.get(clave)) {
+                        modificado = true;
+                        break;
+                    }
+                }
+
+                // Muestra u oculta el botón según si hubo cambios
+                if (modificado) {
+                    boton.classList.remove("disabled");
+                } else {
+                    boton.classList.add("disabled");
+                }
+            });
+
+        }
+
+    }
+};
+
+// Abre (desoculta) el modal según su id recibido
+window.confirmDelete = function (mensaje) {
+
+    return confirm(mensaje);
+
+};
+
 // Abre (desoculta) el modal según su id recibido
 window.openModal = function (modal) {
 
@@ -120,7 +177,7 @@ window.openModal = function (modal) {
 };
 
 // Inserta una página modal recibida por la ruta de un controlador
-window.insertModalPage = function (ruta, modalName) {
+window.insertModalPage = function (ruta, modalName, hasImage, checkF) {
 
     // Línea HTML en la que se agregará la página modal
     // HA DE ESTAR DEFINIDA EN LA PÁGINA
@@ -136,6 +193,17 @@ window.insertModalPage = function (ruta, modalName) {
                 modalContent.innerHTML = html; // Inserta el contenido en el modal
                 // Una vez insertada la página modal, la visualiza
                 spinner.style.display = 'none';
+
+                // Si el formulario tiene imágenes de carga, activo el escuchador
+                if (hasImage) {
+                    imageViewer.init();
+                }
+
+                // Checkeo de formulario
+                if (checkF) {
+                    checkForm.init();
+                }
+
                 openModal(modalName);
             })
             .catch(error => {
@@ -146,7 +214,7 @@ window.insertModalPage = function (ruta, modalName) {
 }
 
 // Establece los valores en un formulario y lo abre como modal
-window.openModalModifyUser = function (nombre, bloqueado, rol, rutaCreate, rutaDelete, modal) {
+window.openModalModify_BORRAR = function (nombre, bloqueado, rol, rutaCreate, rutaDelete, modal) {
     const modalUser = document.getElementById(modal);
 
     modalUser.querySelector('#nombre').innerText = "Modificar usuario " + nombre;
@@ -228,8 +296,6 @@ const multipleDates = {
             textoBoton = "Add new date";
         }
         const fechaInput = document.getElementById('fechaInput');
-
-
 
         const listaFechas = document.getElementById('listaFechas');
         const fechasHidden = document.getElementById('fechasHidden');
@@ -326,52 +392,9 @@ const imageViewer = {
     }
 };
 
-// Activa un oyente para ver si un formulario ha sido modificado
-const checkForm = {
-    init: function () {
-        this.launch();
-    },
-    launch: function () {
 
-        const formulario = document.getElementById("myForm");
-        const boton = document.getElementById("submitButton");
 
-        if (formulario != null) {
-            // Guarda los valores iniciales del formulario
-            const valoresIniciales = new FormData(formulario);
-
-            formulario.addEventListener("input", function () {
-                const valoresActuales = new FormData(formulario);
-                let modificado = false;
-
-                // Compara los valores actuales con los iniciales
-                for (let [clave, valor] of valoresActuales.entries()) {
-                    if (valor instanceof File) {
-                        if (valoresActuales.get("image").name != '') {
-                            modificado = true;
-                            break;
-                        }
-
-                    } else if (valor != valoresIniciales.get(clave)) {
-                        modificado = true;
-                        break;
-                    }
-                }
-
-                // Muestra u oculta el botón según si hubo cambios
-                if (modificado) {
-                    boton.classList.remove("disabled");
-                } else {
-                    boton.classList.add("disabled");
-                }
-            });
-
-        }
-
-    }
-};
-
-// Comprueba si el nombre introducido en el formulario ya existe en la BBDD
+// Comprueba si el nombre de la experiencia introducido en el formulario ya existe en la BBDD
 const checkName = {
     init: function () {
         this.launch();
@@ -467,7 +490,6 @@ $(function () {
     if (content.hasClass('user-profile')) {
         checkForm.init();
         imageViewer.init();
-
     }
 
     // Si la página contiene la clase "home" ejecuta el carrusel
