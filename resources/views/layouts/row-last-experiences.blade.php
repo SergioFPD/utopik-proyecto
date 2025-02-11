@@ -6,7 +6,7 @@
 @endphp
 <div class="carousel-container row">
     @if ($ultimasExperiencias == null || $ultimasExperiencias->count() == 0)
-        <p class="text-title text-small texto-azul-dos">{{__('labels.no_experience')}}</p>
+        <p class="text-title text-small texto-azul-dos">{{ __('labels.no_experience') }}</p>
     @else
         <p class="text-title text-small texto-azul-dos">{{ __('labels.discover-last') }}</p>
         <div class="owl-carousel">
@@ -23,10 +23,11 @@
                         @slot('nombreExperiencia', $experiencia->nombre)
                         @slot('esVip', $experiencia->vip)
                         @slot('descripcion', $experiencia->descripcion_corta)
-                        @slot('pais', $experiencia->ciudad->pais->pais)
+                        @slot('ciudad', $experiencia->ciudad->ciudad)
+                        @slot('pais', __('countries.' . $experiencia->ciudad->pais->pais))
                         @slot('rutaDetalle', route('experience.detail', $experiencia->nombre))
-                        {{-- @slot('precio_adulto', $experiencia->getFormatedPrice())
-                    @slot('dias', $experiencia->duracion)
+                        @slot('precio', $experiencia->getFormatedPrice())
+                        {{-- @slot('dias', $experiencia->duracion)
 
                     @slot('esCliente', $esCliente) --}}
                     @endcomponent

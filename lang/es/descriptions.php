@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'provider_text1' => '¡Muestra tus viajes al mundo!',
+    'provider_text2' => 'Recibe reservas de nuestros clientes',
+    'provider_text3' => 'Multiplica el éxito de tu negocio',
+    'provider_text4' => 'Publica experiencias VIP exclusivas',
+    'we_offer' => 'Esto es lo que te ofrecemos',
     'home_header' => 'Destinos exclusivos para quienes buscan lo extraordinario',
     'home-header-text1' => 'Creemos que viajar puede ser transformador. Que puede empoderar a las comunidades que visitamos. Y que puede hacer del mundo un lugar mejor.',
     'home-header-text2' => 'Únase a nosotros en un viaje artesanal de alto nivel a través de los destinos más singulares que este mundo tiene para ofrecer.',

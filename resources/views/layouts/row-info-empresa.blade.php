@@ -2,7 +2,7 @@
     @slot('color', 'fondo-azul-dos')
 @endcomponent
 <div class="carousel-container fondo-azul-dos row">
-    <p class="text-title text-small texto-blanco">Esto es lo que te ofrecemos</p>
+    <p class="text-title text-small texto-blanco">{{ __('descriptions.we_offer') }}</p>
     <div class="owl-carousel">
         @component('components.card2')
             @slot('rutaImagen')

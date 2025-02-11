@@ -289,6 +289,10 @@ hr {
     color: var(--color-texto-sobre-boton) !important;
 }
 
+.btn-cancel {
+    background: var(--color-boton-borrar);
+}
+
 /* CONTAINERS */
 
 .experience-container {

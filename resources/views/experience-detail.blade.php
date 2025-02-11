@@ -24,6 +24,7 @@
                 @slot('precioMenor', $experiencia->precio_nino)
                 @slot('dias', $experiencia->duracion)
                 @slot('rutaReserva', $experiencia->getEncryptedId())
+                @slot('esVip', $experiencia->vip)
             @endcomponent
         @endif
 

@@ -40,12 +40,16 @@
 .card1-content h3,
 .card1-content p {
     color: var(--color-texto-claro);
+    margin-bottom: 0;
 }
 
-.card1-title {
+.card1-content  .card1-price {
+    font-size: 0.8em;
+}
+
+.card1-content  .card1-title {
     font-size: 1.5em;
     margin: 10px 0;
-    color: #333;
 }
 
 .card1 .button-container {
@@ -54,16 +58,15 @@
     left: 10px;
 }
 
-.card1-description {
-    font-size: 0.9em;
-    color: #555;
+.card1-content .card1-description {
+    font-size: 1em;
     margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 
-.card1-country {
+.card1-content  .card1-country {
     font-size: 0.9em;
     font-weight: bold;
-    color: #666;
     margin-top: 10px;
 }
 
@@ -129,10 +132,6 @@
 
 .carousel-container {
     padding: 0 4%;
-}
-
-.carousel-container p {
-    margin-bottom: 40px;
 }
 
 .owl-carousel .item {
@@ -393,4 +392,98 @@
     line-height: 0;
     padding: 4px 15px;
     margin-bottom: 20px;
+}
+
+/* EXPERIENCE PROVIDER ITEM */
+
+.provider-menu .experience-list .button-container {
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+.provider-menu .experience-list {
+    background-color: var(--color-azul-dos);
+    padding: 2%;
+}
+
+.experience-item .item-container{
+    background: var(--color-fondo-blanco);
+}
+
+.experience-item .item-container p{
+    line-height: 1.5;
+    margin: 0;
+}
+
+.experience-item .item-container .up {
+    margin-bottom: -1px;
+    border: 1px solid;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.experience-item .item-container .up .left {
+
+    overflow: hidden;
+    width: 20%;
+}
+
+.experience-item .item-container .up .left img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.experience-item .item-container .up .middle {
+    padding: 1%;
+    width: 50%;
+}
+
+.experience-item .item-container .up .right {
+    padding: 1%;
+    width: 10%;
+}
+
+.experience-item .item-container .up .button-container {
+    display: flex;
+    padding: 1%;
+    width: 20%;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.experience-item .item-container .down {
+    margin-bottom: 2%;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.experience-item .item-container .activity-item {
+    margin: -1px 2%;
+    padding: 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.experience-item .item-container .activity-item .middle{
+    overflow: hidden;
+    border-radius: 25px;
+    height: 150px;
+    width: 20%;
+}
+
+.experience-item .item-container .activity-item .middle img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.experience-item .item-container .activity-item .right{
+    width: 50%;
+    text-align: start;
 }

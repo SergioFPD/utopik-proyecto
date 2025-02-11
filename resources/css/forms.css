@@ -115,6 +115,7 @@ input[type="password"] {
     width: 60%;
     border: 1px solid;
     margin-left: -1px;
+    flex-direction: column;
 }
 
 .exp-form-date-img .right {
@@ -130,7 +131,7 @@ input[type="password"] {
 }
 
 .exp-form-date-img .image-preview-container {
-    border-radius: 20px;
+    border-radius: 0;
     width: 100%;
     height: auto;
     overflow: hidden;
@@ -193,7 +194,8 @@ input[type="password"] {
 }
 
 .act-form-date-img .image-preview-container {
-    border-radius: 20px;
+    margin-top: 10px;
+    border-radius: 0;
     width: 100%;
     overflow: hidden;
 }

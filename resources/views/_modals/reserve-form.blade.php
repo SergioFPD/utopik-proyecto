@@ -11,8 +11,8 @@
                 alt="">
             <div class="res-title">
 
-                <p id="nombre">{{ __('labels.new_reserve') }}</p>
-                <p>{{ $experiencia->nombre }}</p>
+                <p>{{ __('labels.new_reserve') }}</p>
+                <p class="text-nomal">{{ $experiencia->nombre }}</p>
 
             </div>
         </div>

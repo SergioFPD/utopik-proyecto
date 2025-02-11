@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         // Middleware personalizado
         'role' => \App\Http\Middleware\CheckRole::class,
         'blocked' => \App\Http\Middleware\CheckBloqued::class,
+        'country' => \App\Http\Middleware\CheckCountry::class,
     ];
 }

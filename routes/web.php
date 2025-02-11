@@ -28,8 +28,9 @@ Route::get('/lang/{lang}', [LanguageController::class, 'switchLang'])->name('lan
 
 // NAVIGATION
 Route::get('/', [NavController::class, 'home'])->name('home');
-Route::get('/country/{name}', [NavController::class, 'country'])->name('country');
-Route::get('/experience/detail/{nombre}', [NavController::class, 'viewDetail'])->name('experience.detail');
+// Verifica que el pais este activo
+Route::get('/country/{country}', [NavController::class, 'country'])->name('country')->middleware('country');
+Route::get('/experience/detail/{experience}', [NavController::class, 'viewDetail'])->name('experience.detail')->middleware('country');
 
 // ADMIN
 Route::middleware(['auth', 'role:admin'])->group(function () {

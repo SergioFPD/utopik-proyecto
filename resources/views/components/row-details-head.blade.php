@@ -29,7 +29,12 @@
     </div>
 
     <div class="country-description">
-        <h3 class="text-small texto-oro text-shadow">{{ __('labels.the_experience') }}</h3>
+        @if ($esVip)
+            <h3 class="text-small texto-oro text-shadow">{{ __('labels.the_vip_experience') }}</h3>
+        @else
+            <h3 class="text-small texto-oro text-shadow">{{ __('labels.the_experience') }}</h3>
+        @endif
+
         <p>{!! $descripcion !!}</p>
     </div>
 </div>

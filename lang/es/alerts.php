@@ -13,5 +13,6 @@ return [
     'country_created' => 'País creado',
     'country_updated' => 'País actualizado',
     'delete_customer' => '¿Seguro que quieres eliminar el cliente :name ?',
+    'delete_activity' => '¿Seguro que quieres eliminar esta actividad ?',
     'reserve_evaluated' => 'La reserva se ha evaluado',
 ];

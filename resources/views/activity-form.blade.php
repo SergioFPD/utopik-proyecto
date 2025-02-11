@@ -102,13 +102,14 @@
                     </div>
                     <div class="button-container">
                         <input class="btn-standard" type="submit" value="{{$textoBoton}}">
+                        <a class="btn-standard btn-cancel" href="{{ url()->previous() }}" class="btn">{{__('buttons.cancel')}}</a>
                     </div>
                 </form>
 
                 <div class="button-container">
 
                     @if ($mode == 'modify')
-                        <form action="{{ route('activity.delete', $actividad->getEncryptedId()) }}" method="post">
+                        <form action="{{ route('activity.delete', $actividad->getEncryptedId()) }}" method="post" onsubmit="return confirmDelete('{{__('alerts.delete_activity')}}');">
                             @method('DELETE')
                             @csrf
                             <input class="btn-standard delete" type="submit" value="{{ __('buttons.delete_activity') }}">

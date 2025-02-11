@@ -207,7 +207,9 @@
 
                 <div class="button-container">
                     <input class="btn-standard" type="submit" value="{{ $boton }}">
+                    <a class="btn-standard btn-cancel" href="{{ url()->previous() }}" class="btn">{{__('buttons.cancel')}}</a>
                 </div>
+
             </form>
 
         </div>

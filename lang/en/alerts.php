@@ -13,5 +13,6 @@ return [
     'country_created' => 'Country created',
     'country_updated' => 'Country updated',
     'delete_customer' => 'Are you sure you want to delete user :name ?',
+    'delete_activity' => '¿Are you sure you want to delete this activity?',
     'reserve_evaluated' => 'The reservation has been evaluated',
 ];

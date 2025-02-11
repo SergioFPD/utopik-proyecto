@@ -3,6 +3,10 @@ html {
     /* Base para rem */
 }
 
+p.text-nomal{
+    font-weight: normal;
+}
+
 .text-bold{
     font-weight: bold;
 }
@@ -47,3 +51,12 @@ html {
     font-size: 22px;
     transform: rotate(90deg);
 }
+
+/* TEXTO DESTACADO */
+.destacado{
+    border: 1px solid;
+    border-radius: 10px;
+    height: 1.5em;
+    padding: 5px 10px;
+}
+

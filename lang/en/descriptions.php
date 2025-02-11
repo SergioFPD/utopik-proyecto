@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'provider_text1' => 'Show your trips to the world!',
+    'provider_text2' => 'Receive bookings from our customers',
+    'provider_text3' => 'Multiply the success of your business',
+    'provider_text4' => 'Post exclusive VIP experiences',
+   'we_offer' => 'This is what we offer you',
 'home_header' => 'Exclusive destinations for those who seek the extraordinary',
 'home-header-text1' => 'We believe that travel can be transformative. That it can empower the communities we visit. And that it can make the world a better place.',
 'home-header-text2' => 'Join us on a high-level handcrafted journey through the most unique destinations this world has to offer.<',

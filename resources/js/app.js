@@ -339,7 +339,7 @@ const multipleDates = {
                     renderListaFechas();
                 });
 
-                unaFecha.appendChild(eliminarBtn);
+                unaFecha.prepend(eliminarBtn);
                 listaFechas.appendChild(unaFecha);
             });
 

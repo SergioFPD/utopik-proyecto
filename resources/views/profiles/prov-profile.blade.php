@@ -21,47 +21,16 @@
             @if ($menu == 'experiences')
                 <div class="experience-list menu">
 
+                    <div class="button-container">
+                        <a class="btn-standard gold" href="{{ route('experience.form') }}">
+                            <p>{{ __('buttons.add_experience') }}</p>
+                        </a>
+                    </div>
+
                     @foreach ($experiencias as $experiencia)
-                        <div class="experience-container">
-                            <p>Nombre: {{ $experiencia->nombre }}</p>
-                            <p>Descripción: {{ $experiencia->descripcion }}</p>
-                            @if ($experiencia->reserva->count() > 0)
-                                <p>TIENE {{ $experiencia->reserva->count() }} RESERVAS</p>
-                            @endif
-                            @if ($experiencia->actividad->count() > 0)
-                                <p>Actividades:</p>
-                                <ul>
-                                    @foreach ($experiencia->actividad as $actividad)
-                                        <li>{{ $actividad->nombre }}</li>
-                                        <a class="btn-standard"
-                                            href="{{ route('activity.form', ['exp_id' => $experiencia->getEncryptedId(), 'act_id' => $actividad->getEncryptedId(), 'mode' => 'modify']) }}">
-                                            <p>{{ __('buttons.modify_activity') }}</p>
-                                        </a>
-                                    @endforeach
-                                </ul>
-                            @else
-                                <p>{{ __('labels.no_experiences') }}</p>
-                            @endif
-                            <div>
-                                <a class="btn-standard"
-                                    href="{{ route('experience.modify', $experiencia->getEncryptedId()) }}">
-                                    <p>{{ __('buttons.modify_experience') }}</p>
-                                </a>
-                                <a class="btn-standard"
-                                    href="{{ route('activity.form', ['exp_id' => $experiencia->getEncryptedId(), 'act_id' => $experiencia->getEncryptedId(), 'mode' => 'create']) }}">
-                                    <p>{{ __('buttons.add_activity') }}</p>
-                                </a>
-
-                            </div>
-                        </div>
+                        @component('components.experience-item', ['experiencia' => $experiencia])
+                        @endcomponent
                     @endforeach
-
-                    <br><br>
-
-
-                    <a class="btn-standard" href="{{ route('experience.form') }}">
-                        <p>{{ __('buttons.add_experience') }}</p>
-                    </a>
 
                 </div>
             @endif
@@ -81,8 +50,7 @@
                                         <button class="btn-standard"
                                             onclick="insertModalPage('{{ route('form.evaluate', $reserva->getEncryptedId()) }}', 'modal-reserve-rate', false, false)">{{ __('buttons.evaluate') }}</button>
                                     @else
-                                    <p>Se ha evaluado con: {{ $reserva->puntuacion }} puntos</p>
-
+                                        <p>Se ha evaluado con: {{ $reserva->puntuacion }} puntos</p>
                                     @endif
 
 

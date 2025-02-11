@@ -324,6 +324,7 @@ class ProviderController extends Controller
     public function rateCustomer(Request $request, $reservation_id)
     {
 
+        // Media de puntuación 
         $points = round(($request->one +
             $request->two +
             $request->three +
