@@ -42,24 +42,30 @@ class ProviderController extends Controller
         return view('experience-form', compact('experiencia', 'mode'));
     }
 
+    public function storeExperience3(Request $request)
+    {
+
+        return back();
+    }
+
     public function storeExperience(Request $request)
     {
-        if (Experiencia::where('nombre', $request->nombre)->firstOrFail()) {
+        if (Experiencia::where('nombre', $request->nombre)->exists()) {
             return redirect()->back()->with('error', 'Ya existe una experiencia con ese nombre, cámbialo');
         }
 
-        $validator = Validator::make($request->all(), [
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validar el tipo y tamaño de la imagen
-            'fechas' => 'required|array|different:null',
-            'fechas.*' => 'required|string'
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validar el tipo y tamaño de la imagen
+        //     'fechas' => 'required|array|different:null',
+        //     'fechas.*' => 'required|string'
+        // ]);
 
-        if ($validator->fails()) {
-            // Especifica un nombre de error para abrir el formulario modal correspondiente
-            $validator->errors()->add('error', 'Error saving experience');
-            // Llamamos a la excepción de validación para que Laravel maneje el error
-            throw new ValidationException($validator);
-        }
+        // if ($validator->fails()) {
+        //     // Especifica un nombre de error para abrir el formulario modal correspondiente
+        //     $validator->errors()->add('error', 'Error saving experience');
+        //     // Llamamos a la excepción de validación para que Laravel maneje el error
+        //     throw new ValidationException($validator);
+        // }
 
         // Verifico si ya existe una ciudad en ese pais en la BD
         $ciudad = Ciudad::firstOrCreate(
@@ -89,7 +95,7 @@ class ProviderController extends Controller
             $imageName = time() . '.' . $request->image->extension();
 
             // Crear una carpeta con el ID del usuario autenticado
-            $folderPath = "public/images/providers/" . $user->id;
+            $folderPath = public_path("images/providers/" . $user->id);
             $folderUri = "images/providers/" . $user->id; // Se guardará como ruta de la imagen
 
             $request->image->storeAs($folderPath, $imageName);

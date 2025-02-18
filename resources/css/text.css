@@ -52,6 +52,14 @@ p.text-nomal{
     transform: rotate(90deg);
 }
 
+.texto-oscuro{
+    color: var(--color-texto-oscuro);
+}
+
+.texto-claro{
+    color: var(--color-texto-claro);
+}
+
 /* TEXTO DESTACADO */
 .destacado{
     border: 1px solid;

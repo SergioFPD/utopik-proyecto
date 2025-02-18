@@ -16,7 +16,7 @@
                 @endif
             @endslot
         @endcomponent
-        <div class="row">
+        <div class="row menu-content">
 
             @if ($menu == 'experiences')
                 <div class="experience-list menu">
@@ -36,16 +36,28 @@
             @endif
             @if ($menu == 'reserves')
                 <div class="reserve-list menu">
-                    @foreach ($experiencias as $experiencia)
-                        @if ($experiencia->reserva != null)
-                            @foreach ($experiencia->reserva as $reserva)
+
+                    @if ($experiencias != null)
+                        @component('components.reserve-item', ['experiencias' => $experiencias])
+                        @endcomponent
+                    @else
+                        <div>
+                            <p>{{ __('labels.no_reservations') }}</p>
+                        </div>
+                    @endif
+
+
+
+
+
+                    {{-- 
                                 <div class="reserve-content">
                                     <h3> Nombre de experiencia: {{ $experiencia->nombre }}</h3>
                                     <p>Adultos: {{ $reserva->adultos }}</p>
                                     <p>Cliente: {{ $reserva->user->nombre }}</p>
                                     <p>Email del cliente: {{ $reserva->user->email }}</p>
                                     <p>Precio total de la reserva: {{ $reserva->dimePrecioTotal() }}€</p>
-                                    {{-- Se muestra botón de evaluar sólo si la reserva tiene 0 puntos --}}
+              
                                     @if ($reserva->puntuacion == 0)
                                         <button class="btn-standard"
                                             onclick="insertModalPage('{{ route('form.evaluate', $reserva->getEncryptedId()) }}', 'modal-reserve-rate', false, false)">{{ __('buttons.evaluate') }}</button>
@@ -54,14 +66,10 @@
                                     @endif
 
 
-                                </div>
-                            @endforeach
-                        @else
-                            <div>
-                                <p>{{ __('labels.no_reservations') }}</p>
-                            </div>
-                        @endif
-                    @endforeach
+                                </div> --}}
+
+
+
 
                 </div>
             @endif

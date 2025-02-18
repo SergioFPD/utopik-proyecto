@@ -51,7 +51,7 @@
         } else {
             $titulo = __('labels.new_experience');
             $subtitulo = '';
-            $action = route('experience.store');
+            $action = route('experience-store');
             $boton = __('buttons.add_experience');
             $nombre = '';
             $la_ciudad = '';
@@ -75,9 +75,8 @@
             @slot('menuSubTitulo', $subtitulo)
         @endcomponent
         <div class="exp-form-content">
-            <form id="form" action="{{ $action }}" method="post" enctype="multipart/form-data">
+            <form id="form" action="{{ $action }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                
                 {{-- Info block --}}
                 <div class="exp-form-data">
 

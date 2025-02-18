@@ -5,13 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Experiencia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Ciudad;
 use App\Models\Reserva;
-use App\Models\Pais;
 use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -29,7 +25,6 @@ class UserController extends Controller
         } else {
             $reservas = null;
         }
-
 
         return view('profiles.client-profile', compact('ultimasExperiencias', 'reservas', 'menu'));
     }
@@ -49,7 +44,6 @@ class UserController extends Controller
 
         return redirect()->route('client.profile', 'reserves');
     }
-
 
     public function updateUser(Request $request)
     {

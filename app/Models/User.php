@@ -66,4 +66,23 @@ class User extends Authenticatable
     {
         return Crypt::encryptString($this->id);
     }
+
+    public function experienceCount()
+    {
+        if ($this->rol === 'proveedor') {
+            return $this->experiencia()->count();
+        }
+        return 0; // Si no es proveedor, devuelve 0
+    }
+
+    public function reserveCount()
+    {
+        if ($this->rol === 'proveedor') {
+            return Reserva::whereIn(
+                'experiencia_id', 
+                $this->experiencia()->pluck('id')
+            )->count();
+        }
+        return 0; // Si no es proveedor, devuelve 0
+    }
 }

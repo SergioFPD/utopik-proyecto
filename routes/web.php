@@ -61,7 +61,7 @@ Route::middleware(['auth', 'role:proveedor'])->group(function () {
     Route::get('/experience/form', [ProviderController::class, 'experienceCreateForm'])->name('experience.form');
     Route::get('/activity/form/{exp_id}/{act_id}/{mode}', [ProviderController::class, 'activityListForm'])->name('activity.form');
 
-    Route::post('/experience/store', [ProviderController::class, 'storeExperience'])->name('experience.store');
+    Route::post('/experience/store', [ProviderController::class, 'storeExperience'])->name('experience-store');
     Route::get('/experience/modify/{id}', [ProviderController::class, 'experienceModifyForm'])->name('experience.modify');
     Route::post('/experience/update/{id}', [ProviderController::class, 'updateExperience'])->name('experience.update');
 

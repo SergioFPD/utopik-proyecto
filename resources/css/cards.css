@@ -402,8 +402,11 @@
     justify-content: center;
 }
 
-.provider-menu .experience-list {
+.provider-menu .menu-content {
     background-color: var(--color-azul-dos);
+}
+
+.provider-menu .experience-list {
     padding: 2%;
 }
 

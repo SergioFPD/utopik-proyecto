@@ -102,14 +102,24 @@ const checkForm = {
             // Guarda los valores iniciales del formulario
             const valoresIniciales = new FormData(formulario);
 
+            const activo1 = valoresIniciales.getAll("activo")[1];
+            const block1 = valoresIniciales.getAll("bloqueado")[1];
+
             formulario.addEventListener("input", function () {
                 const valoresActuales = new FormData(formulario);
                 let modificado = false;
 
-                console.log('cambiado input');
+                const activo2 = valoresActuales.getAll("activo")[1];
+                const block2 = valoresActuales.getAll("bloqueado")[1];
 
                 // Compara los valores actuales con los iniciales
                 for (let [clave, valor] of valoresActuales.entries()) {
+                    // Verifica el checkbox ya que FormData no lo hace bien
+                    if (activo1 != activo2 || block1 != block2) {
+                        modificado = true;
+                        break;
+                    }
+                    // Verifica si la imagen tiene un nombre, si lo tiene, es que se ha cargado una imagen
                     if (valor instanceof File) {
                         if (valoresActuales.get("image").name != '') {
                             modificado = true;

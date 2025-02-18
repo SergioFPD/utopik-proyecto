@@ -62,10 +62,10 @@
                 @enderror
                 {{-- Activo --}}
                 <div class="group-input">
-
                     <input type="hidden" name="activo" value="0">
-                    <input type="checkbox" name="activo" value="1" {{ $activo }} />
+                    <input type="checkbox" id="checkbox" name="activo" value="1" {{ $activo }} />
                     <label for="">{{ __('labels.active') }}</label>
+                    
                 </div>
 
                 <input id="submitButton" class="btn-standard" type="submit" value="{{ $boton }}">
