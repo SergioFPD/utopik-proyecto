@@ -6,10 +6,10 @@
 
 @section('content')
     <div class="content home">
-        @php
+        {{-- @php
             $esVip = Auth::check() && (Auth::user()->vip || Auth::user()->rol == 'admin');
             $esCliente = Auth::check() && Auth::user()->rol == 'cliente';
-        @endphp
+        @endphp --}}
         @include('layouts.row-home-head')
 
         @include('layouts.row-last-experiences')

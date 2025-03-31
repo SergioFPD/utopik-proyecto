@@ -1,91 +1,3 @@
-/* ROW HOME HEADER */
-.header-description {
-    padding: 3% 10% 5% 10%;
-    color: var(--color-texto-claro);
-}
-
-.row-home-header {
-    background: var(--color-azul-dos);
-}
-
-.home-header-image {
-    overflow: hidden;
-    position: relative;
-    height: 700px;
-}
-
-.home-header-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.home-header-title {
-    z-index: 2;
-    right: 6%;
-    position: absolute;
-    bottom: 7%;
-    text-align: end;
-    max-width: 70%;
-}
-
-.details-header-title {
-    z-index: 2;
-    left: 8%;
-    position: absolute;
-    bottom: 13%;
-    text-align: start;
-    max-width: 70%;
-}
-
-.header-center-text {
-    text-align: center;
-    padding: 10px 10% 5% 10%;
-}
-
-
-
-.content-margin {
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-/* ROW FOOTER */
-
-.row-footer {
-    background: var(--color-azul-tres);
-    padding: 0 4% 7% 4%;
-    display: flex;
-    color: var(--color-texto-claro);
-    align-content: flex-start;
-}
-
-.footer-left {
-    display: flex;
-    width: 40%;
-}
-
-.footer-logo {
-    max-width: 200px;
-}
-
-.footer-logo img {
-    width: 100%;
-}
-
-.footer-right {
-    width: 60%;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.row-footer p {
-    margin: 0;
-}
-
 /* ROW COUNTRY HEAD */
 
 .country-description {
@@ -113,6 +25,15 @@
     position: absolute;
     bottom: 24%;
     left: 10%;
+
+}
+
+@media (max-width: 768px) {
+
+    .country-description {
+        padding: 5%;
+        color: var(--color-texto-claro);
+    }
 
 }
 
@@ -232,6 +153,39 @@
 
 .row-provider-login .fondo-azul-dos {
     z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .provider-login-image {
+
+        height: 935px;
+    }
+
+    .provider-login-container .left {
+        width: 80%;
+    }
+
+    .provider-login-container .right {
+        width: 90%;
+    }
+
+    .provider-login-container {
+        flex-direction: column;
+    }
+
+    .details-header-title .info-container {
+        gap: 0px !important;
+        flex-direction: column !important;
+    }
+
+    .details-header-title {
+
+        max-width: 80% !important;
+    }
+
+    .terms-container {
+        margin: 0 5% !important;
+    }
 }
 
 /* ROW PROFILE */

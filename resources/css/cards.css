@@ -179,6 +179,42 @@
     height: 100%;
 }
 
+@media (max-width: 768px) {
+    .card-exp-container {
+        flex-direction: column;
+    }
+
+    .card-exp-left {
+        width: 100% !important;
+    }
+
+    .card-exp-right {
+        width: 95% !important;
+    }
+
+    .card-booking {
+        flex-direction: column !important;
+    }
+
+    .card-booking .left {
+        width: 100% !important;
+    }
+
+    .card-booking .right {
+        width: 100% !important;
+    }
+
+    .card-booking .button-box {
+        justify-content: center !important;
+    }
+
+    .exp-vip-card1 {
+        top: -91px;
+        right: 132px;
+        transform: rotate(-90deg);
+    }
+}
+
 .card-exp-left {
     position: relative;
     width: 40%;
@@ -294,7 +330,6 @@
 
 .book-info {
     color: var(--color-texto-claro);
-    line-height: 0;
     gap: 20px;
     width: auto;
     background: var(--color-azul-uno);
@@ -303,6 +338,10 @@
     flex-direction: row;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.book-info p{
+    margin: 0;
 }
 
 .card-booking .price-box {

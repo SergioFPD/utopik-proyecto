@@ -7,17 +7,17 @@
         <form action="{{ route('register.user') }}" method="post">
             @csrf
             <label>{{ __('labels.name') }}</label>
-            <input type="text" name="nombre">
+            <input type="text" name="nombre" required>
             @error('nombre')
                 <p class="error-message">{{ $message }}</p>
             @enderror
             <label>{{ __('labels.email') }}</label>
-            <input type="email" name="email">
+            <input type="email" name="email" required>
             @error('email')
                 <p class="error-message">{{ $message }}</p>
             @enderror
             <label>{{ __('labels.password') }}</label>
-            <input type="password" name="password">
+            <input type="password" name="password" required>
             @error('password')
                 <p class="error-message">{{ $message }}</p>
             @enderror

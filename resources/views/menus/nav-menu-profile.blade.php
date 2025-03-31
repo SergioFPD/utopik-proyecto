@@ -68,9 +68,9 @@
             </div>
 
             <div class="right-down">
-                <a class="btn-standard gold-button" href="{{ route('home') }}">
+                {{-- <a class="btn-standard gold-button" href="{{ route('home') }}">
                     <p>{{ __('buttons.go_home') }}</p>
-                </a>
+                </a> --}}
             </div>
 
         </div>

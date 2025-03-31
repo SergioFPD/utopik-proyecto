@@ -27,9 +27,14 @@
     <div class="container">
         <div class="left">
             <div class="img-logo">
-                <a href="{{ route('home') }}">
-                    <div class="logo"></div>
-                </a>
+                <div class="img-logo full">
+                    <a href="{{ route('home') }}"><img class="logo"
+                            src="{{ asset('storage/images/utopik_logo_alpha.png') }}" alt=""></a>
+                </div>
+                <div class="img-logo small">
+                    <a href="{{ route('home') }}"><img class="logo"
+                            src="{{ asset('storage/images/utopik_circle2_alpha.png') }}" alt=""></a>
+                </div>
             </div>
         </div>
 
@@ -38,12 +43,12 @@
                 @slot('listaPaises')
                     @if ($paises != null)
                         @foreach ($paises as $pais)
-                        {{-- El pais ha de estar activo --}}
-                        @if($pais->activo)
-                            <a class="country-select-item" href="{{ route('country', $pais->pais) }}">
-                                <p>{{ __('countries.' . $pais->pais) }}</p>
-                            </a>
-                           @endif 
+                            {{-- El pais ha de estar activo --}}
+                            @if ($pais->activo)
+                                <a class="country-select-item" href="{{ route('country', $pais->pais) }}">
+                                    <p>{{ __('countries.' . $pais->pais) }}</p>
+                                </a>
+                            @endif
                         @endforeach
                     @endif
                 @endslot
@@ -55,12 +60,20 @@
         <div class="right">
 
             <div class="right-up">
-                @if (($logeado && $rol != 'cliente') || !$logeado)
-                    <a class="btn-standard gold-button" href="{{ $rutaPerfil }}">
-                        <p>{{ $nomBoton }}</p>
-                    </a>
-                @endif
+                <div class="botonera">
+                    @if (($logeado && $rol != 'cliente') || !$logeado)
+                        <a class="btn-standard gold-button" href="{{ $rutaPerfil }}">
+                            <p>{{ $nomBoton }}</p>
+                        </a>
+                    @endif
+                    @if (!$logeado)
+                        <a class="btn-standard" onclick="openModal('modal-register')">
+                            <p>{{ __('buttons.register') }}</p>
+                        </a>
+                    @endif
+                </div>
                 @include('_partials.lang')
+                
             </div>
 
             <div class="right-down">
@@ -69,36 +82,17 @@
                 @endif
                 @if (!$logeado)
                     @include('_modals.login')
+                    @include('_modals.menu-responsive')
                 @endif
-                @if (!$logeado)
-                    <a class="btn-standard" onclick="openModal('modal-register')">
-                        <p>{{ __('buttons.register') }}</p>
-                    </a>
-                @endif
+
                 @if ($logeado && $rol != 'cliente')
                     <a class="btn-standard alpha2" href="{{ route('logout') }}">
                         <p>{{ __('buttons.logout') }}</p>
                     </a>
                 @endif
-                
+
             </div>
 
         </div>
     </div>
 </div>
-<style>
-    .navmenu .img-logo .logo {
-        background-image: url('{{ asset('storage/images/utopik_logo_alpha.png') }}');
-    }
-
-    @media (max-width: 800px) {
-
-        .navmenu .img-logo .logo {
-            background-image: url('{{ asset('storage/images/utopik_circle2_alpha.png') }}');
-        }
-
-        .navmenu .img-logo {
-            width: 116px;
-        }
-    }
-</style>

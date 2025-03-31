@@ -36,7 +36,7 @@
                     @endif
                     <div class="button-container">
                         <button
-                            class="btn-standard"onclick="insertModalPage('{{ route('form.provider', 'new') }}', 'modal-provider', false, true)">{{ __('buttons.new_provider') }}</button>
+                            class="btn-standard" onclick="insertModalPage('{{ route('form.provider', 'new') }}', 'modal-provider', false, true)">{{ __('buttons.new_provider') }}</button>
                     </div>
                 </div>
             @endif
