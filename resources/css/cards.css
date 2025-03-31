@@ -451,6 +451,7 @@
 
 .experience-item .item-container{
     background: var(--color-fondo-blanco);
+    margin-bottom: 20px;
 }
 
 .experience-item .item-container p{
@@ -528,4 +529,38 @@
 .experience-item .item-container .activity-item .right{
     width: 50%;
     text-align: start;
+}
+
+@media (max-width: 768px) {
+    .experience-item .item-container .up {
+        flex-direction: column;
+    }
+
+    .experience-item .item-container .up .right,
+    .experience-item .item-container .up .middle,
+    .experience-item .item-container .up .left {
+        width: 100%;
+    }
+
+    .experience-item .item-container .up .button-container {
+        flex-direction: row;
+    }
+
+    .experience-item .item-container .activity-item {
+        flex-direction: column;
+    }
+
+    .experience-item .item-container .activity-item .right,
+    .experience-item .item-container .activity-item .middle {
+        width: 100%;
+    }
+
+    .act-form-data {
+        flex-direction: column !important;
+    }
+
+    .act-item-content .right,
+    .act-item-content .left {
+        width: unset !important;
+    }
 }

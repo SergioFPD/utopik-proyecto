@@ -221,6 +221,32 @@ input[type="password"] {
     padding: 20px;
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
 }
 
+@media (max-width: 768px) {
+    .exp-form-data {
+        flex-direction: column;
+    }
+
+    .exp-form-data .right,
+    .exp-form-data .left {
+        width: unset;
+    }
+
+    .exp-form-data .left {
+        margin-bottom: 30px;
+    }
+
+    .exp-form-date-img {
+        flex-direction: column;
+    }
+
+    .exp-form-date-img .right,
+    .exp-form-date-img .left {
+        width: unset;
+    }
+
+}
 

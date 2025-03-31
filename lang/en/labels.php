@@ -3,6 +3,10 @@
 return [
     'yes' => 'Yes',
     'no' => 'No',
+    'date' => 'Date',
+    'total' => 'Total',
+    'evaluation' => 'Evaluation',
+    'reserve_list' => 'Reserve list',
     'experience_list' => 'Discover these amazing experiences',
     'no_experience_list' => 'We are sorry, we dont have any experiences in this country yet.',
     'no_experience' => 'We are sorry, we dont have any experiences yet.',

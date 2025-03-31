@@ -71,9 +71,13 @@
                             <p>{{ __('buttons.register') }}</p>
                         </a>
                     @endif
+                    @if ($logeado && $rol != 'cliente')
+                        <a class="btn-standard alpha2" href="{{ route('logout') }}">
+                            <p>{{ __('buttons.logout') }}</p>
+                        </a>
+                    @endif
                 </div>
                 @include('_partials.lang')
-                
             </div>
 
             <div class="right-down">
@@ -82,13 +86,9 @@
                 @endif
                 @if (!$logeado)
                     @include('_modals.login')
-                    @include('_modals.menu-responsive')
                 @endif
-
-                @if ($logeado && $rol != 'cliente')
-                    <a class="btn-standard alpha2" href="{{ route('logout') }}">
-                        <p>{{ __('buttons.logout') }}</p>
-                    </a>
+                @if (!$logeado || ($logeado && $rol != 'cliente'))
+                    @include('_modals.menu-responsive')
                 @endif
 
             </div>

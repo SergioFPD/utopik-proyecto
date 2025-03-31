@@ -14,6 +14,11 @@
                         <p>{{ $nomBoton }}</p>
                     </a>
                 @endif
+                @if ($logeado && $rol != 'cliente')
+                <a class="btn-standard alpha2" href="{{ route('logout') }}">
+                    <p>{{ __('buttons.logout') }}</p>
+                </a>
+            @endif
             </div>
         </div>
 

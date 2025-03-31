@@ -1,3 +1,4 @@
+<h3 class="text-title-white">ID {{ $experiencia->id }} - {{ $experiencia->nombre }}</h3>
 <div class="experience-item">
     <div class="item-container">
         <div class="up">

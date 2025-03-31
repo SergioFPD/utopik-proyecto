@@ -2,13 +2,14 @@
 $today = new DateTime();
 $today = date('Y-m-d');
 ?>
+
 <div class="table-item">
     <div class="item-container">
         <table>
-            <caption>{{__('labels.reserve_list')}}</caption>
+            <caption class="text-title-white">{{__('labels.reserve_list')}}</caption>
             <thead>
                 <tr>
-                    <th>{{__('labels.experience')}}</th>
+                    <th>{{__('labels.name')}}</th>
                     <th>{{__('labels.date')}}</th>
                     <th>{{__('labels.customer')}}</th>
                     <th>{{__('labels.email')}}</th>

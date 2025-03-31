@@ -67,8 +67,6 @@
                                     value="{{ $dias }}"
                                     oninput="updateSliderValue(this.value, 'slider-value-days')">
                             </div>
-
-
                         </div>
 
                         <div class="right">
