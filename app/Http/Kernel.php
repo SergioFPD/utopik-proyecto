@@ -71,5 +71,8 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'blocked' => \App\Http\Middleware\CheckBloqued::class,
         'country' => \App\Http\Middleware\CheckCountry::class,
+
+        // PIN para pruebas
+        'pin' => \App\Http\Middleware\CheckPin::class,
     ];
 }

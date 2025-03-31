@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\NavController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,22 +22,39 @@ use App\Http\Controllers\NavController;
 */
 
 // PRUEBAS ----------------------
-Route::view('/pedro', 'prueba');
+Route::get('/pin', function () {
+    return view('pin'); // Vista donde se introduce el PIN
+})->name('pin.form');
+
+Route::post('/pin', function (Request $request) {
+    $correctPin = env("PIN_ACCESO");
+
+    if ($request->pin == $correctPin) {
+        session(['pin_verified' => true]);
+        return redirect()->route('home');
+    }
+
+    return view('pin');
+
+})->name('pin.verify');
+
 
 // LANGUAGE
 Route::get('/lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang');
 
-// NAVIGATION
-Route::get('/', [NavController::class, 'home'])->name('home');
-// Verifica que el pais este activo
-Route::get('/country/{country}', [NavController::class, 'country'])->name('country')->middleware('country');
-Route::get('/experience/detail/{experience}', [NavController::class, 'viewDetail'])->name('experience.detail')->middleware('country');
+// NAVIGATION ( PIN DE PRUEBAS )
+Route::middleware(['pin'])->group(function () {
+    Route::get('/', [NavController::class, 'home'])->name('home');
+    // Verifica que el pais este activo
+    Route::get('/country/{country}', [NavController::class, 'country'])->name('country')->middleware('country');
+    Route::get('/experience/detail/{experience}', [NavController::class, 'viewDetail'])->name('experience.detail')->middleware('country');
+});
 
 // ADMIN
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/profiles/admin-profile/{menu}', [AdminController::class, 'viewProfile'])->name('admin.profile');
 
-    
+
     // Route modal form customer modify
     Route::get('/form/customer/{id}', [AdminController::class, 'formCustomer'])->name('form.customer');
     Route::put('/admin/customer/update/{user}', [AdminController::class, 'updateCustomer'])->name('admin.customer.update');
@@ -71,7 +89,6 @@ Route::middleware(['auth', 'role:proveedor'])->group(function () {
     // Evaluation modal form
     Route::get('/form/evaluate/{id}', [ProviderController::class, 'formEvaluate'])->name('form.evaluate');
     Route::put('/rate/customer/{id}', [ProviderController::class, 'rateCustomer'])->name('rate.customer');
-
 });
 
 // CUSTOMER
