@@ -260,6 +260,7 @@
     font-weight: 500;
     padding: 30px;
     text-align: right;
+    color: var(--color-texto-oro);
 }
 
 .exp-info {
@@ -270,7 +271,7 @@
 
 .exp-location {
     margin: 5px;
-    color: var(--color-texto-oscuro);
+    color: var(--color-texto-oro);
     font-weight: 500;
 }
 
@@ -563,4 +564,12 @@
     .act-item-content .left {
         width: unset !important;
     }
+    .card-act-container {
+        flex-direction: column;
+    }
+    .row-act-card-left .col-right,
+    .row-act-card-left .col-left {
+        width: unset;
+    }
+
 }

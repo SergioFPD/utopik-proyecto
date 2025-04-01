@@ -202,11 +202,6 @@ hr {
     margin: 0;
 }
 
-.btn-standard:hover {
-    background: var(--color-sobre-boton) !important;
-    color: var(--color-texto-sobre-boton) !important;
-}
-
 .btn-cancel {
     background: var(--color-boton-borrar);
 }

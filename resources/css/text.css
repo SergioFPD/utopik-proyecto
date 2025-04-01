@@ -3,6 +3,15 @@ html {
     /* Base para rem */
 }
 
+h1{
+    line-height: 1.1;
+}
+
+a{
+    color: var(--color-texto-claro);
+}
+
+
 p.text-nomal{
     font-weight: normal;
 }
@@ -13,7 +22,8 @@ p.text-nomal{
 
 .text-title {
     margin: 0;
-    line-height: 1.4;
+    margin-bottom: 10px;
+    line-height: 1;
     font-weight: bold;
     
 }
@@ -32,6 +42,7 @@ p.text-nomal{
 
 .text-small {
     font-size: 2em;
+    line-height: 1;
 }
 
 .text-medium {
